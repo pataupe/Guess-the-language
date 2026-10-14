@@ -13,7 +13,14 @@
      level    : 1 = courante, 2 = intermédiaire, 3 = rare
      aliases  : autres saisies acceptées par l'autocomplétion
      hint     : indices visuels pour la reconnaître (affiché après la réponse)
-     texts    : phrases du quiz
+     texts    : les phrases du quiz, sous la forme
+                  [ phrase dans la langue, traduction française ]
+                La traduction n'est montrée qu'une fois la réponse donnée.
+
+   Règle suivie en écrivant les phrases : deux langues proches (suédois /
+   norvégien / danois, tchèque / slovaque, serbe / croate, russe / ukrainien /
+   biélorusse…) ne doivent jamais recevoir la traduction d'une même phrase,
+   sinon la comparaison côte à côte donne la réponse.
    ========================================================================= */
 
 const LANGUAGES = [
@@ -31,10 +38,16 @@ const LANGUAGES = [
     aliases: ['deutsch', 'german'],
     hint: 'Tous les noms communs prennent une majuscule. Le ß, les umlauts ä ö ü et les mots composés à rallonge sont ses marques de fabrique.',
     texts: [
-      'Ich gehe jeden Morgen mit meinem Hund im Park spazieren.',
-      'Meine Schwester arbeitet seit drei Jahren in Berlin.',
-      'Wir müssen noch Brot und Milch für morgen kaufen.',
-      'Der Film gestern Abend war wirklich ausgezeichnet.'
+      ['Ich gehe jeden Morgen mit meinem Hund im Park spazieren.', 'Je promène mon chien dans le parc tous les matins.'],
+      ['Meine Schwester arbeitet seit drei Jahren in Berlin.', 'Ma sœur travaille à Berlin depuis trois ans.'],
+      ['Wir müssen noch Brot und Milch für morgen kaufen.', 'Il nous faut encore acheter du pain et du lait pour demain.'],
+      ['Der Film gestern Abend war wirklich ausgezeichnet.', 'Le film d’hier soir était vraiment excellent.'],
+      ['Kannst du mir bitte sagen, wie spät es ist?', 'Peux-tu me dire l’heure, s’il te plaît ?'],
+      ['Im Sommer fahren wir immer ans Meer.', 'L’été, nous allons toujours à la mer.'],
+      ['Das Essen in diesem Restaurant schmeckt hervorragend.', 'La cuisine de ce restaurant est excellente.'],
+      ['Ich habe meinen Schlüssel zu Hause vergessen.', 'J’ai oublié ma clé à la maison.'],
+      ['Die Kinder spielen draußen im Garten.', 'Les enfants jouent dehors dans le jardin.'],
+      ['Nächste Woche fange ich einen neuen Job an.', 'La semaine prochaine, je commence un nouveau travail.']
     ]
   },
   {
@@ -50,10 +63,16 @@ const LANGUAGES = [
     aliases: ['english'],
     hint: 'Aucun signe diacritique, articles « the / a », et un vocabulaire pour moitié d’origine romane.',
     texts: [
-      'I usually drink a cup of tea before going to bed.',
-      'The weather has been absolutely terrible all week.',
-      'She bought a new bicycle and rides it every morning.',
-      'We should probably leave before it gets dark outside.'
+      ['I usually drink a cup of tea before going to bed.', 'Je bois généralement une tasse de thé avant d’aller me coucher.'],
+      ['The weather has been absolutely terrible all week.', 'Le temps a été absolument épouvantable toute la semaine.'],
+      ['She bought a new bicycle and rides it every morning.', 'Elle a acheté un vélo neuf et s’en sert tous les matins.'],
+      ['We should probably leave before it gets dark outside.', 'On devrait sans doute partir avant qu’il fasse nuit.'],
+      ['My brother is learning to play the piano.', 'Mon frère apprend à jouer du piano.'],
+      ['Could you tell me where the nearest station is?', 'Pourriez-vous me dire où se trouve la gare la plus proche ?'],
+      ['There is nothing left in the fridge.', 'Il ne reste plus rien dans le frigo.'],
+      ['They moved to a small village by the sea.', 'Ils ont déménagé dans un petit village au bord de la mer.'],
+      ['I forgot my wallet at the office again.', 'J’ai encore oublié mon portefeuille au bureau.'],
+      ['This book is much better than the film.', 'Ce livre est bien meilleur que le film.']
     ]
   },
   {
@@ -69,10 +88,16 @@ const LANGUAGES = [
     aliases: ['nederlands', 'hollandais', 'flamand', 'dutch'],
     hint: 'Les suites ij, oe, ui et sch sautent aux yeux. Ressemble à de l’allemand sans majuscules ni ß.',
     texts: [
-      'Ik fiets elke dag naar mijn werk in de stad.',
-      'Het regent nu al de hele week, wat vervelend.',
-      'Mijn broer woont in een klein dorp vlak bij de zee.',
-      'Op zaterdag gaan we altijd samen naar de markt.'
+      ['Ik fiets elke dag naar mijn werk in de stad.', 'Je vais travailler à vélo tous les jours, en ville.'],
+      ['Het regent nu al de hele week, wat vervelend.', 'Il pleut depuis une semaine entière, c’est pénible.'],
+      ['Mijn broer woont in een klein dorp vlak bij de zee.', 'Mon frère habite un petit village tout près de la mer.'],
+      ['Op zaterdag gaan we altijd samen naar de markt.', 'Le samedi, nous allons toujours au marché ensemble.'],
+      ['Kun je me vertellen hoe laat de trein vertrekt?', 'Peux-tu me dire à quelle heure part le train ?'],
+      ['Zij werkt als verpleegkundige in het ziekenhuis.', 'Elle travaille comme infirmière à l’hôpital.'],
+      ['Ik heb geen idee waar ik mijn bril heb gelegd.', 'Je n’ai aucune idée d’où j’ai posé mes lunettes.'],
+      ['Volgende maand verhuizen we naar Utrecht.', 'Le mois prochain, nous déménageons à Utrecht.'],
+      ['Dit brood is vers van vanochtend.', 'Ce pain est frais de ce matin.'],
+      ['Zullen we vanavond iets gaan drinken?', 'On va boire un verre ce soir ?']
     ]
   },
   {
@@ -88,10 +113,16 @@ const LANGUAGES = [
     aliases: ['letzebuergesch', 'luxembourgois'],
     hint: 'De l’allemand passé au filtre français : beaucoup de ë et é, le pronom « ech », et des emprunts français bruts.',
     texts: [
-      'Ech schwätzen e bësse Lëtzebuergesch, mee net vill.',
-      'D’Wieder ass haut wierklech schéin.',
-      'Mir ginn haut den Owend an d’Stad.',
-      'Mäi Brudder wunnt zënter dräi Joer zu Esch.'
+      ['Ech schwätzen e bësse Lëtzebuergesch, mee net vill.', 'Je parle un peu luxembourgeois, mais pas beaucoup.'],
+      ['D’Wieder ass haut wierklech schéin.', 'Le temps est vraiment beau aujourd’hui.'],
+      ['Mir ginn haut den Owend an d’Stad.', 'Nous allons en ville ce soir.'],
+      ['Mäi Brudder schafft bei der Bank.', 'Mon frère travaille à la banque.'],
+      ['Wéi vill kascht dat, wann ech gelift?', 'Combien cela coûte-t-il, s’il vous plaît ?'],
+      ['Ech hunn haut leider keng Zäit.', 'Je n’ai malheureusement pas le temps aujourd’hui.'],
+      ['Mir iessen all Sonndeg bei menger Mamm.', 'Nous mangeons chez ma mère tous les dimanches.'],
+      ['Ech fuere mam Zuch op Lëtzebuerg.', 'Je vais à Luxembourg en train.'],
+      ['Moien, wéi geet et dir?', 'Bonjour, comment vas-tu ?'],
+      ['D’Buch war ganz interessant.', 'Le livre était très intéressant.']
     ]
   },
   {
@@ -107,10 +138,16 @@ const LANGUAGES = [
     aliases: ['svenska', 'suedois'],
     hint: 'Trois lettres propres : å, ä, ö. L’article défini est collé à la fin du mot (huset = la maison).',
     texts: [
-      'Jag dricker alltid en kopp kaffe på morgonen.',
-      'På sommaren åker vi till stugan vid sjön.',
-      'Vi måste köpa bröd innan affären stänger.',
-      'Hon spelar gitarr och sjunger väldigt bra.'
+      ['Jag dricker alltid en kopp kaffe på morgonen.', 'Je bois toujours une tasse de café le matin.'],
+      ['På sommaren åker vi till stugan vid sjön.', 'L’été, nous allons au chalet au bord du lac.'],
+      ['Vi måste köpa bröd innan affären stänger.', 'Il faut acheter du pain avant que le magasin ferme.'],
+      ['Hon spelar gitarr och sjunger väldigt bra.', 'Elle joue de la guitare et chante très bien.'],
+      ['Det är kallt ute, ta på dig en jacka.', 'Il fait froid dehors, mets une veste.'],
+      ['Min familj bor i norra Sverige.', 'Ma famille habite dans le nord de la Suède.'],
+      ['Kan du hjälpa mig med det här?', 'Peux-tu m’aider avec ça ?'],
+      ['Vi ses på fredag efter jobbet.', 'On se voit vendredi après le travail.'],
+      ['Maten här är verkligen god.', 'La nourriture est vraiment bonne ici.'],
+      ['Jag läser en bok varje kväll.', 'Je lis un livre tous les soirs.']
     ]
   },
   {
@@ -126,10 +163,16 @@ const LANGUAGES = [
     aliases: ['norsk', 'norvegien', 'bokmal', 'bokmål'],
     hint: 'Comme le danois à l’écrit, mais avec æ, ø, å et des formes en -kk-, -tt-. « ikke » = ne pas.',
     texts: [
-      'Hun har bodd i Bergen i mange år nå.',
-      'Kan du hjelpe meg med å bære denne kofferten?',
-      'Været er ganske kaldt om vinteren her oppe.',
-      'Jeg liker å gå tur i skogen på søndager.'
+      ['Hun har bodd i Bergen i mange år nå.', 'Elle habite à Bergen depuis de nombreuses années maintenant.'],
+      ['Jeg tar bussen til jobben hver dag.', 'Je prends le bus pour aller au travail tous les jours.'],
+      ['Været er ganske kaldt om vinteren her oppe.', 'Le temps est plutôt froid en hiver, ici dans le nord.'],
+      ['Jeg liker å gå tur i skogen på søndager.', 'J’aime me promener en forêt le dimanche.'],
+      ['Hva koster en billett til Oslo?', 'Combien coûte un billet pour Oslo ?'],
+      ['Vi spiser middag klokka seks.', 'Nous dînons à six heures.'],
+      ['Broren min studerer medisin.', 'Mon frère fait des études de médecine.'],
+      ['Jeg har glemt mobilen hjemme.', 'J’ai oublié mon portable à la maison.'],
+      ['Det er mange turister her om sommeren.', 'Il y a beaucoup de touristes ici en été.'],
+      ['Kan du snakke litt saktere, er du snill?', 'Peux-tu parler un peu plus lentement, s’il te plaît ?']
     ]
   },
   {
@@ -145,10 +188,16 @@ const LANGUAGES = [
     aliases: ['dansk', 'danois'],
     hint: 'Très proche du norvégien : æ, ø, å. Indices danois : « af », « og », et les d intervocaliques (gade, bedre).',
     texts: [
-      'Jeg kan godt lide at læse en bog om aftenen.',
-      'Hvor meget koster en billet til København?',
-      'Min nabo har købt en ny cykel til sin søn.',
-      'Det er altid dejligt at se dig igen.'
+      ['Vi skal mødes på torvet klokken tolv.', 'On se retrouve sur la place à midi.'],
+      ['Hvad hedder du, og hvor kommer du fra?', 'Comment t’appelles-tu, et d’où viens-tu ?'],
+      ['Min nabo har købt en ny cykel til sin søn.', 'Mon voisin a acheté un vélo neuf pour son fils.'],
+      ['Det er altid dejligt at se dig igen.', 'C’est toujours un plaisir de te revoir.'],
+      ['Solen skinner i dag, lad os gå en tur.', 'Le soleil brille aujourd’hui, allons marcher.'],
+      ['Jeg skal købe ind til weekenden.', 'Je dois faire les courses pour le week-end.'],
+      ['Mine forældre bor ude på landet.', 'Mes parents habitent à la campagne.'],
+      ['Kaffen er desværre blevet kold.', 'Le café a malheureusement refroidi.'],
+      ['Vi tager til Spanien i sommerferien.', 'Nous partons en Espagne pour les vacances d’été.'],
+      ['Kan du lige vente et øjeblik?', 'Peux-tu attendre un instant ?']
     ]
   },
   {
@@ -164,13 +213,18 @@ const LANGUAGES = [
     aliases: ['islenska', 'islandais'],
     hint: 'Impossible à confondre : les lettres þ (thorn) et ð (eth), plus les terminaisons -ur, -ið, -nn.',
     texts: [
-      'Ég ætla að fara í sund eftir vinnu í dag.',
-      'Veðrið hérna breytist mjög hratt á veturna.',
-      'Hvar er næsta strætóstöð, takk fyrir?',
-      'Systir mín býr í litlu húsi nálægt sjónum.'
+      ['Ég ætla að fara í sund eftir vinnu í dag.', 'Je compte aller à la piscine après le travail aujourd’hui.'],
+      ['Veðrið hérna breytist mjög hratt á veturna.', 'Ici, le temps change très vite en hiver.'],
+      ['Hvar er næsta strætóstöð, takk fyrir?', 'Où est l’arrêt de bus le plus proche, s’il vous plaît ?'],
+      ['Systir mín býr í litlu húsi nálægt sjónum.', 'Ma sœur habite une petite maison près de la mer.'],
+      ['Mér finnst íslenskur matur mjög góður.', 'Je trouve la cuisine islandaise très bonne.'],
+      ['Ég tala ekki mjög góða ensku.', 'Je ne parle pas très bien anglais.'],
+      ['Við förum í sumarbústað um helgina.', 'Nous allons au chalet ce week-end.'],
+      ['Hvað er klukkan núna?', 'Quelle heure est-il ?'],
+      ['Börnin eru að leika sér úti í snjónum.', 'Les enfants jouent dehors dans la neige.'],
+      ['Þetta er í fyrsta skipti sem ég kem hingað.', 'C’est la première fois que je viens ici.']
     ]
   },
-
   /* -------------------------------------------------------------- ROMANE */
   {
     id: 'fr',
@@ -184,11 +238,18 @@ const LANGUAGES = [
     level: 1,
     aliases: ['francais', 'french'],
     hint: 'Accents aigus et circonflexes, cédille ç, terminaisons muettes -ent, -aient, -eux.',
+    // Traduction laissée vide : le jeu est en français, elle n'apporterait rien.
     texts: [
-      'Je vais au marché tous les samedis matin.',
-      'Il fait vraiment froid aujourd’hui, prends ton manteau.',
-      'Nous avons mangé une excellente soupe hier soir.',
-      'J’aimerais apprendre à jouer de la guitare un jour.'
+      ['Je vais au marché tous les samedis matin.', ''],
+      ['Il fait vraiment froid aujourd’hui, prends ton manteau.', ''],
+      ['Nous avons mangé une excellente soupe hier soir.', ''],
+      ['J’aimerais apprendre à jouer de la guitare un jour.', ''],
+      ['Le train de huit heures a encore du retard.', ''],
+      ['Ma grand-mère habite dans un petit village du Sud.', ''],
+      ['Tu peux me passer le sel, s’il te plaît ?', ''],
+      ['On se retrouve devant le cinéma vers vingt heures.', ''],
+      ['Je n’arrive pas à ouvrir cette fenêtre.', ''],
+      ['Les enfants rentrent de l’école à seize heures trente.', '']
     ]
   },
   {
@@ -204,10 +265,16 @@ const LANGUAGES = [
     aliases: ['espanol', 'español', 'castillan', 'spanish'],
     hint: 'Le ñ, le ¿ et le ¡ inversés, les doubles ll et rr, et énormément de mots en -ción.',
     texts: [
-      'Todos los domingos comemos en casa de mi abuela.',
-      'El tren llega otra vez con media hora de retraso.',
-      'No encuentro las llaves del coche por ninguna parte.',
-      'En verano siempre vamos a la playa con los niños.'
+      ['Todos los domingos comemos en casa de mi abuela.', 'Tous les dimanches, nous mangeons chez ma grand-mère.'],
+      ['Hace mucho calor, vamos a la piscina.', 'Il fait très chaud, allons à la piscine.'],
+      ['Se me ha olvidado el nombre de esa calle.', 'J’ai oublié le nom de cette rue.'],
+      ['En verano siempre vamos a la playa con los niños.', 'L’été, nous allons toujours à la plage avec les enfants.'],
+      ['¿Sabes a qué hora cierra la farmacia?', 'Sais-tu à quelle heure ferme la pharmacie ?'],
+      ['Mi hermano estudia arquitectura en Madrid.', 'Mon frère étudie l’architecture à Madrid.'],
+      ['Este libro me ha gustado muchísimo.', 'Ce livre m’a énormément plu.'],
+      ['Hay que comprar pan antes de volver a casa.', 'Il faut acheter du pain avant de rentrer.'],
+      ['Ayer vimos una película muy divertida.', 'Hier, nous avons vu un film très drôle.'],
+      ['No conozco muy bien esta ciudad.', 'Je ne connais pas très bien cette ville.']
     ]
   },
   {
@@ -223,10 +290,16 @@ const LANGUAGES = [
     aliases: ['portugues', 'português', 'portuguese'],
     hint: 'Les voyelles nasales ão, õe, ã sont uniques en Europe. Beaucoup de ç et de mots en -ção.',
     texts: [
-      'Vamos tomar um café antes de voltar para casa.',
-      'Não consigo encontrar o meu telemóvel em lado nenhum.',
-      'Ela trabalha numa pequena livraria perto do rio.',
-      'Amanhã vou apanhar o comboio das oito da manhã.'
+      ['Vamos tomar um café antes de voltar para casa.', 'Allons prendre un café avant de rentrer.'],
+      ['Está muito vento hoje, fecha a janela.', 'Il y a beaucoup de vent aujourd’hui, ferme la fenêtre.'],
+      ['Ela trabalha numa pequena livraria perto do rio.', 'Elle travaille dans une petite librairie près du fleuve.'],
+      ['O jantar está quase pronto, senta-te.', 'Le dîner est presque prêt, assieds-toi.'],
+      ['Gosto muito de caminhar à beira-mar ao fim da tarde.', 'J’aime beaucoup marcher au bord de la mer en fin d’après-midi.'],
+      ['Podes repetir, por favor? Não percebi.', 'Peux-tu répéter, s’il te plaît ? Je n’ai pas compris.'],
+      ['A minha filha começa a escola em setembro.', 'Ma fille entre à l’école en septembre.'],
+      ['Este restaurante é o melhor da cidade.', 'Ce restaurant est le meilleur de la ville.'],
+      ['Choveu durante toda a noite.', 'Il a plu toute la nuit.'],
+      ['Ainda não decidi o que vou fazer no verão.', 'Je n’ai pas encore décidé ce que je ferai cet été.']
     ]
   },
   {
@@ -242,10 +315,16 @@ const LANGUAGES = [
     aliases: ['catala', 'català'],
     hint: 'Le point volant du l·l, les apostrophes partout (l’home, d’aquí) et le mot « amb ». Entre l’espagnol et le français.',
     texts: [
-      'Demà anirem a la platja si fa bon temps.',
-      'M’agrada molt llegir abans d’anar a dormir.',
-      'El meu germà treballa en una llibreria del centre.',
-      'Quant costa un bitllet d’anada i tornada a Girona?'
+      ['Demà anirem a la muntanya si fa bon temps.', 'Demain, nous irons à la montagne s’il fait beau.'],
+      ['M’agrada molt llegir abans d’anar a dormir.', 'J’aime beaucoup lire avant d’aller dormir.'],
+      ['El meu germà és professor de matemàtiques.', 'Mon frère est professeur de mathématiques.'],
+      ['Quant costa un bitllet d’anada i tornada a Girona?', 'Combien coûte un aller-retour pour Gérone ?'],
+      ['Hem quedat a les vuit davant del teatre.', 'Nous avons rendez-vous à huit heures devant le théâtre.'],
+      ['Aquest any l’estiu ha estat molt calorós.', 'Cette année, l’été a été très chaud.'],
+      ['No sé on he deixat el paraigua.', 'Je ne sais pas où j’ai laissé le parapluie.'],
+      ['Els meus pares viuen a prop del mar.', 'Mes parents vivent près de la mer.'],
+      ['Avui he de treballar fins tard.', 'Aujourd’hui, je dois travailler jusque tard.'],
+      ['Parles català? Jo l’estic aprenent.', 'Tu parles catalan ? Moi, je suis en train de l’apprendre.']
     ]
   },
   {
@@ -261,10 +340,16 @@ const LANGUAGES = [
     aliases: ['galego', 'galicien'],
     hint: 'Du portugais écrit à l’espagnole : le son nasal a disparu (non au lieu de não) et on trouve des x là où l’espagnol met j.',
     texts: [
-      'Esta mañá fomos ao mercado mercar peixe e pan.',
-      'Chove moito aquí durante todo o inverno.',
-      'A miña nai fai o mellor caldo do mundo.',
-      'Onde está a estación de autobuses, por favor?'
+      ['Esta mañá fomos ao mercado mercar peixe e pan.', 'Ce matin, nous sommes allés au marché acheter du poisson et du pain.'],
+      ['Chove moito aquí durante todo o inverno.', 'Il pleut beaucoup ici pendant tout l’hiver.'],
+      ['A miña nai fai o mellor caldo do mundo.', 'Ma mère fait le meilleur bouillon du monde.'],
+      ['Onde está a estación de autobuses, por favor?', 'Où est la gare routière, s’il vous plaît ?'],
+      ['O meu avó traballou toda a vida no campo.', 'Mon grand-père a travaillé toute sa vie aux champs.'],
+      ['Esta noite imos cear fóra.', 'Ce soir, nous dînons dehors.'],
+      ['Non me gusta nada madrugar.', 'Je déteste me lever tôt.'],
+      ['A praia estaba chea de xente o domingo.', 'La plage était pleine de monde dimanche.'],
+      ['Teño que estudar para o exame do martes.', 'Je dois réviser pour l’examen de mardi.'],
+      ['O can ladra toda a noite e non podo durmir.', 'Le chien aboie toute la nuit et je n’arrive pas à dormir.']
     ]
   },
   {
@@ -280,10 +365,16 @@ const LANGUAGES = [
     aliases: ['italiano', 'italian'],
     hint: 'Presque tous les mots finissent par une voyelle. Doubles consonnes fréquentes (bello, mamma) et gli, gn, sc.',
     texts: [
-      'Domani mattina devo alzarmi presto per andare al lavoro.',
-      'Questo libro è davvero interessante, te lo consiglio.',
-      'Mia nonna prepara la pasta fatta in casa ogni domenica.',
-      'Fa molto caldo oggi, andiamo a fare una passeggiata.'
+      ['Domani mattina devo alzarmi presto per andare al lavoro.', 'Demain matin, je dois me lever tôt pour aller travailler.'],
+      ['Questa pasta è davvero squisita, complimenti.', 'Ces pâtes sont vraiment délicieuses, bravo.'],
+      ['Mia nonna racconta sempre le stesse storie.', 'Ma grand-mère raconte toujours les mêmes histoires.'],
+      ['Il mio ufficio è proprio dietro la stazione.', 'Mon bureau est juste derrière la gare.'],
+      ['Scusi, sa dirmi dov’è il museo?', 'Excusez-moi, savez-vous où est le musée ?'],
+      ['I bambini giocano in cortile tutto il pomeriggio.', 'Les enfants jouent dans la cour tout l’après-midi.'],
+      ['Non ho ancora finito di leggere quel giornale.', 'Je n’ai pas encore fini de lire ce journal.'],
+      ['D’inverno nevica spesso qui da noi.', 'L’hiver, il neige souvent chez nous.'],
+      ['Ci vediamo domani davanti alla scuola.', 'On se voit demain devant l’école.'],
+      ['Questo vino è ottimo, da dove viene?', 'Ce vin est excellent, d’où vient-il ?']
     ]
   },
   {
@@ -299,14 +390,19 @@ const LANGUAGES = [
     aliases: ['romana', 'română', 'roumain', 'moldave'],
     hint: 'Une langue romane avec des lettres à virgule : ș, ț, plus ă et î. L’article se colle à la fin (trenul = le train).',
     texts: [
-      'Vremea este foarte frumoasă astăzi, hai să ieșim.',
-      'Sora mea locuiește într-un oraș mic de lângă munte.',
-      'Mi-ar plăcea să învăț să cânt la pian într-o zi.',
-      'Trenul ajunge în gară peste douăzeci de minute.'
+      ['Vremea este foarte frumoasă astăzi, hai să ieșim.', 'Il fait très beau aujourd’hui, sortons.'],
+      ['Sora mea locuiește într-un oraș mic de lângă munte.', 'Ma sœur habite une petite ville près de la montagne.'],
+      ['Mi-ar plăcea să învăț să cânt la pian într-o zi.', 'J’aimerais apprendre à jouer du piano un jour.'],
+      ['Trenul pleacă de la peronul trei.', 'Le train part du quai numéro trois.'],
+      ['Nu am mâncat nimic de dimineață.', 'Je n’ai rien mangé depuis ce matin.'],
+      ['Bunicii mei au o casă la țară.', 'Mes grands-parents ont une maison à la campagne.'],
+      ['Poți să vorbești mai rar, te rog?', 'Peux-tu parler plus lentement, s’il te plaît ?'],
+      ['Am uitat telefonul în autobuz.', 'J’ai oublié mon téléphone dans le bus.'],
+      ['Cartea aceasta este mult prea lungă.', 'Ce livre est beaucoup trop long.'],
+      ['Ne vedem sâmbătă la cafenea.', 'On se voit samedi au café.']
     ]
   },
-
-  /* -------------------------------------------------------------- SLAVE */
+  /* --------------------------------------------------------------- SLAVE */
   {
     id: 'ru',
     name: 'Russe',
@@ -315,15 +411,21 @@ const LANGUAGES = [
     branch: 'Slave oriental',
     script: 'Cyrillique',
     speakers: '≈ 150 millions',
-    area: 'Russie, Biélorussie, Baltes',
+    area: 'Russie, Biélorussie, pays baltes',
     level: 1,
     aliases: ['russkiy', 'russian', 'русский'],
     hint: 'Cyrillique avec ы, э, ъ et ё. Les mots en -ый, -ого et la particule « не » sont typiquement russes.',
     texts: [
-      'Я нигде не могу найти ключи от машины.',
-      'Моя бабушка печёт очень вкусные пироги.',
-      'Завтра утром я поеду на работу на метро.',
-      'Сегодня очень холодно, надень шапку и шарф.'
+      ['Я нигде не могу найти ключи от машины.', 'Je ne trouve les clés de la voiture nulle part.'],
+      ['Моя бабушка печёт очень вкусные пироги.', 'Ma grand-mère fait de très bons gâteaux.'],
+      ['Завтра утром я поеду на работу на метро.', 'Demain matin, j’irai au travail en métro.'],
+      ['Сегодня очень холодно, надень шапку и шарф.', 'Il fait très froid aujourd’hui, mets un bonnet et une écharpe.'],
+      ['Летом мы всегда ездим на дачу.', 'L’été, nous allons toujours à la datcha.'],
+      ['Извините, вы не подскажете, где здесь аптека?', 'Excusez-moi, sauriez-vous où est la pharmacie ?'],
+      ['Этот фильм длится почти три часа.', 'Ce film dure presque trois heures.'],
+      ['Мой брат играет на скрипке с детства.', 'Mon frère joue du violon depuis l’enfance.'],
+      ['Давай встретимся в субботу у входа в парк.', 'Retrouvons-nous samedi à l’entrée du parc.'],
+      ['Я ещё не читал эту книгу.', 'Je n’ai pas encore lu ce livre.']
     ]
   },
   {
@@ -337,12 +439,18 @@ const LANGUAGES = [
     area: 'Ukraine',
     level: 2,
     aliases: ['ukrainska', 'ukrainien', 'українська'],
-    hint: 'Quatre lettres absentes du russe : і, ї, є, ґ. Et un apostrophe fréquent (п’ю).',
+    hint: 'Quatre lettres absentes du russe : і, ї, є, ґ. Et une apostrophe fréquente (п’ю).',
     texts: [
-      'Я дуже люблю гуляти парком восени.',
-      'Потяг прибуває на вокзал через двадцять хвилин.',
-      'Моя сестра працює вчителькою в школі.',
-      'Чи можеш ти мені допомогти з цією валізою?'
+      ['Я дуже люблю гуляти парком восени.', 'J’aime beaucoup me promener dans le parc en automne.'],
+      ['Потяг прибуває на вокзал через двадцять хвилин.', 'Le train arrive en gare dans vingt minutes.'],
+      ['Моя сестра працює вчителькою в школі.', 'Ma sœur est institutrice dans une école.'],
+      ['Чи можеш ти мені допомогти з цією валізою?', 'Peux-tu m’aider avec cette valise ?'],
+      ['Сьогодні дуже спекотно, ходімо купатися.', 'Il fait très chaud aujourd’hui, allons nous baigner.'],
+      ['Я купив свіжий хліб у пекарні.', 'J’ai acheté du pain frais à la boulangerie.'],
+      ['Вечеря буде готова за п’ять хвилин.', 'Le dîner sera prêt dans cinq minutes.'],
+      ['Мої батьки живуть у селі під Львовом.', 'Mes parents vivent dans un village près de Lviv.'],
+      ['Ця пісня мені дуже подобається.', 'J’aime beaucoup cette chanson.'],
+      ['Котра зараз година, будь ласка?', 'Quelle heure est-il, s’il te plaît ?']
     ]
   },
   {
@@ -358,10 +466,16 @@ const LANGUAGES = [
     aliases: ['belarusian', 'bielorusse', 'belarus', 'беларуская'],
     hint: 'Seule langue cyrillique avec la lettre ў (ou court). Beaucoup de а là où le russe écrit о.',
     texts: [
-      'Кожную раніцу я п’ю кубак гарбаты перад працай.',
-      'Надвор’е сёння вельмі добрае, пойдзем гуляць.',
-      'Мой брат жыве ў невялікай вёсцы пад Мінскам.',
-      'Дзе тут бліжэйшая аптэка, калі ласка?'
+      ['Кожную раніцу я п’ю кубак гарбаты перад працай.', 'Chaque matin, je bois une tasse de thé avant le travail.'],
+      ['Я вучуся ва ўніверсітэце ў Мінску.', 'J’étudie à l’université à Minsk.'],
+      ['Мой брат працуе на заводзе.', 'Mon frère travaille à l’usine.'],
+      ['Дзе тут можна купіць білет?', 'Où peut-on acheter un billet ici ?'],
+      ['Мы вячэраем звычайна а сёмай гадзіне.', 'Nous dînons d’habitude à sept heures.'],
+      ['Зімой тут вельмі холадна.', 'L’hiver, il fait très froid ici.'],
+      ['Я забыўся парасон дома.', 'J’ai oublié mon parapluie à la maison.'],
+      ['Сёння ўвечары мы ідзём у тэатр.', 'Ce soir, nous allons au théâtre.'],
+      ['Мне трэба схадзіць на пошту.', 'Je dois passer à la poste.'],
+      ['Я яшчэ не быў у гэтым музеі.', 'Je ne suis pas encore allé dans ce musée.']
     ]
   },
   {
@@ -377,10 +491,16 @@ const LANGUAGES = [
     aliases: ['polski', 'polonais', 'polish'],
     hint: 'Le ł barré, les nasales ą et ę, et les groupes sz, cz, rz, szcz. Très reconnaissable.',
     texts: [
-      'Wczoraj wieczorem oglądaliśmy razem bardzo dobry film.',
-      'Czy możesz mi powiedzieć, która jest godzina?',
-      'Moja siostra mieszka w małym mieście nad morzem.',
-      'Jutro rano muszę wstać naprawdę bardzo wcześnie.'
+      ['Wczoraj wieczorem oglądaliśmy razem bardzo dobry film.', 'Hier soir, nous avons regardé un très bon film ensemble.'],
+      ['Czy możesz mi powiedzieć, która jest godzina?', 'Peux-tu me dire quelle heure il est ?'],
+      ['Moja siostra mieszka w małym mieście nad morzem.', 'Ma sœur habite une petite ville au bord de la mer.'],
+      ['Jutro rano muszę wstać naprawdę bardzo wcześnie.', 'Demain matin, je dois me lever vraiment très tôt.'],
+      ['Nie mam pojęcia, co mu powiedzieć.', 'Je ne sais pas du tout quoi lui dire.'],
+      ['Latem jeździmy w góry z całą rodziną.', 'L’été, nous allons à la montagne avec toute la famille.'],
+      ['Ten chleb jest jeszcze ciepły.', 'Ce pain est encore chaud.'],
+      ['Mój dziadek całe życie pracował w kopalni.', 'Mon grand-père a travaillé toute sa vie à la mine.'],
+      ['Dzisiaj pada deszcz, zostaniemy w domu.', 'Aujourd’hui il pleut, nous resterons à la maison.'],
+      ['Uczę się polskiego od dwóch lat.', 'J’apprends le polonais depuis deux ans.']
     ]
   },
   {
@@ -396,10 +516,16 @@ const LANGUAGES = [
     aliases: ['cestina', 'čeština', 'tcheque', 'czech'],
     hint: 'Le ř n’existe qu’en tchèque. Accents longs á é í ý et le ů rond. Des mots sans voyelle : krk, prst.',
     texts: [
-      'Každé ráno si dávám šálek kávy před prací.',
-      'Venku prší už celý týden, je to hrozné.',
-      'Můj bratr pracuje v nemocnici v Brně.',
-      'Nevím, kde jsem nechal svůj deštník.'
+      ['Každé ráno si dávám šálek kávy před prací.', 'Chaque matin, je prends une tasse de café avant le travail.'],
+      ['Venku je mlha, není vidět skoro nic.', 'Dehors il y a du brouillard, on ne voit presque rien.'],
+      ['Můj bratr pracuje v nemocnici v Brně.', 'Mon frère travaille à l’hôpital, à Brno.'],
+      ['Nevím, jestli stihnu poslední tramvaj.', 'Je ne sais pas si j’aurai le dernier tram.'],
+      ['Tahle polévka je výborná, dáš mi recept?', 'Cette soupe est excellente, tu me donnes la recette ?'],
+      ['V neděli jezdíme k babičce na venkov.', 'Le dimanche, nous allons chez notre grand-mère à la campagne.'],
+      ['Kolik stojí lístek do Prahy?', 'Combien coûte un billet pour Prague ?'],
+      ['Děti chodí do školy pěšky.', 'Les enfants vont à l’école à pied.'],
+      ['Zítra večer máme lístky do divadla.', 'Demain soir, nous avons des places pour le théâtre.'],
+      ['Tenhle svetr je mi moc velký.', 'Ce pull est trop grand pour moi.']
     ]
   },
   {
@@ -415,10 +541,16 @@ const LANGUAGES = [
     aliases: ['slovencina', 'slovenčina', 'slovaque', 'slovak'],
     hint: 'Comme le tchèque mais sans ř : à la place, ľ, ĺ, ŕ et ô. Le mot « a » relie les phrases.',
     texts: [
-      'Zajtra pôjdeme na výlet do hôr, ak bude pekne.',
-      'Neviem, koľko stojí lístok do Košíc.',
-      'Moja mama varí najlepšiu polievku na svete.',
-      'Rád chodím na prechádzky pri rieke.'
+      ['Zajtra pôjdeme na výlet k rieke, ak bude pekne.', 'Demain, nous ferons une sortie au bord de la rivière s’il fait beau.'],
+      ['Neviem, či bude zajtra pršať.', 'Je ne sais pas s’il pleuvra demain.'],
+      ['Moja mama pečie výborné koláče.', 'Ma mère fait d’excellents gâteaux.'],
+      ['Rád počúvam hudbu, keď pracujem.', 'J’aime écouter de la musique quand je travaille.'],
+      ['Môj syn sa učí hrať na gitare.', 'Mon fils apprend à jouer de la guitare.'],
+      ['V lete chodíme k moru do Chorvátska.', 'L’été, nous allons à la mer en Croatie.'],
+      ['Dnes je veľmi teplo, otvor okno.', 'Il fait très chaud aujourd’hui, ouvre la fenêtre.'],
+      ['Zabudol som si doma peňaženku.', 'J’ai oublié mon portefeuille à la maison.'],
+      ['Kde je najbližšia zastávka autobusu?', 'Où est l’arrêt de bus le plus proche ?'],
+      ['Táto kniha ma veľmi zaujala.', 'Ce livre m’a beaucoup intéressé.']
     ]
   },
   {
@@ -432,12 +564,18 @@ const LANGUAGES = [
     area: 'Slovénie',
     level: 3,
     aliases: ['slovenscina', 'slovenščina', 'slovene', 'slovenien'],
-    hint: 'Seulement trois accents : č, š, ž. Garde le duel (deux personnes = forme spéciale) et le mot « je » pour « est ».',
+    hint: 'Seulement trois accents : č, š, ž. Garde le duel (une forme spéciale pour deux personnes) et le mot « je » pour « est ».',
     texts: [
-      'Vsako jutro grem v službo s kolesom.',
-      'Danes je zunaj zelo lepo vreme.',
-      'Moja sestra študira medicino v Ljubljani.',
-      'Najraje berem knjige pred spanjem.'
+      ['Vsako jutro grem v službo s kolesom.', 'Chaque matin, je vais au travail à vélo.'],
+      ['Danes je zunaj zelo lepo vreme.', 'Aujourd’hui, il fait très beau dehors.'],
+      ['Moja sestra študira medicino v Ljubljani.', 'Ma sœur étudie la médecine à Ljubljana.'],
+      ['Najraje berem knjige pred spanjem.', 'Je préfère lire avant de dormir.'],
+      ['Kje lahko kupim vozovnico?', 'Où puis-je acheter un billet ?'],
+      ['Poleti se radi kopamo v jezeru.', 'L’été, nous aimons nous baigner dans le lac.'],
+      ['Oprosti, nisem te slišal.', 'Désolé, je ne t’ai pas entendu.'],
+      ['Otroci se igrajo na vrtu.', 'Les enfants jouent dans le jardin.'],
+      ['Ta juha je preveč slana.', 'Cette soupe est trop salée.'],
+      ['Jutri imam izpit iz matematike.', 'Demain, j’ai un examen de mathématiques.']
     ]
   },
   {
@@ -453,10 +591,16 @@ const LANGUAGES = [
     aliases: ['hrvatski', 'croate', 'croatian'],
     hint: 'č, ć, š, ž, đ en alphabet latin. Mots-clés : « je », « ne », « gdje ». Très proche du serbe et du bosnien.',
     texts: [
-      'Ljeti najviše volim plivati u moru.',
-      'Moj brat radi u maloj knjižari u centru grada.',
-      'Večeras ćemo skuhati nešto jednostavno za večeru.',
-      'Ne sjećam se gdje sam parkirao auto.'
+      ['Ljeti najviše volim jedriti.', 'L’été, ce que je préfère, c’est faire de la voile.'],
+      ['Moj brat radi u maloj knjižari u centru grada.', 'Mon frère travaille dans une petite librairie au centre-ville.'],
+      ['Večeras ćemo skuhati nešto jednostavno.', 'Ce soir, nous préparerons quelque chose de simple.'],
+      ['Ne sjećam se gdje sam parkirao auto.', 'Je ne me souviens plus où j’ai garé la voiture.'],
+      ['Sutra idem kod zubara, nažalost.', 'Demain, je vais chez le dentiste, malheureusement.'],
+      ['Ova kava je prehladna.', 'Ce café est trop froid.'],
+      ['Djeca idu u školu autobusom.', 'Les enfants vont à l’école en bus.'],
+      ['Koliko dugo učiš hrvatski?', 'Depuis combien de temps apprends-tu le croate ?'],
+      ['Vrijeme je danas vrlo vjetrovito.', 'Il y a beaucoup de vent aujourd’hui.'],
+      ['Film počinje za pola sata.', 'Le film commence dans une demi-heure.']
     ]
   },
   {
@@ -472,10 +616,16 @@ const LANGUAGES = [
     aliases: ['srpski', 'serbe', 'serbian', 'српски'],
     hint: 'Cyrillique sud-slave avec ј, љ, њ, ћ, ђ. Pas de ы ni de ё comme en russe. (Il s’écrit aussi en alphabet latin.)',
     texts: [
-      'Сваког јутра пијем шољу кафе пре посла.',
-      'Моја ћерка иде у школу у центру града.',
-      'Данас је веома топло, хајде да идемо на базен.',
-      'Не знам где сам оставио свој телефон.'
+      ['Сваког јутра трчим у парку.', 'Chaque matin, je cours dans le parc.'],
+      ['Моја ћерка свира клавир већ пет година.', 'Ma fille joue du piano depuis cinq ans.'],
+      ['Сутра је празник, не радимо.', 'Demain c’est férié, nous ne travaillons pas.'],
+      ['Воз касни више од сат времена.', 'Le train a plus d’une heure de retard.'],
+      ['Волим да читам новине ујутру.', 'J’aime lire le journal le matin.'],
+      ['Мој деда је био рибар.', 'Mon grand-père était pêcheur.'],
+      ['Хоћеш ли да изађемо вечерас?', 'Tu veux qu’on sorte ce soir ?'],
+      ['Ово месо је одлично припремљено.', 'Cette viande est parfaitement cuisinée.'],
+      ['Киша пада већ три дана.', 'Il pleut depuis trois jours.'],
+      ['Данас сам срео старог пријатеља.', 'Aujourd’hui, j’ai croisé un vieil ami.']
     ]
   },
   {
@@ -491,10 +641,16 @@ const LANGUAGES = [
     aliases: ['bulgarski', 'bulgare', 'bulgarian', 'български'],
     hint: 'Cyrillique avec un ъ très fréquent au milieu des mots. Pas de déclinaisons, mais l’article collé à la fin (градът).',
     texts: [
-      'Утре ще ходим на море с цялото семейство.',
-      'Този филм беше много интересен, препоръчвам ти го.',
-      'Брат ми живее в малък град близо до планината.',
-      'Днес времето е много хубаво и топло.'
+      ['Утре ще ходим на море с цялото семейство.', 'Demain, nous allons à la mer avec toute la famille.'],
+      ['Този филм беше много интересен, препоръчвам ти го.', 'Ce film était très intéressant, je te le recommande.'],
+      ['Брат ми живее в малък град близо до планината.', 'Mon frère habite une petite ville près de la montagne.'],
+      ['Днес времето е много хубаво и топло.', 'Aujourd’hui, le temps est très beau et doux.'],
+      ['Не разбирам какво казвате, говорете по-бавно.', 'Je ne comprends pas ce que vous dites, parlez plus lentement.'],
+      ['Купих пресни домати от пазара.', 'J’ai acheté des tomates fraîches au marché.'],
+      ['Дъщеря ми учи английски в училище.', 'Ma fille apprend l’anglais à l’école.'],
+      ['Колко струва билетът до София?', 'Combien coûte le billet pour Sofia ?'],
+      ['Вчера работих до късно вечерта.', 'Hier, j’ai travaillé tard le soir.'],
+      ['Тази книга е на баба ми.', 'Ce livre est à ma grand-mère.']
     ]
   },
   {
@@ -510,14 +666,19 @@ const LANGUAGES = [
     aliases: ['makedonski', 'macedonien', 'македонски'],
     hint: 'Deux lettres uniques : ѓ et ќ. Comme le bulgare, pas de déclinaisons, mais sans le ъ.',
     texts: [
-      'Мојата мајка готви многу вкусна храна.',
-      'Автобусот доаѓа за десет минути.',
-      'Денес е многу студено надвор.',
-      'Многу сакам да читам книги пред спиење.'
+      ['Мојата мајка готви многу вкусна храна.', 'Ma mère cuisine des plats très savoureux.'],
+      ['Автобусот доаѓа за десет минути.', 'Le bus arrive dans dix minutes.'],
+      ['Денес е многу студено надвор.', 'Il fait très froid dehors aujourd’hui.'],
+      ['Многу сакам да слушам стара музика.', 'J’aime beaucoup écouter de la vieille musique.'],
+      ['Татко ми работи во фабрика.', 'Mon père travaille dans une usine.'],
+      ['Утре имам состанок во десет часот.', 'Demain, j’ai une réunion à dix heures.'],
+      ['Каде можам да најдам такси?', 'Où puis-je trouver un taxi ?'],
+      ['Летото овде е многу долго и топло.', 'Ici, l’été est très long et chaud.'],
+      ['Не сакам да станувам рано.', 'Je n’aime pas me lever tôt.'],
+      ['Купив нова кошула вчера.', 'J’ai acheté une chemise neuve hier.']
     ]
   },
-
-  /* -------------------------------------------------------------- BALTE */
+  /* --------------------------------------------------------------- BALTE */
   {
     id: 'lt',
     name: 'Lituanien',
@@ -531,10 +692,16 @@ const LANGUAGES = [
     aliases: ['lietuviu', 'lietuvių', 'lituanien', 'lithuanien'],
     hint: 'Voyelles à crochet ą ę į ų, plus ū et ė. Les mots finissent très souvent par -as, -is, -us.',
     texts: [
-      'Kiekvieną rytą geriu puodelį kavos prieš darbą.',
-      'Vakar vakare skaičiau labai įdomią knygą.',
-      'Ar galite man padėti nunešti šį lagaminą?',
-      'Šiandien lauke labai šalta, apsirenk šilčiau.'
+      ['Kiekvieną rytą einu pėsčiomis į darbą.', 'Chaque matin, je vais au travail à pied.'],
+      ['Vakar vakare skaičiau labai įdomią knygą.', 'Hier soir, j’ai lu un livre très intéressant.'],
+      ['Ar galite man padėti nunešti šį lagaminą?', 'Pouvez-vous m’aider à porter cette valise ?'],
+      ['Šiandien lauke labai šalta, apsirenk šilčiau.', 'Il fait très froid dehors aujourd’hui, couvre-toi davantage.'],
+      ['Mano sesuo gyvena Vilniuje jau dešimt metų.', 'Ma sœur habite Vilnius depuis dix ans déjà.'],
+      ['Vasarą dažnai važiuojame prie ežero.', 'L’été, nous allons souvent au bord du lac.'],
+      ['Kiek kainuoja bilietas į Kauną?', 'Combien coûte un billet pour Kaunas ?'],
+      ['Vakarienė jau beveik paruošta.', 'Le dîner est presque prêt.'],
+      ['Nežinau, kur padėjau raktus.', 'Je ne sais pas où j’ai posé les clés.'],
+      ['Man labai patinka lietuviška duona.', 'J’aime beaucoup le pain lituanien.']
     ]
   },
   {
@@ -550,10 +717,16 @@ const LANGUAGES = [
     aliases: ['latviesu', 'latviešu', 'letton', 'lettonien'],
     hint: 'Voyelles longues ā ē ī ū et consonnes à cédille ģ ķ ļ ņ. Les noms masculins finissent par -s.',
     texts: [
-      'Es katru vakaru eju pastaigāties gar jūru.',
-      'Mana māsa strādā par skolotāju Rīgā.',
-      'Šodien ir ļoti skaists laiks, iesim ārā.',
-      'Cik maksā biļete uz Liepāju?'
+      ['Es katru vakaru eju pastaigāties gar jūru.', 'Chaque soir, je vais me promener au bord de la mer.'],
+      ['Mans tēvs strādā par skolotāju Rīgā.', 'Mon père est enseignant à Riga.'],
+      ['Šodien ir ļoti skaists laiks, iesim ārā.', 'Aujourd’hui le temps est magnifique, sortons.'],
+      ['Vai tu zini, kur ir tuvākā aptieka?', 'Sais-tu où est la pharmacie la plus proche ?'],
+      ['Ziemā šeit snieg gandrīz katru dienu.', 'L’hiver, il neige ici presque tous les jours.'],
+      ['Man ļoti garšo siers.', 'J’aime beaucoup le fromage.'],
+      ['Bērni skrien pa pļavu.', 'Les enfants courent dans le pré.'],
+      ['Rīt man jāceļas ļoti agri.', 'Demain, je dois me lever très tôt.'],
+      ['Es vēl neesmu bijis Latgalē.', 'Je ne suis pas encore allé en Latgale.'],
+      ['Cik ilgi tu mācies latviešu valodu?', 'Depuis combien de temps apprends-tu le letton ?']
     ]
   },
 
@@ -571,10 +744,16 @@ const LANGUAGES = [
     aliases: ['suomi', 'finnois', 'finlandais', 'finnish'],
     hint: 'Doubles voyelles et doubles consonnes partout (kaupunki, tyttöö), ä et ö, aucune préposition : tout passe par des suffixes.',
     texts: [
-      'Kesällä käymme usein mökillä järven rannalla.',
-      'En löydä auton avaimia mistään.',
-      'Huomenna aion mennä uimaan ystäväni kanssa.',
-      'Puhutko sinä suomea? Minä puhun vähän.'
+      ['Kesällä käymme usein saunassa.', 'L’été, nous allons souvent au sauna.'],
+      ['En muista, mihin jätin takkini.', 'Je ne me souviens pas où j’ai laissé mon manteau.'],
+      ['Huomenna aion mennä uimaan ystäväni kanssa.', 'Demain, je compte aller nager avec mon ami.'],
+      ['Puhutko sinä suomea? Minä puhun vähän.', 'Parles-tu finnois ? Moi, j’en parle un peu.'],
+      ['Ulkona on kaksikymmentä astetta pakkasta.', 'Dehors, il fait moins vingt degrés.'],
+      ['Siskoni soittaa viulua orkesterissa.', 'Ma sœur joue du violon dans un orchestre.'],
+      ['Junalippu Tampereelle maksaa kaksikymmentä euroa.', 'Le billet de train pour Tampere coûte vingt euros.'],
+      ['Kahvi on jo valmista, tule pöytään.', 'Le café est prêt, viens à table.'],
+      ['Työmatkani kestää puoli tuntia.', 'Mon trajet jusqu’au travail dure une demi-heure.'],
+      ['Tämä kirja on liian vaikea minulle.', 'Ce livre est trop difficile pour moi.']
     ]
   },
   {
@@ -590,10 +769,16 @@ const LANGUAGES = [
     aliases: ['eesti', 'estonien', 'estonian'],
     hint: 'Cousin du finnois, mais avec la lettre õ et des mots plus courts (les voyelles finales ont disparu).',
     texts: [
-      'Ma käin igal hommikul tööle jalgsi.',
-      'Mu vend elab väikeses linnas mere ääres.',
-      'Kas sa saaksid mind natuke aidata, palun?',
-      'Täna on väljas väga külm ilm.'
+      ['Ma sõidan igal hommikul rongiga tööle.', 'Chaque matin, je vais au travail en train.'],
+      ['Mu vend elab väikeses linnas mere ääres.', 'Mon frère habite une petite ville au bord de la mer.'],
+      ['Kas sa saaksid mind natuke aidata, palun?', 'Pourrais-tu m’aider un peu, s’il te plaît ?'],
+      ['Täna sajab lund juba hommikust saati.', 'Aujourd’hui, il neige depuis ce matin.'],
+      ['Mulle maitseb väga must leib.', 'J’aime beaucoup le pain noir.'],
+      ['Suvel käime mere ääres puhkamas.', 'L’été, nous allons nous reposer au bord de la mer.'],
+      ['Ma ei tea, kus mu telefon on.', 'Je ne sais pas où est mon téléphone.'],
+      ['Mu tütar õpib ülikoolis Tartus.', 'Ma fille étudie à l’université de Tartu.'],
+      ['Kui palju see maksab?', 'Combien cela coûte-t-il ?'],
+      ['Eesti keel on väga raske.', 'L’estonien est une langue très difficile.']
     ]
   },
   {
@@ -609,10 +794,16 @@ const LANGUAGES = [
     aliases: ['magyar', 'hongrois', 'hungarian'],
     hint: 'Les doubles accents ő et ű n’existent qu’en hongrois. Articles « a / az », digrammes sz, cs, zs, gy.',
     texts: [
-      'Minden reggel megiszom egy csésze kávét munka előtt.',
-      'Sehol sem találom az autó kulcsait.',
-      'A nővérem egy kis faluban él a Balaton mellett.',
-      'Holnap moziba megyünk a barátaimmal.'
+      ['Minden reggel ugyanazzal a busszal megyek.', 'Chaque matin, je prends le même bus.'],
+      ['Elfelejtettem bezárni az ajtót.', 'J’ai oublié de fermer la porte à clé.'],
+      ['A nővérem egy kis faluban él a Balaton mellett.', 'Ma sœur vit dans un petit village au bord du lac Balaton.'],
+      ['Holnap moziba megyünk a barátaimmal.', 'Demain, nous allons au cinéma avec mes amis.'],
+      ['Ez a leves nagyon finom lett.', 'Cette soupe est très réussie.'],
+      ['Esik az eső, vigyél esernyőt.', 'Il pleut, prends un parapluie.'],
+      ['A vonat tíz perc múlva indul.', 'Le train part dans dix minutes.'],
+      ['A szomszédunk mindig nagyon hangos.', 'Notre voisin est toujours très bruyant.'],
+      ['Tavaly nyáron Görögországban nyaraltunk.', 'L’été dernier, nous avons passé les vacances en Grèce.'],
+      ['Jövő héten Bécsbe utazom.', 'La semaine prochaine, je pars à Vienne.']
     ]
   },
 
@@ -630,10 +821,16 @@ const LANGUAGES = [
     aliases: ['gaeilge', 'irlandais', 'gaelique', 'gaélique', 'gaelique irlandais', 'irish'],
     hint: 'Accents aigus uniquement (á é í ó ú) et des groupes bh, mh, dh, gh partout. Le verbe est en tête de phrase.',
     texts: [
-      'Ólaim cupán caife gach maidin roimh an obair.',
-      'Tá mo dheirfiúr ina cónaí i mbaile beag cois farraige.',
-      'Tá an aimsir go hálainn inniu.',
-      'An bhfuil Gaeilge agat? Tá beagán agam.'
+      ['Ólaim tae gach maidin.', 'Je bois du thé tous les matins.'],
+      ['Tá mo dheartháir ina chónaí i gConamara.', 'Mon frère habite le Connemara.'],
+      ['Tá sé an-fhuar ar maidin.', 'Il fait très froid ce matin.'],
+      ['An bhfuil Gaeilge agat? Tá beagán agam.', 'Parles-tu irlandais ? J’en parle un peu.'],
+      ['Beidh mé ag dul go Baile Átha Cliath amárach.', 'J’irai à Dublin demain.'],
+      ['Is maith liom ceol traidisiúnta.', 'J’aime la musique traditionnelle.'],
+      ['Dún an doras, le do thoil.', 'Ferme la porte, s’il te plaît.'],
+      ['Tá na páistí ag imirt peile.', 'Les enfants jouent au football.'],
+      ['Ní raibh mé riamh sa Fhrainc.', 'Je ne suis jamais allé en France.'],
+      ['Tá mé tuirseach tar éis an lae oibre.', 'Je suis fatigué après la journée de travail.']
     ]
   },
   {
@@ -649,10 +846,16 @@ const LANGUAGES = [
     aliases: ['cymraeg', 'gallois', 'welsh'],
     hint: 'Le double ll, le w et le y utilisés comme voyelles (cwm, bryn), et le circonflexe ŵ, ŷ.',
     texts: [
-      'Dw i’n yfed paned o de bob bore.',
-      'Mae fy mrawd yn gweithio mewn ysgol yng Nghaerdydd.',
-      'Mae’n bwrw glaw eto heddiw, fel arfer.',
-      'Hoffwn i fynd i’r mynyddoedd y penwythnos yma.'
+      ['Dw i’n mynd i’r gwaith ar y bws bob bore.', 'Je vais au travail en bus tous les matins.'],
+      ['Mae fy mrawd yn gweithio mewn ysgol yng Nghaerdydd.', 'Mon frère travaille dans une école à Cardiff.'],
+      ['Mae’n bwrw glaw eto heddiw, fel arfer.', 'Il pleut encore aujourd’hui, comme d’habitude.'],
+      ['Hoffwn i fynd i’r mynyddoedd y penwythnos yma.', 'J’aimerais aller à la montagne ce week-end.'],
+      ['Faint o’r gloch mae’r siop yn cau?', 'À quelle heure ferme le magasin ?'],
+      ['Mae’r plant wedi blino’n lân.', 'Les enfants sont épuisés.'],
+      ['Roedd y cinio yn flasus iawn.', 'Le repas était très bon.'],
+      ['Mae fy nhad yn hoffi pysgota.', 'Mon père aime pêcher.'],
+      ['Byddwn ni’n mynd i’r traeth yfory.', 'Nous irons à la plage demain.'],
+      ['Dw i wedi colli fy allweddi eto.', 'J’ai encore perdu mes clés.']
     ]
   },
   {
@@ -668,10 +871,16 @@ const LANGUAGES = [
     aliases: ['brezhoneg', 'breton'],
     hint: 'Signature unique : le trigramme c’h (alc’hwez, c’hoari) et le zh de « Breizh ».',
     texts: [
-      'Demat deoc’h, penaos emañ kont ganeoc’h?',
-      'Brav eo an amzer hiziv, mont a ran da vale.',
-      'Ar vugale a c’hoari er porzh.',
-      'Me a zo o chom e Breizh abaoe pemp bloaz.'
+      ['Demat deoc’h, penaos emañ kont ganeoc’h?', 'Bonjour, comment allez-vous ?'],
+      ['Brav eo an amzer hiziv.', 'Il fait beau aujourd’hui.'],
+      ['Ar vugale a c’hoari er porzh.', 'Les enfants jouent dans la cour.'],
+      ['Me a zo o chom e Breizh abaoe pemp bloaz.', 'J’habite en Bretagne depuis cinq ans.'],
+      ['Mont a ran d’ar gêr bremañ.', 'Je rentre à la maison maintenant.'],
+      ['Ur banne kafe a vo mat.', 'Un petit café serait le bienvenu.'],
+      ['Ma zad a labour en ur stal.', 'Mon père travaille dans un magasin.'],
+      ['Bras eo ar mor hiziv.', 'La mer est forte aujourd’hui.'],
+      ['Debriñ a reomp krampouezh d’ar sul.', 'Nous mangeons des crêpes le dimanche.'],
+      ['Trugarez vras deoc’h.', 'Merci beaucoup.']
     ]
   },
 
@@ -689,10 +898,16 @@ const LANGUAGES = [
     aliases: ['ellinika', 'grec moderne', 'greek', 'ελληνικά'],
     hint: 'Son propre alphabet, impossible à confondre. Un seul accent aigu sur la voyelle tonique.',
     texts: [
-      'Κάθε πρωί πίνω έναν καφέ πριν πάω στη δουλειά.',
-      'Δεν μπορώ να βρω πουθενά τα κλειδιά μου.',
-      'Το καλοκαίρι πηγαίνουμε πάντα στο νησί.',
-      'Σήμερα κάνει πολλή ζέστη, πάμε για μπάνιο.'
+      ['Κάθε πρωί διαβάζω τις ειδήσεις.', 'Chaque matin, je lis les nouvelles.'],
+      ['Δεν μιλάω καλά γαλλικά.', 'Je ne parle pas bien français.'],
+      ['Το καλοκαίρι πηγαίνουμε πάντα στο νησί.', 'L’été, nous allons toujours sur l’île.'],
+      ['Σήμερα κάνει πολλή ζέστη στην πόλη.', 'Il fait très chaud en ville aujourd’hui.'],
+      ['Η αδελφή μου δουλεύει σε ένα εστιατόριο.', 'Ma sœur travaille dans un restaurant.'],
+      ['Θα ήθελα έναν καφέ χωρίς ζάχαρη.', 'Je voudrais un café sans sucre.'],
+      ['Τα παιδιά παίζουν στην αυλή του σχολείου.', 'Les enfants jouent dans la cour de l’école.'],
+      ['Αύριο θα πάω στον γιατρό.', 'Demain, j’irai chez le médecin.'],
+      ['Αυτό το φαγητό είναι πεντανόστιμο.', 'Ce plat est délicieux.'],
+      ['Μαθαίνω ελληνικά εδώ και έναν χρόνο.', 'J’apprends le grec depuis un an.']
     ]
   },
   {
@@ -708,10 +923,16 @@ const LANGUAGES = [
     aliases: ['shqip', 'albanais', 'albanian'],
     hint: 'Seule branche de sa famille. Repères : ë très fréquent en fin de mot, ç, et les digrammes xh, zh, dh, gj.',
     texts: [
-      'Çdo mëngjes pi një filxhan kafe para punës.',
-      'Motra ime jeton në një qytet të vogël pranë detit.',
-      'Nesër do të shkojmë në mal me shokët.',
-      'Sot bën shumë ftohtë, vish një xhaketë.'
+      ['Çdo mëngjes hap dritaren për ajër të pastër.', 'Chaque matin, j’ouvre la fenêtre pour avoir de l’air frais.'],
+      ['Vëllai im është inxhinier.', 'Mon frère est ingénieur.'],
+      ['Nesër do të shkojmë në mal me shokët.', 'Demain, nous irons à la montagne avec les copains.'],
+      ['Sot bie shi gjithë ditën.', 'Aujourd’hui, il pleut toute la journée.'],
+      ['Ku është stacioni i trenit, ju lutem?', 'Où est la gare, s’il vous plaît ?'],
+      ['Ky libër është shumë i bukur.', 'Ce livre est très beau.'],
+      ['Fëmijët po shikojnë televizor.', 'Les enfants regardent la télévision.'],
+      ['Gjyshja ime gatuan shumë mirë.', 'Ma grand-mère cuisine très bien.'],
+      ['Dimri këtu është i gjatë dhe me borë.', 'Ici, l’hiver est long et neigeux.'],
+      ['Sa vjeç je ti?', 'Quel âge as-tu ?']
     ]
   },
   {
@@ -727,10 +948,16 @@ const LANGUAGES = [
     aliases: ['euskara', 'euskera', 'basque'],
     hint: 'Langue isolée, sans parenté connue. Beaucoup de k, tx, tz, et des mots finissant en -ak, -tik, -rekin.',
     texts: [
-      'Goizero kafe bat hartzen dut lanera joan aurretik.',
-      'Nire ahizpa Bilbon bizi da aspalditik.',
-      'Bihar mendira joango gara lagunekin.',
-      'Gaur egun ederra egiten du, goazen kanpora.'
+      ['Goizero oinez joaten naiz mendira.', 'Chaque matin, je monte à la montagne à pied.'],
+      ['Nire ahizpa Bilbon bizi da aspalditik.', 'Ma sœur vit à Bilbao depuis longtemps.'],
+      ['Bihar hondartzara joango gara lagunekin.', 'Demain, nous irons à la plage avec les amis.'],
+      ['Gaur haizea dabil itsasoan.', 'Aujourd’hui, il y a du vent sur la mer.'],
+      ['Non dago liburutegia?', 'Où est la bibliothèque ?'],
+      ['Euskara oso zaila da ikasteko.', 'Le basque est très difficile à apprendre.'],
+      ['Nire aitona baserritarra zen.', 'Mon grand-père était paysan.'],
+      ['Etxean sagardoa egiten dugu.', 'À la maison, nous faisons du cidre.'],
+      ['Bazkaria prest dago.', 'Le déjeuner est prêt.'],
+      ['Atzo gauean ez nuen lorik egin.', 'Hier soir, je n’ai pas dormi.']
     ]
   },
   {
@@ -746,10 +973,16 @@ const LANGUAGES = [
     aliases: ['malti', 'maltais', 'maltese'],
     hint: 'Seule langue sémitique écrite en alphabet latin : ħ, ġ, ż, ċ et l’article « il- / iċ- » collé devant les noms.',
     texts: [
-      'Kuljum nixrob tazza kafè qabel ix-xogħol.',
-      'Oħti toqgħod f’raħal żgħir ħdejn il-baħar.',
-      'It-temp illum huwa sabiħ ħafna.',
-      'Ma nistax insib iċ-ċwievet tal-karozza.'
+      ['Kuljum nimxi sal-baħar.', 'Chaque jour, je marche jusqu’à la mer.'],
+      ['Oħti taħdem fil-bank.', 'Ma sœur travaille à la banque.'],
+      ['Illum hemm ħafna xemx.', 'Aujourd’hui, il y a beaucoup de soleil.'],
+      ['Ma nistax nifhem dan il-ktieb.', 'Je n’arrive pas à comprendre ce livre.'],
+      ['Fejn hu l-eqreb sptar?', 'Où est l’hôpital le plus proche ?'],
+      ['Illejla se mmorru nieklu barra.', 'Ce soir, nous allons manger dehors.'],
+      ['Il-Malti huwa lingwa Semitika.', 'Le maltais est une langue sémitique.'],
+      ['Nitgħallem l-Ingliż l-iskola.', 'J’apprends l’anglais à l’école.'],
+      ['Ix-xita waqfet fl-aħħar.', 'La pluie s’est enfin arrêtée.'],
+      ['Grazzi ħafna tal-għajnuna tiegħek.', 'Merci beaucoup pour ton aide.']
     ]
   },
   {
@@ -765,10 +998,16 @@ const LANGUAGES = [
     aliases: ['turkce', 'türkçe', 'turc', 'turkish'],
     hint: 'Le ı sans point et le ğ muet, plus ş et ç. Langue agglutinante : les suffixes s’empilent en fin de mot.',
     texts: [
-      'Her sabah işe gitmeden önce bir fincan kahve içerim.',
-      'Arabanın anahtarlarını hiçbir yerde bulamıyorum.',
-      'Kız kardeşim deniz kenarında küçük bir kasabada yaşıyor.',
-      'Yarın arkadaşlarımla sinemaya gideceğiz.'
+      ['Her sabah çay içerim, kahve değil.', 'Chaque matin, je bois du thé, pas du café.'],
+      ['Telefonumun şarjı bitti.', 'Mon téléphone n’a plus de batterie.'],
+      ['Kız kardeşim İstanbul’da çalışıyor.', 'Ma sœur travaille à Istanbul.'],
+      ['Yarın arkadaşlarımla pikniğe gideceğiz.', 'Demain, nous irons pique-niquer avec mes amis.'],
+      ['Bu yaz çok yağmur yağdı.', 'Il a beaucoup plu cet été.'],
+      ['Bir bardak su alabilir miyim?', 'Puis-je avoir un verre d’eau ?'],
+      ['Çocuklar ödevlerini yapıyor.', 'Les enfants font leurs devoirs.'],
+      ['Bu yemek çok lezzetli olmuş.', 'Ce plat est très réussi.'],
+      ['Pazartesi günü tatile çıkıyorum.', 'Lundi, je pars en vacances.'],
+      ['Türkçe öğrenmek istiyorum.', 'Je veux apprendre le turc.']
     ]
   }
 ];

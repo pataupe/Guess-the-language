@@ -22,9 +22,13 @@
     </a>
 
     <div class="hud" id="hud" hidden>
-      <div class="hud-item">
-        <span class="hud-label">Question</span>
-        <span class="hud-value" id="hudProgress">1<span class="hud-sep">/</span>10</span>
+      <div class="hud-item" id="hudCountItem">
+        <span class="hud-label" id="hudCountLabel">Question</span>
+        <span class="hud-value" id="hudCount">1<span class="hud-sep">/</span>10</span>
+      </div>
+      <div class="hud-item" id="hudLivesItem" hidden>
+        <span class="hud-label">Vies</span>
+        <span class="hud-value" id="hudLives"></span>
       </div>
       <div class="hud-item">
         <span class="hud-label">Temps</span>
@@ -41,7 +45,7 @@
 
     <!-- ========================================================== ACCUEIL -->
     <section class="screen screen-home is-active" id="screenHome">
-      <p class="eyebrow">39 langues d'Europe · 10 phrases par partie</p>
+      <p class="eyebrow">39 langues d'Europe</p>
       <h1 class="home-title">Devine la langue.</h1>
       <p class="home-lead">
         Une phrase s'affiche. À toi de dire dans quelle langue elle est écrite.
@@ -49,28 +53,45 @@
         parties, tu les reconnaîtras au premier coup d'œil.
       </p>
 
+      <div class="picker">
+        <p class="picker-label" id="diffLabel">Comment tu réponds</p>
+        <div class="difficulty" role="radiogroup" aria-labelledby="diffLabel">
+          <button class="diff" type="button" data-diff="facile" role="radio" aria-checked="true">
+            <span class="diff-name">Facile</span>
+            <span class="diff-desc">Six réponses proposées</span>
+          </button>
+          <button class="diff" type="button" data-diff="difficile" role="radio" aria-checked="false">
+            <span class="diff-name">Difficile</span>
+            <span class="diff-desc">Tu écris le nom de la langue</span>
+          </button>
+        </div>
+      </div>
+
       <div class="modes">
-        <button class="mode" data-mode="facile">
-          <span class="mode-tag">Niveau 1</span>
-          <span class="mode-name">Facile</span>
-          <span class="mode-desc">Six réponses proposées. À toi de trouver la bonne.</span>
-          <span class="mode-best" data-best="facile"></span>
+        <button class="mode mode-daily" type="button" data-mode="quotidien">
+          <span class="mode-tag" id="dailyDate"></span>
+          <span class="mode-name">Défi du jour</span>
+          <span class="mode-desc">Les mêmes dix phrases pour tout le monde aujourd'hui.</span>
+          <span class="mode-best" data-best="quotidien"></span>
           <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </button>
 
-        <button class="mode mode-hard" data-mode="difficile">
-          <span class="mode-tag">Niveau 2</span>
-          <span class="mode-name">Difficile</span>
-          <span class="mode-desc">Aucune proposition. Tu écris le nom de la langue.</span>
-          <span class="mode-best" data-best="difficile"></span>
+        <button class="mode" type="button" data-mode="libre">
+          <span class="mode-tag">Sans limite</span>
+          <span class="mode-name">Partie libre</span>
+          <span class="mode-desc">Dix phrases tirées au hasard, autant de fois que tu veux.</span>
+          <span class="mode-best" data-best="libre"></span>
+          <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </button>
+
+        <button class="mode mode-survival" type="button" data-mode="survie">
+          <span class="mode-tag">Trois vies</span>
+          <span class="mode-name">Survie</span>
+          <span class="mode-desc">Ça continue tant que tu trouves, et ça devient de plus en plus rare.</span>
+          <span class="mode-best" data-best="survie"></span>
           <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </button>
       </div>
-
-      <p class="home-note">
-        Le score récompense les bonnes réponses <em>et</em> la rapidité.
-        Rien n'est envoyé nulle part&nbsp;: ton meilleur score reste dans ton navigateur.
-      </p>
     </section>
 
     <!-- ============================================================ PARTIE -->
@@ -116,6 +137,10 @@
           </div>
           <span class="verdict-points tabular" id="verdictPoints"></span>
         </div>
+        <p class="verdict-translation" id="verdictTranslation" hidden>
+          <span class="verdict-translation-label">Ça veut dire</span>
+          <span id="verdictTranslationText"></span>
+        </p>
         <dl class="facts" id="verdictFacts"></dl>
         <p class="verdict-hint" id="verdictHint"></p>
         <button class="btn btn-primary btn-next" id="nextBtn">
@@ -139,7 +164,7 @@
         <div class="score-side">
           <div class="score-stat">
             <span class="score-stat-value tabular" id="endCorrect">0/10</span>
-            <span class="score-stat-label">bonnes réponses</span>
+            <span class="score-stat-label" id="endCorrectLabel">bonnes réponses</span>
           </div>
           <div class="score-stat">
             <span class="score-stat-value tabular" id="endTime">0:00</span>
@@ -154,7 +179,7 @@
 
       <div class="end-actions">
         <button class="btn btn-primary" id="replayBtn">Rejouer</button>
-        <button class="btn btn-ghost" id="homeBtn">Changer de niveau</button>
+        <button class="btn btn-ghost" id="homeBtn">Changer de mode</button>
         <button class="btn btn-ghost" id="shareBtn">Copier mon score</button>
       </div>
     </section>
