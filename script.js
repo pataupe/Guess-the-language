@@ -27,8 +27,10 @@
   // 1, elle est écartée des questions 2, 3 et 4, et peut revenir à la 5e.
   const MIN_REPEAT_DISTANCE = 4;
 
-  // Composition d'une partie de 10 : 3 langues courantes, 4 moyennes, 3 rares.
-  const LEVEL_MIX = { 1: 3, 2: 4, 3: 3 };
+  // Seule contrainte de composition : au moins deux langues de chaque niveau
+  // de rareté. Les quatre questions restantes sont tirées librement parmi les
+  // 39, donc une partie peut très bien pencher d'un côté ou de l'autre.
+  const LEVEL_MIN = { 1: 2, 2: 2, 3: 2 };
 
   const POINTS_CORRECT = 100;   // points d'une bonne réponse
   const BONUS_MAX = 60;         // bonus de rapidité maximum
@@ -199,21 +201,27 @@
   function pickLanguage(level, recentIds) {
     const blocked = recentIds.slice(-(MIN_REPEAT_DISTANCE - 1));
     const free = (l) => blocked.indexOf(l.id) === -1;
-    let pool = LANGUAGES.filter((l) => l.level === level && free(l));
+    // level vaut null pour les questions tirées librement, tous niveaux confondus.
+    let pool = LANGUAGES.filter((l) => (level === null || l.level === level) && free(l));
     if (!pool.length) pool = LANGUAGES.filter(free);
     if (!pool.length) pool = LANGUAGES;
     return pickOne(pool);
   }
 
-  /** Les 10 langues d'une partie classique, au dosage 3 / 4 / 3. */
+  /**
+   * Les 10 langues d'une partie classique. Six places sont réservées pour
+   * garantir le minimum (deux par niveau), les quatre autres sont libres ;
+   * le tout est mélangé pour que les rares ne finissent pas groupées.
+   */
   function drawLanguages() {
-    const levels = shuffle(
-      new Array(LEVEL_MIX[1]).fill(1)
-        .concat(new Array(LEVEL_MIX[2]).fill(2))
-        .concat(new Array(LEVEL_MIX[3]).fill(3))
-    );
+    const slots = [];
+    [1, 2, 3].forEach((level) => {
+      for (let i = 0; i < LEVEL_MIN[level]; i++) slots.push(level);
+    });
+    while (slots.length < QUESTIONS_PER_GAME) slots.push(null);
+
     const drawn = [];
-    levels.forEach((level) => {
+    shuffle(slots).forEach((level) => {
       drawn.push(pickLanguage(level, drawn.map((l) => l.id)));
     });
     return drawn;

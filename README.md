@@ -46,11 +46,18 @@ Le choix est indépendant du mode de jeu.
 
 ## Comment une partie est composée
 
-Le défi du jour et la partie libre tirent 10 langues : 3 courantes,
-4 intermédiaires et 3 rares (champ `level` dans `languages.js`). Les cinq
-intrus du mode facile sont choisis d'abord dans la même branche linguistique,
-puis dans le même alphabet, puis au hasard — pour que deviner « au pif » ne
-marche pas.
+Chaque langue porte une note de rareté de 1 à 3 (champ `level` dans
+`languages.js`) : 14 courantes, 15 intermédiaires, 10 rares.
+
+Le défi du jour et la partie libre tirent 10 langues avec une seule
+contrainte : **au moins deux de chaque niveau** (`LEVEL_MIN`). Les quatre
+questions restantes sont libres, donc la composition change vraiment d'une
+partie à l'autre — sur 400 parties on observe quatorze répartitions
+différentes, de 6/2/2 à 2/3/5.
+
+Les cinq intrus du mode facile sont choisis d'abord dans la même branche
+linguistique, puis dans le même alphabet, puis au hasard — pour que deviner
+« au pif » ne marche pas.
 
 Dans tous les modes, une même langue peut retomber plusieurs fois, mais
 jamais coup sur coup : `MIN_REPEAT_DISTANCE` impose au moins quatre questions
