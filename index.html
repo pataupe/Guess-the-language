@@ -1,24 +1,175 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guess the language!</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guess the Language — devine la langue</title>
+<meta name="description" content="Un petit jeu pour apprendre à reconnaître les langues d'Europe à partir d'une simple phrase.">
+<link rel="icon" href="images/logo2.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Guess the language!</h1>
-    </header>
 
-    <main>
-        <div>
-<p>Phrase à deviner</p>
+<div class="app">
+
+  <!-- ====================================================== BARRE DU HAUT -->
+  <header class="topbar">
+    <a class="brand" href="#" id="brand" aria-label="Guess the Language — accueil">
+      <img src="images/logo2.png" alt="Guess the Language">
+    </a>
+
+    <div class="hud" id="hud" hidden>
+      <div class="hud-item">
+        <span class="hud-label">Question</span>
+        <span class="hud-value" id="hudProgress">1<span class="hud-sep">/</span>10</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Temps</span>
+        <span class="hud-value tabular" id="hudTimer">0:00</span>
+      </div>
+      <div class="hud-item hud-score">
+        <span class="hud-label">Score</span>
+        <span class="hud-value tabular" id="hudScore">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================================================== ACCUEIL -->
+    <section class="screen screen-home is-active" id="screenHome">
+      <p class="eyebrow">39 langues d'Europe · 10 phrases par partie</p>
+      <h1 class="home-title">Devine la langue.</h1>
+      <p class="home-lead">
+        Une phrase s'affiche. À toi de dire dans quelle langue elle est écrite.
+        Le hongrois, le letton, le breton, le macédonien&nbsp;… Au bout de quelques
+        parties, tu les reconnaîtras au premier coup d'œil.
+      </p>
+
+      <div class="modes">
+        <button class="mode" data-mode="facile">
+          <span class="mode-tag">Niveau 1</span>
+          <span class="mode-name">Facile</span>
+          <span class="mode-desc">Six réponses proposées. À toi de trouver la bonne.</span>
+          <span class="mode-best" data-best="facile"></span>
+          <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </button>
+
+        <button class="mode mode-hard" data-mode="difficile">
+          <span class="mode-tag">Niveau 2</span>
+          <span class="mode-name">Difficile</span>
+          <span class="mode-desc">Aucune proposition. Tu écris le nom de la langue.</span>
+          <span class="mode-best" data-best="difficile"></span>
+          <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </button>
+      </div>
+
+      <p class="home-note">
+        Le score récompense les bonnes réponses <em>et</em> la rapidité.
+        Rien n'est envoyé nulle part&nbsp;: ton meilleur score reste dans ton navigateur.
+      </p>
+    </section>
+
+    <!-- ============================================================ PARTIE -->
+    <section class="screen screen-game" id="screenGame" hidden>
+
+      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+      <article class="specimen">
+        <p class="specimen-text" id="specimenText" lang="und"></p>
+      </article>
+
+      <!-- mode facile : 6 propositions -->
+      <div class="choices" id="choices" role="group" aria-label="Propositions de réponse"></div>
+
+      <!-- mode difficile : saisie libre -->
+      <form class="guessbox" id="guessForm" hidden autocomplete="off">
+        <div class="combo">
+          <label class="sr-only" for="guessInput">Nom de la langue</label>
+          <input
+            type="text"
+            id="guessInput"
+            placeholder="Écris le nom de la langue…"
+            role="combobox"
+            aria-expanded="false"
+            aria-autocomplete="list"
+            aria-controls="suggestions"
+            spellcheck="false">
+          <ul class="suggestions" id="suggestions" role="listbox" aria-label="Langues proposées" hidden></ul>
+        </div>
+        <div class="guessbox-actions">
+          <button type="submit" class="btn btn-primary" id="guessSubmit">Valider</button>
+          <button type="button" class="btn btn-ghost" id="guessSkip">Passer</button>
+        </div>
+      </form>
+
+      <!-- correction -->
+      <div class="verdict" id="verdict" hidden>
+        <div class="verdict-head">
+          <span class="verdict-badge" id="verdictBadge"></span>
+          <div class="verdict-id">
+            <h2 class="verdict-name" id="verdictName"></h2>
+            <p class="verdict-endonym" id="verdictEndonym"></p>
+          </div>
+          <span class="verdict-points tabular" id="verdictPoints"></span>
+        </div>
+        <dl class="facts" id="verdictFacts"></dl>
+        <p class="verdict-hint" id="verdictHint"></p>
+        <button class="btn btn-primary btn-next" id="nextBtn">
+          Suivant <kbd>Entrée</kbd>
+        </button>
+      </div>
+
+      <p class="live sr-only" id="liveRegion" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ========================================================= RÉSULTATS -->
+    <section class="screen screen-end" id="screenEnd" hidden>
+      <p class="eyebrow" id="endMode"></p>
+      <h1 class="end-title" id="endTitle"></h1>
+
+      <div class="scoreboard">
+        <div class="score-main">
+          <span class="score-points tabular" id="endPoints">0</span>
+          <span class="score-unit">points</span>
+        </div>
+        <div class="score-side">
+          <div class="score-stat">
+            <span class="score-stat-value tabular" id="endCorrect">0/10</span>
+            <span class="score-stat-label">bonnes réponses</span>
+          </div>
+          <div class="score-stat">
+            <span class="score-stat-value tabular" id="endTime">0:00</span>
+            <span class="score-stat-label">temps total</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="record" id="endRecord" hidden></p>
+
+      <ol class="recap" id="recap"></ol>
+
+      <div class="end-actions">
+        <button class="btn btn-primary" id="replayBtn">Rejouer</button>
+        <button class="btn btn-ghost" id="homeBtn">Changer de niveau</button>
+        <button class="btn btn-ghost" id="shareBtn">Copier mon score</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span>Guess the Language</span>
+    <span class="foot-dot">·</span>
+    <span id="footCount"></span>
+  </footer>
+
 </div>
 
-<div>
-    reponses possibles
-</div>
-    </main>
+<script src="languages.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
