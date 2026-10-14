@@ -33,7 +33,7 @@ Le choix est indépendant du mode de jeu.
 | --- | --- |
 | **Défi du jour** | Les mêmes dix phrases pour tout le monde, tirées à partir de la date. Seule la première tentative compte ; on peut rejouer à l'entraînement sans écraser son résultat. |
 | **Partie libre** | Dix phrases au hasard, autant de fois qu'on veut. |
-| **Survie** | Sans fin, trois vies. Les langues deviennent de plus en plus rares à mesure qu'on avance, et aucune ne ressort tant que le catalogue n'est pas épuisé. |
+| **Survie** | Sans fin, trois vies. Les langues deviennent de plus en plus rares à mesure qu'on avance. |
 
 ## Score
 
@@ -46,11 +46,17 @@ Le choix est indépendant du mode de jeu.
 
 ## Comment une partie est composée
 
-Le défi du jour et la partie libre tirent 10 langues distinctes : 3 courantes,
+Le défi du jour et la partie libre tirent 10 langues : 3 courantes,
 4 intermédiaires et 3 rares (champ `level` dans `languages.js`). Les cinq
 intrus du mode facile sont choisis d'abord dans la même branche linguistique,
 puis dans le même alphabet, puis au hasard — pour que deviner « au pif » ne
 marche pas.
+
+Dans tous les modes, une même langue peut retomber plusieurs fois, mais
+jamais coup sur coup : `MIN_REPEAT_DISTANCE` impose au moins quatre questions
+d'écart. Tombée à la question 1, une langue est écartée des questions 2, 3 et
+4, et peut revenir à la 5e. Si elle revient, le jeu lui prend une autre de ses
+dix phrases.
 
 Le défi du jour remplace `Math.random` par un générateur à graine
 (`mulberry32`) alimenté par la date : une même journée produit exactement la

@@ -22,6 +22,11 @@
   const CHOICES_PER_QUESTION = 6;
   const SURVIVAL_LIVES = 3;
 
+  // Une langue peut revenir dans la partie, mais pas coup sur coup : il faut
+  // au moins cette distance entre deux occurrences. 4 = tombée à la question
+  // 1, elle est écartée des questions 2, 3 et 4, et peut revenir à la 5e.
+  const MIN_REPEAT_DISTANCE = 4;
+
   // Composition d'une partie de 10 : 3 langues courantes, 4 moyennes, 3 rares.
   const LEVEL_MIX = { 1: 3, 2: 4, 3: 3 };
 
@@ -170,7 +175,14 @@
   }
 
   function makeQuestion(lang) {
-    const sample = pickOne(lang.texts);
+    // Si la langue est déjà tombée dans cette partie, on lui prend une
+    // autre de ses dix phrases : deux fois la même ferait bâclé.
+    const seen = state.usedTexts[lang.id] || (state.usedTexts[lang.id] = []);
+    let pool = lang.texts.filter((t) => seen.indexOf(t[0]) === -1);
+    if (!pool.length) pool = lang.texts;
+
+    const sample = pickOne(pool);
+    seen.push(sample[0]);
     return {
       lang: lang,
       text: sample[0],
@@ -179,17 +191,32 @@
     };
   }
 
+  /**
+   * Tire une langue du niveau demandé, en écartant seulement celles tombées
+   * dans les questions toutes proches. Si le niveau n'a plus personne de
+   * disponible, on élargit plutôt que de bloquer.
+   */
+  function pickLanguage(level, recentIds) {
+    const blocked = recentIds.slice(-(MIN_REPEAT_DISTANCE - 1));
+    const free = (l) => blocked.indexOf(l.id) === -1;
+    let pool = LANGUAGES.filter((l) => l.level === level && free(l));
+    if (!pool.length) pool = LANGUAGES.filter(free);
+    if (!pool.length) pool = LANGUAGES;
+    return pickOne(pool);
+  }
+
   /** Les 10 langues d'une partie classique, au dosage 3 / 4 / 3. */
   function drawLanguages() {
-    let drawn = [];
-    [1, 2, 3].forEach((level) => {
-      drawn = drawn.concat(pick(LANGUAGES.filter((l) => l.level === level), LEVEL_MIX[level]));
+    const levels = shuffle(
+      new Array(LEVEL_MIX[1]).fill(1)
+        .concat(new Array(LEVEL_MIX[2]).fill(2))
+        .concat(new Array(LEVEL_MIX[3]).fill(3))
+    );
+    const drawn = [];
+    levels.forEach((level) => {
+      drawn.push(pickLanguage(level, drawn.map((l) => l.id)));
     });
-    if (drawn.length < QUESTIONS_PER_GAME) {
-      const rest = LANGUAGES.filter((l) => drawn.indexOf(l) === -1);
-      drawn = drawn.concat(pick(rest, QUESTIONS_PER_GAME - drawn.length));
-    }
-    return shuffle(drawn).slice(0, QUESTIONS_PER_GAME);
+    return drawn;
   }
 
   /**
@@ -204,13 +231,8 @@
   }
 
   function nextSurvivalQuestion() {
-    const wanted = survivalLevel(state.results.length);
-    let pool = LANGUAGES.filter((l) => l.level === wanted && !state.used[l.id]);
-    if (!pool.length) pool = LANGUAGES.filter((l) => !state.used[l.id]);
-    if (!pool.length) { state.used = {}; pool = LANGUAGES.slice(); }
-    const lang = pickOne(pool);
-    state.used[lang.id] = true;
-    return makeQuestion(lang);
+    const level = survivalLevel(state.results.length);
+    return makeQuestion(pickLanguage(level, state.results.map((r) => r.lang.id)));
   }
 
   /* ------------------------------------------------------- scores gardés */
@@ -271,7 +293,7 @@
     day: null,          // défi du jour : la date jouée
     questions: [],      // modes à 10 questions
     current: null,      // survie : la question en cours
-    used: {},           // survie : langues déjà sorties
+    usedTexts: {},      // phrases déjà montrées, par langue, dans cette partie
     lives: SURVIVAL_LIVES,
     index: 0,
     results: [],
@@ -303,7 +325,7 @@
     state.points = 0;
     state.elapsedMs = 0;
     state.answered = false;
-    state.used = {};
+    state.usedTexts = {};
     state.lives = SURVIVAL_LIVES;
 
     // Le défi du jour rejoue exactement la même partie pour tout le monde.
