@@ -881,8 +881,25 @@
     }
   });
 
+  /**
+   * Les parties jouées avant l'arrivée des modes vivaient sous une autre clé,
+   * sans notion de mode. On les récupère comme records de « partie libre »
+   * plutôt que de les faire disparaître.
+   */
+  function migrateOldBests() {
+    const old = readStore('gtl.best.v1');
+    if (!old.facile && !old.difficile) return;
+    const bests = readStore(KEY_BEST);
+    ['facile', 'difficile'].forEach((d) => {
+      if (old[d] && !bests[bestKey('libre', d)]) bests[bestKey('libre', d)] = old[d];
+    });
+    writeStore(KEY_BEST, bests);
+    try { localStorage.removeItem('gtl.best.v1'); } catch (e) { /* tant pis */ }
+  }
+
   /* ------------------------------------------------------------ démarrage */
 
+  migrateOldBests();
   $('footCount').textContent = LANGUAGES.length + ' langues au catalogue';
   setDifficulty(readStore(KEY_PREF).diff === 'difficile' ? 'difficile' : 'facile');
 })();
