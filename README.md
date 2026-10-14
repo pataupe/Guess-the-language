@@ -123,13 +123,18 @@ Les clés `family`, `branch` et `script` doivent exister dans `TAXONOMY`
 (`i18n.js`) — c'est là que vivent leurs traductions, une seule fois pour
 toutes les langues.
 
-Deux contraintes de contenu :
+Trois contraintes de contenu :
 
 - garder assez de langues dans chaque `level` pour le minimum de deux ;
 - ne **jamais** donner à deux langues proches (suédois / norvégien / danois,
   tchèque / slovaque, serbe / croate, russe / ukrainien / biélorusse…) la
   traduction d'une même phrase, dans aucune des deux langues : mises côte à
-  côte, elles donneraient la réponse.
+  côte, elles donneraient la réponse ;
+- ne **jamais** laisser une phrase nommer sa propre langue, son pays ou une
+  de ses villes. « Türkçe öğrenmek istiyorum » ou « Hva koster en billett til
+  Oslo? » donnent la réponse sans que le joueur ait à lire la phrase. Citer un
+  pays **étranger** reste permis : un Danois qui part en Espagne ne trahit
+  rien.
 
 ## Ajouter une langue d'interface
 
