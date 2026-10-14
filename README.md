@@ -1,7 +1,8 @@
 # Guess the Language
 
-Un petit jeu en français : une phrase s'affiche, tu devines dans quelle langue
-elle est écrite. 39 langues d'Europe, 390 phrases, chacune avec sa traduction.
+Un petit jeu bilingue : une phrase s'affiche, tu devines dans quelle langue
+elle est écrite. 39 langues d'Europe, 390 phrases, chacune traduite en
+français et en anglais.
 
 **En ligne :** <https://pataupe.github.io/Guess-the-language/>
 
@@ -18,6 +19,22 @@ python -m http.server 8777
 
 puis <http://localhost:8777>.
 
+## Deux langues d'interface
+
+Le site existe en français et en anglais, avec un bouton en haut à droite.
+À la première visite, la langue du navigateur décide ; le choix est ensuite
+gardé dans `localStorage`.
+
+**La langue du joueur est retirée du tirage.** Demander à un francophone de
+reconnaître du français ne demande aucun effort — c'est un point offert. La
+version française propose donc 38 langues (tout sauf le français), l'anglaise
+38 aussi (tout sauf l'anglais). La langue du joueur ne sort ni comme réponse,
+ni comme intrus, ni dans l'autocomplétion.
+
+Conséquence assumée : **le défi du jour n'est pas le même dans les deux
+versions**, puisque les deux ne piochent pas dans le même ensemble. Les scores
+restent comparables entre joueurs d'une même version.
+
 ## Comment on répond
 
 Le choix est indépendant du mode de jeu.
@@ -25,7 +42,7 @@ Le choix est indépendant du mode de jeu.
 | | |
 | --- | --- |
 | **Facile** | Six propositions, dont au moins une de la même famille que la bonne réponse. Raccourcis clavier `1` à `6`. |
-| **Difficile** | Aucune proposition : tu écris le nom de la langue. L'autocomplétion ignore la casse et les accents, et accepte aussi le nom dans la langue elle-même (`magyar`, `čeština`, `русский`) ou un synonyme (`hollandais`, `castillan`). Flèches pour naviguer, `Entrée` pour valider. |
+| **Difficile** | Aucune proposition : tu écris le nom de la langue. L'autocomplétion ignore la casse et les accents, et accepte le nom dans **les deux** langues d'interface (`allemand` comme `german`), le nom dans la langue elle-même (`magyar`, `čeština`, `русский`) ou un synonyme (`hollandais`, `castillan`). Flèches pour naviguer, `Entrée` pour valider. |
 
 ## Les trois modes
 
@@ -52,12 +69,8 @@ Chaque langue porte une note de rareté de 1 à 3 (champ `level` dans
 Le défi du jour et la partie libre tirent 10 langues avec une seule
 contrainte : **au moins deux de chaque niveau** (`LEVEL_MIN`). Les quatre
 questions restantes sont libres, donc la composition change vraiment d'une
-partie à l'autre — sur 400 parties on observe quatorze répartitions
-différentes, de 6/2/2 à 2/3/5.
-
-Les cinq intrus du mode facile sont choisis d'abord dans la même branche
-linguistique, puis dans le même alphabet, puis au hasard — pour que deviner
-« au pif » ne marche pas.
+partie à l'autre — on observe une douzaine de répartitions différentes, de
+6/2/2 à 2/3/5.
 
 Dans tous les modes, une même langue peut retomber plusieurs fois, mais
 jamais coup sur coup : `MIN_REPEAT_DISTANCE` impose au moins quatre questions
@@ -65,51 +78,64 @@ d'écart. Tombée à la question 1, une langue est écartée des questions 2, 3 
 4, et peut revenir à la 5e. Si elle revient, le jeu lui prend une autre de ses
 dix phrases.
 
+Les cinq intrus du mode facile sont choisis d'abord dans la même branche
+linguistique, puis dans le même alphabet, puis au hasard — pour que deviner
+« au pif » ne marche pas.
+
 Le défi du jour remplace `Math.random` par un générateur à graine
-(`mulberry32`) alimenté par la date : une même journée produit exactement la
-même partie, phrases et propositions comprises, pour tous les joueurs.
+(`mulberry32`) alimenté par la date **et la langue d'interface**.
 
 ## Fichiers
 
 | Fichier | Rôle |
 | --- | --- |
-| `index.html` | Les trois écrans : accueil, partie, résultats. |
+| `index.html` | Les trois écrans. Le texte visible vit dans des attributs `data-i18n`. |
 | `style.css` | Le design (thème clair et sombre automatiques). |
+| `i18n.js` | Le dictionnaire de l'interface et la taxonomie (familles, branches, alphabets). |
 | `languages.js` | Les 39 langues et leurs 390 phrases traduites. |
 | `script.js` | La logique du jeu. |
 
 ## Ajouter une langue
 
 Ajoute une entrée dans `languages.js`. Tout le reste s'adapte seul (compteurs,
-autocomplétion, tirage des questions, intrus) :
+autocomplétion, tirage, intrus) :
 
 ```js
 {
-  id: 'fo',
-  name: 'Féroïen',
-  endonym: 'Føroyskt',
-  family: 'Indo-européenne',
-  branch: 'Germanique septentrional',
-  script: 'Latin',
-  speakers: '≈ 70 000',
-  area: 'Îles Féroé',
+  id: "fo",
+  name: { fr: "Féroïen", en: "Faroese" },
+  endonym: "Føroyskt",
+  family: "indo-europeenne", branch: "germanique-septentrional", script: "latin",
+  speakers: { fr: "≈ 70 000", en: "≈ 70,000" },
+  area: { fr: "Îles Féroé", en: "Faroe Islands" },
   level: 3,                       // 1 courante · 2 intermédiaire · 3 rare
-  aliases: ['foroyskt', 'feroien'],
-  hint: 'Ce qu\'il faut regarder pour la reconnaître.',
+  aliases: ["foroyskt"],          // les deux noms et l'autonyme sont déjà acceptés
+  hint: { fr: "Ce qu'il faut regarder.", en: "What to look for." },
   texts: [
-    ['Une phrase dans la langue.', 'Sa traduction française.'],
+    ["Une phrase dans la langue.",
+     { fr: "Sa traduction française.", en: "Its English translation." }]
     // …dix en tout
   ]
 }
 ```
 
-Deux contraintes :
+Les clés `family`, `branch` et `script` doivent exister dans `TAXONOMY`
+(`i18n.js`) — c'est là que vivent leurs traductions, une seule fois pour
+toutes les langues.
 
-- garder assez de langues dans chaque `level` pour le dosage 3 / 4 / 3 ;
+Deux contraintes de contenu :
+
+- garder assez de langues dans chaque `level` pour le minimum de deux ;
 - ne **jamais** donner à deux langues proches (suédois / norvégien / danois,
   tchèque / slovaque, serbe / croate, russe / ukrainien / biélorusse…) la
-  traduction d'une même phrase : mises côte à côte, elles donneraient la
-  réponse.
+  traduction d'une même phrase, dans aucune des deux langues : mises côte à
+  côte, elles donneraient la réponse.
+
+## Ajouter une langue d'interface
+
+Ajoute son code à `LOCALES`, une entrée dans `UI_STRINGS` (96 clés) et sa
+traduction dans chaque entrée de `TAXONOMY`. Côté `languages.js`, il faut
+alors compléter `name`, `speakers`, `area`, `hint` et les 390 traductions.
 
 ## Fiabilité des phrases
 
@@ -123,3 +149,4 @@ quelqu'un qui les pratique serait la bienvenue.
 - Une page « Les langues » : un abécédaire consultable, classé par famille.
 - Un lien « signaler une erreur » vers une issue GitHub pré-remplie.
 - Les langues asiatiques, dans un pool séparé ou une option « monde ».
+- Un vrai favicon : aujourd'hui c'est le logo, illisible à 16 pixels.

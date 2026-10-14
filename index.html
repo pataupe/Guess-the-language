@@ -17,27 +17,32 @@
 
   <!-- ====================================================== BARRE DU HAUT -->
   <header class="topbar">
-    <a class="brand" href="#" id="brand" aria-label="Guess the Language — accueil">
+    <a class="brand" href="#" id="brand" data-i18n-aria="brand.aria">
       <img src="images/logo2.png" alt="Guess the Language">
     </a>
 
-    <div class="hud" id="hud" hidden>
-      <div class="hud-item" id="hudCountItem">
-        <span class="hud-label" id="hudCountLabel">Question</span>
-        <span class="hud-value" id="hudCount">1<span class="hud-sep">/</span>10</span>
+    <div class="topbar-tools">
+      <div class="hud" id="hud" hidden>
+        <div class="hud-item" id="hudCountItem">
+          <span class="hud-label" id="hudCountLabel"></span>
+          <span class="hud-value" id="hudCount"></span>
+        </div>
+        <div class="hud-item" id="hudLivesItem" hidden>
+          <span class="hud-label" data-i18n="hud.lives"></span>
+          <span class="hud-value" id="hudLives"></span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label" data-i18n="hud.time"></span>
+          <span class="hud-value tabular" id="hudTimer">0:00</span>
+        </div>
+        <div class="hud-item hud-score">
+          <span class="hud-label" data-i18n="hud.score"></span>
+          <span class="hud-value tabular" id="hudScore">0</span>
+        </div>
       </div>
-      <div class="hud-item" id="hudLivesItem" hidden>
-        <span class="hud-label">Vies</span>
-        <span class="hud-value" id="hudLives"></span>
-      </div>
-      <div class="hud-item">
-        <span class="hud-label">Temps</span>
-        <span class="hud-value tabular" id="hudTimer">0:00</span>
-      </div>
-      <div class="hud-item hud-score">
-        <span class="hud-label">Score</span>
-        <span class="hud-value tabular" id="hudScore">0</span>
-      </div>
+
+      <button class="locale" type="button" id="localeBtn"
+              data-i18n="locale.switch" data-i18n-aria="locale.aria"></button>
     </div>
   </header>
 
@@ -45,24 +50,20 @@
 
     <!-- ========================================================== ACCUEIL -->
     <section class="screen screen-home is-active" id="screenHome">
-      <p class="eyebrow">39 langues d'Europe</p>
-      <h1 class="home-title">Devine la langue.</h1>
-      <p class="home-lead">
-        Une phrase s'affiche. À toi de dire dans quelle langue elle est écrite.
-        Le hongrois, le letton, le breton, le macédonien&nbsp;… Au bout de quelques
-        parties, tu les reconnaîtras au premier coup d'œil.
-      </p>
+      <p class="eyebrow" id="homeEyebrow"></p>
+      <h1 class="home-title" data-i18n="home.title"></h1>
+      <p class="home-lead" data-i18n="home.lead"></p>
 
       <div class="picker">
-        <p class="picker-label" id="diffLabel">Comment tu réponds</p>
+        <p class="picker-label" id="diffLabel" data-i18n="picker.label"></p>
         <div class="difficulty" role="radiogroup" aria-labelledby="diffLabel">
           <button class="diff" type="button" data-diff="facile" role="radio" aria-checked="true">
-            <span class="diff-name">Facile</span>
-            <span class="diff-desc">Six réponses proposées</span>
+            <span class="diff-name" data-i18n="diff.facile.name"></span>
+            <span class="diff-desc" data-i18n="diff.facile.desc"></span>
           </button>
           <button class="diff" type="button" data-diff="difficile" role="radio" aria-checked="false">
-            <span class="diff-name">Difficile</span>
-            <span class="diff-desc">Tu écris le nom de la langue</span>
+            <span class="diff-name" data-i18n="diff.difficile.name"></span>
+            <span class="diff-desc" data-i18n="diff.difficile.desc"></span>
           </button>
         </div>
       </div>
@@ -70,26 +71,26 @@
       <div class="modes">
         <button class="mode mode-daily" type="button" data-mode="quotidien">
           <span class="mode-tag" id="dailyDate"></span>
-          <span class="mode-name">Défi du jour</span>
-          <span class="mode-desc">Les mêmes dix phrases pour tout le monde aujourd'hui.</span>
+          <span class="mode-name" data-i18n="mode.quotidien.name"></span>
+          <span class="mode-desc" data-i18n="mode.quotidien.desc"></span>
           <span class="mode-best" data-best="quotidien"></span>
-          <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          <span class="mode-go"><span data-i18n="mode.play"></span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </button>
 
         <button class="mode" type="button" data-mode="libre">
-          <span class="mode-tag">Sans limite</span>
-          <span class="mode-name">Partie libre</span>
-          <span class="mode-desc">Dix phrases tirées au hasard, autant de fois que tu veux.</span>
+          <span class="mode-tag" data-i18n="mode.libre.tag"></span>
+          <span class="mode-name" data-i18n="mode.libre.name"></span>
+          <span class="mode-desc" data-i18n="mode.libre.desc"></span>
           <span class="mode-best" data-best="libre"></span>
-          <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          <span class="mode-go"><span data-i18n="mode.play"></span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </button>
 
         <button class="mode mode-survival" type="button" data-mode="survie">
-          <span class="mode-tag">Trois vies</span>
-          <span class="mode-name">Survie</span>
-          <span class="mode-desc">Ça continue tant que tu trouves, et ça devient de plus en plus rare.</span>
+          <span class="mode-tag" data-i18n="mode.survie.tag"></span>
+          <span class="mode-name" data-i18n="mode.survie.name"></span>
+          <span class="mode-desc" data-i18n="mode.survie.desc"></span>
           <span class="mode-best" data-best="survie"></span>
-          <span class="mode-go">Jouer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          <span class="mode-go"><span data-i18n="mode.play"></span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
         </button>
       </div>
     </section>
@@ -103,27 +104,27 @@
         <p class="specimen-text" id="specimenText" lang="und"></p>
       </article>
 
-      <!-- mode facile : 6 propositions -->
-      <div class="choices" id="choices" role="group" aria-label="Propositions de réponse"></div>
+      <!-- facile : 6 propositions -->
+      <div class="choices" id="choices" role="group" data-i18n-aria="guess.choicesAria"></div>
 
-      <!-- mode difficile : saisie libre -->
+      <!-- difficile : saisie libre -->
       <form class="guessbox" id="guessForm" hidden autocomplete="off">
         <div class="combo">
-          <label class="sr-only" for="guessInput">Nom de la langue</label>
+          <label class="sr-only" for="guessInput" data-i18n="guess.label"></label>
           <input
             type="text"
             id="guessInput"
-            placeholder="Écris le nom de la langue…"
             role="combobox"
             aria-expanded="false"
             aria-autocomplete="list"
             aria-controls="suggestions"
-            spellcheck="false">
-          <ul class="suggestions" id="suggestions" role="listbox" aria-label="Langues proposées" hidden></ul>
+            spellcheck="false"
+            data-i18n-placeholder="guess.placeholder">
+          <ul class="suggestions" id="suggestions" role="listbox" data-i18n-aria="guess.listAria" hidden></ul>
         </div>
         <div class="guessbox-actions">
-          <button type="submit" class="btn btn-primary" id="guessSubmit">Valider</button>
-          <button type="button" class="btn btn-ghost" id="guessSkip">Passer</button>
+          <button type="submit" class="btn btn-primary" id="guessSubmit" data-i18n="guess.submit"></button>
+          <button type="button" class="btn btn-ghost" id="guessSkip" data-i18n="guess.skip"></button>
         </div>
       </form>
 
@@ -138,14 +139,12 @@
           <span class="verdict-points tabular" id="verdictPoints"></span>
         </div>
         <p class="verdict-translation" id="verdictTranslation" hidden>
-          <span class="verdict-translation-label">Ça veut dire</span>
+          <span class="verdict-translation-label" data-i18n="verdict.translation"></span>
           <span id="verdictTranslationText"></span>
         </p>
         <dl class="facts" id="verdictFacts"></dl>
         <p class="verdict-hint" id="verdictHint"></p>
-        <button class="btn btn-primary btn-next" id="nextBtn">
-          Suivant <kbd>Entrée</kbd>
-        </button>
+        <button class="btn btn-primary btn-next" id="nextBtn"></button>
       </div>
 
       <p class="live sr-only" id="liveRegion" role="status" aria-live="polite"></p>
@@ -159,16 +158,16 @@
       <div class="scoreboard">
         <div class="score-main">
           <span class="score-points tabular" id="endPoints">0</span>
-          <span class="score-unit">points</span>
+          <span class="score-unit" data-i18n="end.points"></span>
         </div>
         <div class="score-side">
           <div class="score-stat">
-            <span class="score-stat-value tabular" id="endCorrect">0/10</span>
-            <span class="score-stat-label" id="endCorrectLabel">bonnes réponses</span>
+            <span class="score-stat-value tabular" id="endCorrect"></span>
+            <span class="score-stat-label" id="endCorrectLabel"></span>
           </div>
           <div class="score-stat">
             <span class="score-stat-value tabular" id="endTime">0:00</span>
-            <span class="score-stat-label">temps total</span>
+            <span class="score-stat-label" data-i18n="end.time"></span>
           </div>
         </div>
       </div>
@@ -178,9 +177,9 @@
       <ol class="recap" id="recap"></ol>
 
       <div class="end-actions">
-        <button class="btn btn-primary" id="replayBtn">Rejouer</button>
-        <button class="btn btn-ghost" id="homeBtn">Changer de mode</button>
-        <button class="btn btn-ghost" id="shareBtn">Copier mon score</button>
+        <button class="btn btn-primary" id="replayBtn"></button>
+        <button class="btn btn-ghost" id="homeBtn" data-i18n="action.home"></button>
+        <button class="btn btn-ghost" id="shareBtn" data-i18n="action.share"></button>
       </div>
     </section>
 
@@ -194,6 +193,7 @@
 
 </div>
 
+<script src="i18n.js"></script>
 <script src="languages.js"></script>
 <script src="script.js"></script>
 </body>

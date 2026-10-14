@@ -11,6 +11,11 @@
    Deux façons de répondre, indépendantes du mode :
      facile    — six propositions.
      difficile — on écrit le nom de la langue.
+
+   Deux langues d'interface, français et anglais. La langue du joueur est
+   retirée du tirage : deviner sa propre langue ne demande aucun effort.
+   Chaque version a donc son propre défi du jour, puisque les deux ne
+   piochent pas dans le même ensemble.
    ========================================================================= */
 
 (function () {
@@ -28,8 +33,7 @@
   const MIN_REPEAT_DISTANCE = 4;
 
   // Seule contrainte de composition : au moins deux langues de chaque niveau
-  // de rareté. Les quatre questions restantes sont tirées librement parmi les
-  // 39, donc une partie peut très bien pencher d'un côté ou de l'autre.
+  // de rareté. Les quatre questions restantes sont tirées librement.
   const LEVEL_MIN = { 1: 2, 2: 2, 3: 2 };
 
   const POINTS_CORRECT = 100;   // points d'une bonne réponse
@@ -37,10 +41,35 @@
   const BONUS_DECAY = 3;        // points de bonus perdus par seconde
 
   const KEY_BEST = 'gtl.best.v2';
-  const KEY_DAILY = 'gtl.daily.v1';
-  const KEY_PREF = 'gtl.pref.v1';
+  const KEY_DAILY = 'gtl.daily.v2';
+  const KEY_PREF = 'gtl.pref.v2';
 
-  const MODE_LABEL = { quotidien: 'Défi du jour', libre: 'Partie libre', survie: 'Survie' };
+  /* ------------------------------------------------------------- langues */
+
+  let locale = 'fr';
+
+  /** Texte d'interface, avec remplacement des {variables}. */
+  function t(key, vars) {
+    const table = UI_STRINGS[locale] || UI_STRINGS.fr;
+    let str = table[key];
+    if (str === undefined) str = UI_STRINGS.fr[key];
+    if (str === undefined) return key;
+    if (vars) {
+      Object.keys(vars).forEach((k) => {
+        str = str.split('{' + k + '}').join(vars[k]);
+      });
+    }
+    return str;
+  }
+
+  /** Champ de langue traduit : name, hint, area, speakers… */
+  const L = (field) => (field && (field[locale] || field.fr || field.en)) || '';
+
+  /** Libellé d'une famille, branche ou alphabet à partir de sa clé. */
+  const taxon = (kind, key) => (TAXONOMY[kind][key] || {})[locale] || key;
+
+  /** Les langues qu'on peut avoir à deviner : tout sauf celle du joueur. */
+  const playable = () => LANGUAGES.filter((l) => l.id !== locale);
 
   /* -------------------------------------------------------------- outils */
 
@@ -58,8 +87,8 @@
   /* -- Hasard -------------------------------------------------------------
      Tout le tirage passe par rng(). En partie libre et en survie c'est
      Math.random ; pour le défi du jour on le remplace par un générateur à
-     graine, pour que la même date donne exactement la même partie à tout
-     le monde. ---------------------------------------------------------- */
+     graine, pour que la même date donne exactement la même partie à tous
+     les joueurs d'une même langue d'interface. ------------------------- */
 
   let rng = Math.random;
 
@@ -67,9 +96,9 @@
     let a = seed >>> 0;
     return function () {
       a = (a + 0x6D2B79F5) >>> 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      let x = Math.imul(a ^ (a >>> 15), 1 | a);
+      x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
+      return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
     };
   }
 
@@ -91,7 +120,6 @@
     return a;
   }
 
-  const pick = (array, n) => shuffle(array).slice(0, n);
   const pickOne = (array) => array[Math.floor(rng() * array.length)];
 
   /* -- Divers ---------------------------------------------------------- */
@@ -99,6 +127,12 @@
   function formatTime(ms) {
     const total = Math.floor(ms / 1000);
     return Math.floor(total / 60) + ':' + String(total % 60).padStart(2, '0');
+  }
+
+  function formatSeconds(ms) {
+    return new Intl.NumberFormat(locale, {
+      minimumFractionDigits: 1, maximumFractionDigits: 1
+    }).format(ms / 1000);
   }
 
   function escapeHtml(str) {
@@ -116,23 +150,27 @@
   }
 
   function prettyDate(key) {
-    const [y, m, d] = key.split('-').map(Number);
-    return new Date(y, m - 1, d).toLocaleDateString('fr-FR', {
-      day: 'numeric', month: 'long'
-    });
+    const parts = key.split('-').map(Number);
+    return new Date(parts[0], parts[1] - 1, parts[2])
+      .toLocaleDateString(locale, { day: 'numeric', month: 'long' });
   }
 
   /* --------------------------------------------------- index de recherche */
 
+  // Toutes les graphies acceptées : les deux noms, l'autonyme, les alias.
   const SEARCH_INDEX = LANGUAGES.map((lang) => ({
     lang: lang,
-    keys: [lang.name, lang.endonym].concat(lang.aliases || []).map(normalize)
+    keys: [lang.name.fr, lang.name.en, lang.endonym]
+      .concat(lang.aliases || [])
+      .map(normalize)
   }));
 
   function findLanguageByInput(raw) {
     const q = normalize(raw);
     if (!q) return null;
-    const entry = SEARCH_INDEX.find((e) => e.keys.indexOf(q) !== -1);
+    const entry = SEARCH_INDEX.find(
+      (e) => e.lang.id !== locale && e.keys.indexOf(q) !== -1
+    );
     return entry ? entry.lang : null;
   }
 
@@ -142,10 +180,11 @@
     const starts = [];
     const contains = [];
     SEARCH_INDEX.forEach((entry) => {
+      if (entry.lang.id === locale) return;   // jamais sa propre langue
       if (entry.keys.some((k) => k.indexOf(q) === 0)) starts.push(entry.lang);
       else if (entry.keys.some((k) => k.indexOf(q) !== -1)) contains.push(entry.lang);
     });
-    const byName = (a, b) => a.name.localeCompare(b.name, 'fr');
+    const byName = (a, b) => L(a.name).localeCompare(L(b.name), locale);
     return starts.sort(byName).concat(contains.sort(byName)).slice(0, limit || 8);
   }
 
@@ -153,7 +192,7 @@
 
   /** Cinq intrus : d'abord la même branche, puis le même alphabet, puis au hasard. */
   function buildChoices(answer) {
-    const others = LANGUAGES.filter((l) => l.id !== answer.id);
+    const others = playable().filter((l) => l.id !== answer.id);
     const sameBranch = shuffle(others.filter((l) => l.branch === answer.branch));
     const sameScript = shuffle(others.filter(
       (l) => l.script === answer.script && l.branch !== answer.branch
@@ -180,7 +219,7 @@
     // Si la langue est déjà tombée dans cette partie, on lui prend une
     // autre de ses dix phrases : deux fois la même ferait bâclé.
     const seen = state.usedTexts[lang.id] || (state.usedTexts[lang.id] = []);
-    let pool = lang.texts.filter((t) => seen.indexOf(t[0]) === -1);
+    let pool = lang.texts.filter((x) => seen.indexOf(x[0]) === -1);
     if (!pool.length) pool = lang.texts;
 
     const sample = pickOne(pool);
@@ -188,7 +227,7 @@
     return {
       lang: lang,
       text: sample[0],
-      translation: sample[1] || '',
+      translation: sample[1][locale] || '',
       choices: buildChoices(lang)
     };
   }
@@ -201,10 +240,11 @@
   function pickLanguage(level, recentIds) {
     const blocked = recentIds.slice(-(MIN_REPEAT_DISTANCE - 1));
     const free = (l) => blocked.indexOf(l.id) === -1;
+    const all = playable();
     // level vaut null pour les questions tirées librement, tous niveaux confondus.
-    let pool = LANGUAGES.filter((l) => (level === null || l.level === level) && free(l));
-    if (!pool.length) pool = LANGUAGES.filter(free);
-    if (!pool.length) pool = LANGUAGES;
+    let pool = all.filter((l) => (level === null || l.level === level) && free(l));
+    if (!pool.length) pool = all.filter(free);
+    if (!pool.length) pool = all;
     return pickOne(pool);
   }
 
@@ -255,7 +295,8 @@
   }
 
   const bestKey = (mode, diff) => mode + '|' + diff;
-  const dailyKey = (day, diff) => day + '|' + diff;
+  // Le défi du jour n'est pas le même d'une langue à l'autre : la clé le dit.
+  const dailyKey = (day, diff) => day + '|' + diff + '|' + locale;
 
   function refreshHomeLabels() {
     const bests = readStore(KEY_BEST);
@@ -263,6 +304,8 @@
     const day = todayKey();
 
     $('dailyDate').textContent = prettyDate(day);
+    $('homeEyebrow').textContent = t('home.eyebrow', { count: playable().length });
+    $('footCount').textContent = t('foot.count', { count: playable().length });
 
     document.querySelectorAll('[data-best]').forEach((el) => {
       const mode = el.dataset.best;
@@ -270,16 +313,16 @@
       if (mode === 'quotidien') {
         const done = daily[dailyKey(day, state.diff)];
         el.textContent = done
-          ? 'Fait : ' + done.correct + '/' + QUESTIONS_PER_GAME + ' · ' + done.points + ' pts'
-          : 'Pas encore joué aujourd’hui';
+          ? t('best.daily.done', { correct: done.correct, total: QUESTIONS_PER_GAME, points: done.points })
+          : t('best.daily.none');
         return;
       }
 
       const best = bests[bestKey(mode, state.diff)];
-      if (!best) { el.textContent = 'Aucune partie jouée'; return; }
+      if (!best) { el.textContent = t('best.none'); return; }
       el.textContent = mode === 'survie'
-        ? 'Record : ' + best.correct + ' langues · ' + best.points + ' pts'
-        : 'Record : ' + best.points + ' pts · ' + best.correct + '/' + QUESTIONS_PER_GAME;
+        ? t('best.survie', { correct: best.correct, points: best.points })
+        : t('best.standard', { points: best.points, correct: best.correct, total: QUESTIONS_PER_GAME });
     });
   }
 
@@ -300,7 +343,7 @@
     diff: 'facile',
     day: null,          // défi du jour : la date jouée
     questions: [],      // modes à 10 questions
-    current: null,      // survie : la question en cours
+    current: null,      // la question en cours
     usedTexts: {},      // phrases déjà montrées, par langue, dans cette partie
     lives: SURVIVAL_LIVES,
     index: 0,
@@ -323,7 +366,6 @@
     }
     return out;
   }
-  const totalQuestions = () => (isSurvival() ? Infinity : QUESTIONS_PER_GAME);
 
   function startGame(mode) {
     state.mode = mode;
@@ -336,8 +378,11 @@
     state.usedTexts = {};
     state.lives = SURVIVAL_LIVES;
 
-    // Le défi du jour rejoue exactement la même partie pour tout le monde.
-    rng = mode === 'quotidien' ? mulberry32(hashString('gtl-' + state.day)) : Math.random;
+    // Le défi du jour rejoue la même partie pour tous — mais la graine
+    // inclut la langue, puisque les deux versions n'ont pas le même pool.
+    rng = mode === 'quotidien'
+      ? mulberry32(hashString('gtl-' + state.day + '-' + locale))
+      : Math.random;
 
     if (isSurvival()) {
       state.questions = [];
@@ -349,7 +394,7 @@
 
     $('hudScore').textContent = '0';
     $('hudLivesItem').hidden = !isSurvival();
-    $('hudCountLabel').textContent = isSurvival() ? 'Trouvées' : 'Question';
+    $('hudCountLabel').textContent = isSurvival() ? t('hud.found') : t('hud.question');
     $('progressBar').parentNode.hidden = isSurvival();
 
     showScreen('game');
@@ -364,9 +409,7 @@
     $('hudTimer').textContent = formatTime(state.elapsedMs + running);
   }
 
-  function correctCount() {
-    return state.results.filter((r) => r.correct).length;
-  }
+  const correctCount = () => state.results.filter((r) => r.correct).length;
 
   function renderQuestion() {
     const q = state.current;
@@ -409,7 +452,7 @@
       btn.type = 'button';
       btn.className = 'choice';
       btn.innerHTML = '<span class="choice-key">' + (i + 1) + '</span>' +
-                      '<span>' + escapeHtml(lang.name) + '</span>';
+                      '<span>' + escapeHtml(L(lang.name)) + '</span>';
       btn.addEventListener('click', () => answer(lang));
       box.appendChild(btn);
     });
@@ -484,7 +527,7 @@
     badge.className = 'verdict-badge ' + (correct ? 'ok' : 'bad');
     badge.textContent = correct ? '✓' : '✕';
 
-    $('verdictName').textContent = lang.name;
+    $('verdictName').textContent = L(lang.name);
     $('verdictEndonym').textContent = lang.endonym;
 
     const pts = $('verdictPoints');
@@ -501,22 +544,25 @@
     }
 
     $('verdictFacts').innerHTML = [
-      ['Famille', lang.branch],
-      ['Alphabet', lang.script],
-      ['Locuteurs', lang.speakers],
-      ['Où', lang.area]
-    ].map(([k, v]) => '<div><dt>' + k + '</dt><dd>' + escapeHtml(v) + '</dd></div>').join('');
+      [t('verdict.family'), taxon('branch', lang.branch)],
+      [t('verdict.script'), taxon('script', lang.script)],
+      [t('verdict.speakers'), L(lang.speakers)],
+      [t('verdict.area'), L(lang.area)]
+    ].map(function (pair) {
+      return '<div><dt>' + escapeHtml(pair[0]) + '</dt><dd>' + escapeHtml(pair[1]) + '</dd></div>';
+    }).join('');
 
-    $('verdictHint').textContent = lang.hint;
+    $('verdictHint').textContent = L(lang.hint);
 
-    let label = 'Suivant';
-    if (isSurvival() && state.lives <= 0) label = 'Partie terminée';
-    else if (isLastQuestion()) label = 'Voir mon score';
-    $('nextBtn').innerHTML = label + ' <kbd>Entrée</kbd>';
+    let label = t('next');
+    if (isSurvival() && state.lives <= 0) label = t('next.gameOver');
+    else if (isLastQuestion()) label = t('next.last');
+    $('nextBtn').innerHTML = escapeHtml(label) + ' <kbd>' + escapeHtml(t('next.key')) + '</kbd>';
 
     $('verdict').hidden = false;
     $('liveRegion').textContent =
-      (correct ? 'Bonne réponse. ' : 'Raté. ') + 'C’était le ' + lang.name + '.';
+      (correct ? t('verdict.right') : t('verdict.wrong')) + ' ' +
+      t('verdict.itWas', { language: L(lang.name) });
     $('nextBtn').focus();
   }
 
@@ -558,7 +604,7 @@
     const q = normalize(input.value);
 
     listbox.innerHTML = list.map((lang, i) => {
-      const plain = lang.name;
+      const plain = L(lang.name);
       let label = escapeHtml(plain);
       if (q.length && normalize(plain).indexOf(q) === 0) {
         // On surligne le début du nom, en comptant les lettres réellement tapées.
@@ -605,7 +651,7 @@
   function chooseSuggestion(i) {
     const lang = matches[i];
     if (!lang) return;
-    input.value = lang.name;
+    input.value = L(lang.name);
     closeSuggestions();
     answer(lang);
   }
@@ -659,7 +705,7 @@
       closeSuggestions();
     } else if (e.key === 'Tab' && activeIndex >= 0) {
       e.preventDefault();
-      input.value = matches[activeIndex].name;
+      input.value = L(matches[activeIndex].name);
       closeSuggestions();
     }
   });
@@ -684,7 +730,7 @@
     if (activeIndex >= 0) { chooseSuggestion(activeIndex); return; }
 
     const typed = input.value.trim();
-    if (!typed) { guessMessage('Écris le nom d’une langue, ou passe la question.'); return; }
+    if (!typed) { guessMessage(t('guess.empty')); return; }
 
     const exact = findLanguageByInput(typed);
     if (exact) { answer(exact); return; }
@@ -693,10 +739,10 @@
     if (found.length === 1) { answer(found[0]); return; }
     if (found.length > 1) {
       openSuggestions(found);
-      guessMessage('Plusieurs langues correspondent : choisis dans la liste.');
+      guessMessage(t('guess.ambiguous'));
       return;
     }
-    guessMessage('« ' + typed + ' » n’est pas une langue du jeu.');
+    guessMessage(t('guess.unknown', { input: typed }));
   });
 
   $('guessSkip').addEventListener('click', () => {
@@ -705,19 +751,19 @@
 
   /* ---------------------------------------------------------- résultats */
 
-  function endTitleFor(correct) {
+  function endTitleKey(correct) {
     if (isSurvival()) {
-      if (correct >= 20) return 'Impressionnant.';
-      if (correct >= 12) return 'Belle résistance.';
-      if (correct >= 6) return 'Pas mal du tout.';
-      return 'Ça se corse vite.';
+      if (correct >= 20) return 'end.title.survie.great';
+      if (correct >= 12) return 'end.title.survie.good';
+      if (correct >= 6) return 'end.title.survie.ok';
+      return 'end.title.survie.bad';
     }
-    if (correct === QUESTIONS_PER_GAME) return 'Sans faute.';
-    if (correct >= 8) return 'Excellent.';
-    if (correct >= 6) return 'Bien joué.';
-    if (correct >= 4) return 'Pas mal du tout.';
-    if (correct >= 2) return 'Il y a du travail.';
-    return 'L’Europe est vaste…';
+    if (correct === QUESTIONS_PER_GAME) return 'end.title.perfect';
+    if (correct >= 8) return 'end.title.great';
+    if (correct >= 6) return 'end.title.good';
+    if (correct >= 4) return 'end.title.ok';
+    if (correct >= 2) return 'end.title.meh';
+    return 'end.title.bad';
   }
 
   function endGame() {
@@ -732,21 +778,21 @@
       date: new Date().toISOString()
     };
 
-    const diffLabel = state.diff === 'facile' ? 'facile' : 'difficile';
+    const diffLabel = t('diff.' + state.diff + '.label');
     $('endMode').textContent = state.mode === 'quotidien'
-      ? 'Défi du ' + prettyDate(state.day) + ' · ' + diffLabel
-      : MODE_LABEL[state.mode] + ' · ' + diffLabel;
+      ? t('end.daily', { date: prettyDate(state.day), diff: diffLabel })
+      : t('end.mode', { mode: t('mode.' + state.mode + '.name'), diff: diffLabel });
 
-    $('endTitle').textContent = endTitleFor(correct);
+    $('endTitle').textContent = t(endTitleKey(correct));
     $('endPoints').textContent = state.points;
     $('endTime').textContent = formatTime(state.elapsedMs);
 
     if (isSurvival()) {
       $('endCorrect').textContent = correct;
-      $('endCorrectLabel').textContent = correct > 1 ? 'langues trouvées' : 'langue trouvée';
+      $('endCorrectLabel').textContent = t(correct > 1 ? 'end.found.many' : 'end.found.one');
     } else {
       $('endCorrect').textContent = correct + '/' + QUESTIONS_PER_GAME;
-      $('endCorrectLabel').textContent = 'bonnes réponses';
+      $('endCorrectLabel').textContent = t('end.correct');
     }
 
     recordResult(result);
@@ -763,18 +809,19 @@
       const daily = readStore(KEY_DAILY);
       const key = dailyKey(state.day, state.diff);
       if (daily[key]) {
-        record.textContent = 'Entraînement : ton résultat officiel du jour reste ' +
-          daily[key].correct + '/' + QUESTIONS_PER_GAME + ' (' + daily[key].points + ' pts).';
+        record.textContent = t('record.dailyTraining', {
+          correct: daily[key].correct, total: QUESTIONS_PER_GAME, points: daily[key].points
+        });
       } else {
         daily[key] = result;
         writeStore(KEY_DAILY, daily);
-        record.textContent = '🏆 Résultat du jour enregistré. Reviens demain pour un nouveau défi.';
+        record.textContent = t('record.dailySaved');
       }
-      $('replayBtn').textContent = 'Rejouer pour s’entraîner';
+      $('replayBtn').textContent = t('action.replayDaily');
       return;
     }
 
-    $('replayBtn').textContent = 'Rejouer';
+    $('replayBtn').textContent = t('action.replay');
 
     const bests = readStore(KEY_BEST);
     const key = bestKey(state.mode, state.diff);
@@ -784,31 +831,34 @@
          (result.correct === previous.correct && result.points > previous.points))
       : (!previous || result.points > previous.points);
 
+    const describe = (r, detailed) => isSurvival()
+      ? t(detailed ? 'record.survieDetail' : 'record.survieValue', { correct: r.correct, points: r.points })
+      : t(detailed ? 'record.standardDetail' : 'record.standardValue',
+          { points: r.points, correct: r.correct, total: QUESTIONS_PER_GAME });
+
     if (better) {
       bests[key] = result;
       writeStore(KEY_BEST, bests);
       record.textContent = previous
-        ? '🏆 Nouveau record ! Ancien : ' + (isSurvival()
-            ? previous.correct + ' langues'
-            : previous.points + ' pts') + '.'
-        : '🏆 Premier score enregistré dans ce mode.';
+        ? t('record.newBest', { previous: describe(previous, false) })
+        : t('record.first');
     } else {
-      record.textContent = 'Ton record ici : ' + (isSurvival()
-        ? previous.correct + ' langues (' + previous.points + ' pts)'
-        : previous.points + ' pts (' + previous.correct + '/' + QUESTIONS_PER_GAME + ')') + '.';
+      record.textContent = t('record.current', { best: describe(previous, true) });
     }
   }
 
   function renderRecap() {
     $('recap').innerHTML = state.results.map((r) => {
       const detail = r.correct
-        ? (r.ms / 1000).toFixed(1).replace('.', ',') + ' s · +' + r.points + ' pts'
-        : (r.given ? 'ta réponse : <del>' + escapeHtml(r.given.name) + '</del>' : 'passée');
+        ? escapeHtml(t('recap.timing', { seconds: formatSeconds(r.ms), points: r.points }))
+        : (r.given
+            ? escapeHtml(t('recap.yourAnswer')) + ' <del>' + escapeHtml(L(r.given.name)) + '</del>'
+            : escapeHtml(t('recap.skipped')));
       return '<li>' +
         '<span class="recap-mark ' + (r.correct ? 'ok' : 'bad') + '">' +
         (r.correct ? '✓' : '✕') + '</span>' +
         '<span class="recap-body">' +
-          '<span class="recap-answer">' + escapeHtml(r.lang.name) + '</span> ' +
+          '<span class="recap-answer">' + escapeHtml(L(r.lang.name)) + '</span> ' +
           '<span class="recap-given">' + detail + '</span>' +
         '</span>' +
         '<span class="recap-sentence">' + escapeHtml(r.text) + '</span>' +
@@ -821,27 +871,27 @@
   function shareText() {
     const correct = correctCount();
     const squares = state.results.map((r) => (r.correct ? '🟦' : '⬜')).join('');
-    const diff = state.diff === 'facile' ? 'facile' : 'difficile';
+    const diff = t('diff.' + state.diff + '.label');
+    const time = formatTime(state.elapsedMs);
 
     let head, line;
     if (state.mode === 'quotidien') {
-      head = 'Guess the Language — défi du ' + prettyDate(state.day) + ' (' + diff + ')';
-      line = correct + '/' + QUESTIONS_PER_GAME + ' · ' + state.points + ' pts · ' + formatTime(state.elapsedMs);
+      head = t('share.daily', { date: prettyDate(state.day), diff: diff });
+      line = t('share.scoreline', { correct: correct, total: QUESTIONS_PER_GAME, points: state.points, time: time });
     } else if (isSurvival()) {
-      head = 'Guess the Language — survie (' + diff + ')';
-      line = correct + ' langues trouvées · ' + state.points + ' pts · ' + formatTime(state.elapsedMs);
+      head = t('share.survie', { diff: diff });
+      line = t('share.survieline', { correct: correct, points: state.points, time: time });
     } else {
-      head = 'Guess the Language — partie libre (' + diff + ')';
-      line = correct + '/' + QUESTIONS_PER_GAME + ' · ' + state.points + ' pts · ' + formatTime(state.elapsedMs);
+      head = t('share.libre', { diff: diff });
+      line = t('share.scoreline', { correct: correct, total: QUESTIONS_PER_GAME, points: state.points, time: time });
     }
     return head + '\n' + line + '\n' + squares;
   }
 
   function copyToClipboard(text, button) {
     const done = () => {
-      const original = button.textContent;
-      button.textContent = 'Copié ✓';
-      setTimeout(() => { button.textContent = original; }, 1800);
+      button.textContent = t('action.copied');
+      setTimeout(() => { button.textContent = t('action.share'); }, 1800);
     };
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done, () => fallbackCopy(text, done));
@@ -861,6 +911,40 @@
     document.body.removeChild(ta);
   }
 
+  /* ------------------------------------------------ application des textes */
+
+  function applyTranslations() {
+    document.documentElement.lang = t('html.lang');
+    document.title = t('doc.title');
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', t('doc.description'));
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      el.textContent = t(el.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      el.setAttribute('placeholder', t(el.dataset.i18nPlaceholder));
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+      el.setAttribute('aria-label', t(el.dataset.i18nAria));
+    });
+
+    $('replayBtn').textContent = t(state.mode === 'quotidien' ? 'action.replayDaily' : 'action.replay');
+    refreshHomeLabels();
+  }
+
+  function setLocale(next, atStartup) {
+    locale = LOCALES.indexOf(next) === -1 ? 'fr' : next;
+    writeStore(KEY_PREF, { diff: state.diff, locale: locale });
+    applyTranslations();
+    // Changer de langue change le pool : une partie en cours n'aurait plus
+    // de sens, on repart de l'accueil.
+    if (!atStartup) {
+      clearInterval(state.ticker);
+      showScreen('home');
+    }
+  }
+
   /* --------------------------------------------------------- branchements */
 
   function setDifficulty(diff) {
@@ -870,7 +954,7 @@
       btn.classList.toggle('is-on', on);
       btn.setAttribute('aria-checked', String(on));
     });
-    writeStore(KEY_PREF, { diff: diff });
+    writeStore(KEY_PREF, { diff: diff, locale: locale });
     refreshHomeLabels();
   }
 
@@ -880,6 +964,10 @@
 
   document.querySelectorAll('.mode').forEach((btn) => {
     btn.addEventListener('click', () => startGame(btn.dataset.mode));
+  });
+
+  $('localeBtn').addEventListener('click', () => {
+    setLocale(locale === 'fr' ? 'en' : 'fr');
   });
 
   $('nextBtn').addEventListener('click', nextStep);
@@ -927,9 +1015,17 @@
     try { localStorage.removeItem('gtl.best.v1'); } catch (e) { /* tant pis */ }
   }
 
+  /** Première visite : on suit la langue du navigateur, sinon le français. */
+  function detectLocale() {
+    const saved = readStore(KEY_PREF).locale;
+    if (LOCALES.indexOf(saved) !== -1) return saved;
+    const nav = (navigator.languages || [navigator.language || 'fr'])[0] || 'fr';
+    return nav.toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en';
+  }
+
   /* ------------------------------------------------------------ démarrage */
 
   migrateOldBests();
-  $('footCount').textContent = LANGUAGES.length + ' langues au catalogue';
   setDifficulty(readStore(KEY_PREF).diff === 'difficile' ? 'difficile' : 'facile');
+  setLocale(detectLocale(), true);
 })();

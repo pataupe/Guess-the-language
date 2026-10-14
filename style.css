@@ -125,6 +125,33 @@ main { flex: 1; }
 .brand:hover { transform: translateY(-1px); }
 .brand img { width: 168px; height: auto; }
 
+.topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.locale {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: color .16s ease, border-color .16s ease, transform .16s ease;
+}
+.locale:hover {
+  color: var(--accent-deep);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.locale:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
 .hud {
   display: flex;
   align-items: stretch;
@@ -822,8 +849,9 @@ main { flex: 1; }
   }
   .brand { align-self: center; }
   .brand img { width: 136px; }
-  .hud { width: 100%; }
-  .hud-item { flex: 1; min-width: 0; }
+  .topbar-tools { width: 100%; }
+  .hud { flex: 1; min-width: 0; }
+  .hud-item { flex: 1; min-width: 0; padding: 7px 8px; }
 
   .modes { grid-template-columns: 1fr; }
   .mode-desc { min-height: 0; }
