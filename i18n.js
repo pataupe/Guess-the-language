@@ -23,14 +23,14 @@ const UI_STRINGS = {
 
     'home.eyebrow': "{count} langues d'Europe",
     'home.title': 'Devine la langue.',
-    'home.lead': "Une phrase s'affiche. À toi de dire dans quelle langue elle est écrite. Le hongrois, le letton, le breton, le macédonien… Au bout de quelques parties, tu les reconnaîtras au premier coup d'œil.",
+    'home.lead': "Une phrase s'affiche, à toi de dire dans quelle langue elle est écrite. Après chaque réponse, le jeu montre ce qui permettait de la reconnaître.",
 
-    'picker.label': 'Comment tu réponds',
-    'diff.facile.name': 'Facile',
-    'diff.facile.desc': 'Six réponses proposées',
+    'picker.label': 'Difficulté',
+    'diff.facile.name': 'Normal',
+    'diff.facile.desc': 'Six propositions',
     'diff.difficile.name': 'Difficile',
-    'diff.difficile.desc': 'Tu écris le nom de la langue',
-    'diff.facile.label': 'facile',
+    'diff.difficile.desc': "Aucune proposition, à toi d'écrire",
+    'diff.facile.label': 'normal',
     'diff.difficile.label': 'difficile',
 
     'mode.quotidien.name': 'Défi du jour',
@@ -40,7 +40,7 @@ const UI_STRINGS = {
     'mode.libre.desc': "Dix phrases tirées au hasard, autant de fois que tu veux.",
     'mode.survie.tag': 'Trois vies',
     'mode.survie.name': 'Survie',
-    'mode.survie.desc': "Ça continue tant que tu trouves, et ça devient de plus en plus rare.",
+    'mode.survie.desc': "Aucune limite de questions. Plus tu avances, plus les langues sont rares.",
     'mode.play': 'Jouer',
 
     'best.none': 'Aucune partie jouée',
@@ -65,7 +65,7 @@ const UI_STRINGS = {
     'guess.unknown': '« {input} » n’est pas une langue du jeu.',
     'guess.ambiguous': 'Plusieurs langues correspondent : choisis dans la liste.',
 
-    'verdict.translation': 'Ça veut dire',
+    'verdict.translation': 'Traduction',
     'verdict.family': 'Famille',
     'verdict.script': 'Alphabet',
     'verdict.speakers': 'Locuteurs',
@@ -138,14 +138,14 @@ const UI_STRINGS = {
 
     'home.eyebrow': '{count} European languages',
     'home.title': 'Guess the language.',
-    'home.lead': 'A sentence appears. Your job is to say which language it is written in. Hungarian, Latvian, Breton, Macedonian… After a few rounds, you will recognise them at a glance.',
+    'home.lead': 'A sentence appears, and your job is to say which language it is written in. After each answer, the game shows what gave it away.',
 
-    'picker.label': 'How you answer',
-    'diff.facile.name': 'Easy',
-    'diff.facile.desc': 'Six answers to choose from',
+    'picker.label': 'Difficulty',
+    'diff.facile.name': 'Normal',
+    'diff.facile.desc': 'Six options',
     'diff.difficile.name': 'Hard',
-    'diff.difficile.desc': 'You type the name of the language',
-    'diff.facile.label': 'easy',
+    'diff.difficile.desc': 'No options, you type the name',
+    'diff.facile.label': 'normal',
     'diff.difficile.label': 'hard',
 
     'mode.quotidien.name': 'Daily challenge',
@@ -155,7 +155,7 @@ const UI_STRINGS = {
     'mode.libre.desc': 'Ten random sentences, as often as you like.',
     'mode.survie.tag': 'Three lives',
     'mode.survie.name': 'Survival',
-    'mode.survie.desc': 'It keeps going as long as you keep guessing, and the languages get rarer.',
+    'mode.survie.desc': 'No limit on questions. The further you go, the rarer the languages.',
     'mode.play': 'Play',
 
     'best.none': 'No round played yet',
@@ -180,7 +180,7 @@ const UI_STRINGS = {
     'guess.unknown': '“{input}” is not a language in this game.',
     'guess.ambiguous': 'Several languages match — pick one from the list.',
 
-    'verdict.translation': 'It means',
+    'verdict.translation': 'Translation',
     'verdict.family': 'Family',
     'verdict.script': 'Script',
     'verdict.speakers': 'Speakers',

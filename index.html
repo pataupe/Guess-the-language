@@ -41,8 +41,32 @@
         </div>
       </div>
 
-      <button class="locale" type="button" id="localeBtn"
-              data-i18n="locale.switch" data-i18n-aria="locale.aria"></button>
+      <div class="locale" id="localeGroup" role="radiogroup" data-i18n-aria="locale.aria">
+        <button class="locale-btn" type="button" data-locale="fr" role="radio"
+                aria-checked="true" title="Français" aria-label="Français">
+          <svg class="flag" viewBox="0 0 3 2" aria-hidden="true">
+            <rect width="1" height="2" fill="#0055A4"/>
+            <rect x="1" width="1" height="2" fill="#ffffff"/>
+            <rect x="2" width="1" height="2" fill="#EF4135"/>
+          </svg>
+          <span>FR</span>
+        </button>
+        <button class="locale-btn" type="button" data-locale="en" role="radio"
+                aria-checked="false" title="English" aria-label="English">
+          <svg class="flag" viewBox="0 0 60 30" aria-hidden="true">
+            <clipPath id="ukClip"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+            <clipPath id="ukDiag"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+            <g clip-path="url(#ukClip)">
+              <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" stroke="#ffffff" stroke-width="6"/>
+              <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ukDiag)" stroke="#C8102E" stroke-width="4"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#ffffff" stroke-width="10"/>
+              <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+            </g>
+          </svg>
+          <span>EN</span>
+        </button>
+      </div>
     </div>
   </header>
 

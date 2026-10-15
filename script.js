@@ -333,6 +333,9 @@
   function showScreen(name) {
     Object.keys(screens).forEach((key) => { screens[key].hidden = key !== name; });
     $('hud').hidden = name !== 'game';
+    // Caché pendant une partie : changer de langue change le catalogue de
+    // langues à deviner, donc annulerait la partie en cours.
+    $('localeGroup').hidden = name === 'game';
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
@@ -929,6 +932,12 @@
       el.setAttribute('aria-label', t(el.dataset.i18nAria));
     });
 
+    document.querySelectorAll('.locale-btn').forEach((btn) => {
+      const on = btn.dataset.locale === locale;
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-checked', String(on));
+    });
+
     $('replayBtn').textContent = t(state.mode === 'quotidien' ? 'action.replayDaily' : 'action.replay');
     refreshHomeLabels();
   }
@@ -966,8 +975,10 @@
     btn.addEventListener('click', () => startGame(btn.dataset.mode));
   });
 
-  $('localeBtn').addEventListener('click', () => {
-    setLocale(locale === 'fr' ? 'en' : 'fr');
+  document.querySelectorAll('.locale-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.locale !== locale) setLocale(btn.dataset.locale);
+    });
   });
 
   $('nextBtn').addEventListener('click', nextStep);

@@ -21,7 +21,9 @@ puis <http://localhost:8777>.
 
 ## Deux langues d'interface
 
-Le site existe en français et en anglais, avec un bouton en haut à droite.
+Le site existe en français et en anglais, avec un sélecteur à drapeaux en
+haut à droite. Il disparaît pendant une partie : changer de langue change le
+catalogue de langues à deviner, donc annulerait la partie en cours.
 À la première visite, la langue du navigateur décide ; le choix est ensuite
 gardé dans `localStorage`.
 
@@ -41,7 +43,7 @@ Le choix est indépendant du mode de jeu.
 
 | | |
 | --- | --- |
-| **Facile** | Six propositions, dont au moins une de la même famille que la bonne réponse. Raccourcis clavier `1` à `6`. |
+| **Normal** | Six propositions, dont au moins une de la même famille que la bonne réponse. Raccourcis clavier `1` à `6`. |
 | **Difficile** | Aucune proposition : tu écris le nom de la langue. L'autocomplétion ignore la casse et les accents, et accepte le nom dans **les deux** langues d'interface (`allemand` comme `german`), le nom dans la langue elle-même (`magyar`, `čeština`, `русский`) ou un synonyme (`hollandais`, `castillan`). Flèches pour naviguer, `Entrée` pour valider. |
 
 ## Les trois modes
