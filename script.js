@@ -268,19 +268,17 @@
   }
 
   /**
-   * En survie, la rareté monte avec le nombre de questions passées :
-   * on commence par des langues courantes et on finit dans les plus rares.
+   * La survie tire au hasard parmi les 38, sans aucun dosage de niveau.
+   *
+   * Une version precedente faisait monter la rarete au fil de la partie. Deux
+   * defauts : elle retrecissait le tirage aux dix langues rares, ce qui
+   * renseignait le joueur, et les langues rares sont souvent les plus faciles
+   * a identifier (le c'h breton, les h et z pointes du maltais). Les vraiment
+   * difficiles sont les paires proches — tcheque / slovaque, danois /
+   * norvegien — qui sont des langues courantes.
    */
-  function survivalLevel(index) {
-    if (index < 3) return 1;
-    if (index < 8) return rng() < 0.5 ? 1 : 2;
-    if (index < 15) return rng() < 0.5 ? 2 : 3;
-    return rng() < 0.25 ? 2 : 3;
-  }
-
   function nextSurvivalQuestion() {
-    const level = survivalLevel(state.results.length);
-    return makeQuestion(pickLanguage(level, state.results.map((r) => r.lang.id)));
+    return makeQuestion(pickLanguage(null, state.results.map((r) => r.lang.id)));
   }
 
   /* ------------------------------------------------------- scores gardés */

@@ -52,7 +52,7 @@ Le choix est indépendant du mode de jeu.
 | --- | --- |
 | **Défi du jour** | Les mêmes dix phrases pour tout le monde, tirées à partir de la date. Seule la première tentative compte ; on peut rejouer à l'entraînement sans écraser son résultat. |
 | **Partie libre** | Dix phrases au hasard, autant de fois qu'on veut. |
-| **Survie** | Sans fin, trois vies. Les langues deviennent de plus en plus rares à mesure qu'on avance. |
+| **Survie** | Sans fin, trois vies. Tirage au hasard comme partout ailleurs : aucune montée en difficulté. |
 
 ## Score
 

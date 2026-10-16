@@ -40,7 +40,7 @@ const UI_STRINGS = {
     'mode.libre.desc': "Dix phrases tirées au hasard, autant de fois que tu veux.",
     'mode.survie.tag': 'Trois vies',
     'mode.survie.name': 'Survie',
-    'mode.survie.desc': "Pas de limite de questions. Les langues deviennent de plus en plus difficiles.",
+    'mode.survie.desc': "Ça s'arrête à la troisième erreur. Jusqu'où iras-tu ?",
     'mode.play': 'Jouer',
 
     'best.none': 'Aucune partie jouée',
@@ -155,7 +155,7 @@ const UI_STRINGS = {
     'mode.libre.desc': 'Ten random sentences, as often as you like.',
     'mode.survie.tag': 'Three lives',
     'mode.survie.name': 'Survival',
-    'mode.survie.desc': 'No limit on questions. The languages get harder as you go.',
+    'mode.survie.desc': 'It ends on your third mistake. How far can you get?',
     'mode.play': 'Play',
 
     'best.none': 'No round played yet',
