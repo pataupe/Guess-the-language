@@ -23,7 +23,7 @@ const UI_STRINGS = {
 
     'home.eyebrow': "{count} langues d'Europe",
     'home.title': 'Devine la langue.',
-    'home.lead': "Une phrase s'affiche, à toi de dire dans quelle langue elle est écrite. Après chaque réponse, le jeu montre ce qui permettait de la reconnaître.",
+    'home.lead': "Hongrois, letton, breton, macédonien… Sauras-tu reconnaître une langue rien qu'en la lisant ?",
 
     'picker.label': 'Difficulté',
     'diff.facile.name': 'Normal',
@@ -40,7 +40,7 @@ const UI_STRINGS = {
     'mode.libre.desc': "Dix phrases tirées au hasard, autant de fois que tu veux.",
     'mode.survie.tag': 'Trois vies',
     'mode.survie.name': 'Survie',
-    'mode.survie.desc': "Aucune limite de questions. Plus tu avances, plus les langues sont rares.",
+    'mode.survie.desc': "Pas de limite de questions. Les langues deviennent de plus en plus difficiles.",
     'mode.play': 'Jouer',
 
     'best.none': 'Aucune partie jouée',
@@ -138,7 +138,7 @@ const UI_STRINGS = {
 
     'home.eyebrow': '{count} European languages',
     'home.title': 'Guess the language.',
-    'home.lead': 'A sentence appears, and your job is to say which language it is written in. After each answer, the game shows what gave it away.',
+    'home.lead': 'Hungarian, Latvian, Breton, Macedonian… Can you recognise a language just by reading it?',
 
     'picker.label': 'Difficulty',
     'diff.facile.name': 'Normal',
@@ -155,7 +155,7 @@ const UI_STRINGS = {
     'mode.libre.desc': 'Ten random sentences, as often as you like.',
     'mode.survie.tag': 'Three lives',
     'mode.survie.name': 'Survival',
-    'mode.survie.desc': 'No limit on questions. The further you go, the rarer the languages.',
+    'mode.survie.desc': 'No limit on questions. The languages get harder as you go.',
     'mode.play': 'Play',
 
     'best.none': 'No round played yet',
