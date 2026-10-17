@@ -1,7 +1,7 @@
 # Guess the Language
 
 Un petit jeu bilingue : une phrase s'affiche, tu devines dans quelle langue
-elle est écrite. 39 langues d'Europe, 390 phrases, chacune traduite en
+elle est écrite. 39 langues d'Europe, 975 phrases, chacune traduite en
 français et en anglais.
 
 **En ligne :** <https://pataupe.github.io/Guess-the-language/>
@@ -78,7 +78,7 @@ Dans tous les modes, une même langue peut retomber plusieurs fois, mais
 jamais coup sur coup : `MIN_REPEAT_DISTANCE` impose au moins quatre questions
 d'écart. Tombée à la question 1, une langue est écartée des questions 2, 3 et
 4, et peut revenir à la 5e. Si elle revient, le jeu lui prend une autre de ses
-dix phrases.
+vingt-cinq phrases.
 
 Les cinq intrus du mode facile sont choisis d'abord dans la même branche
 linguistique, puis dans le même alphabet, puis au hasard — pour que deviner
@@ -94,7 +94,7 @@ Le défi du jour remplace `Math.random` par un générateur à graine
 | `index.html` | Les trois écrans. Le texte visible vit dans des attributs `data-i18n`. |
 | `style.css` | Le design (thème clair et sombre automatiques). |
 | `i18n.js` | Le dictionnaire de l'interface et la taxonomie (familles, branches, alphabets). |
-| `languages.js` | Les 39 langues et leurs 390 phrases traduites. |
+| `languages.js` | Les 39 langues et leurs 975 phrases traduites. |
 | `script.js` | La logique du jeu. |
 
 ## Ajouter une langue
@@ -116,7 +116,7 @@ autocomplétion, tirage, intrus) :
   texts: [
     ["Une phrase dans la langue.",
      { fr: "Sa traduction française.", en: "Its English translation." }]
-    // …dix en tout
+    // …vingt-cinq en tout
   ]
 }
 ```
@@ -142,11 +142,11 @@ Trois contraintes de contenu :
 
 Ajoute son code à `LOCALES`, une entrée dans `UI_STRINGS` (96 clés) et sa
 traduction dans chaque entrée de `TAXONOMY`. Côté `languages.js`, il faut
-alors compléter `name`, `speakers`, `area`, `hint` et les 390 traductions.
+alors compléter `name`, `speakers`, `area`, `hint` et les 975 traductions.
 
 ## Fiabilité des phrases
 
-Les 390 phrases ont été écrites à la main, pas extraites d'un corpus. Elles
+Les 975 phrases ont été écrites à la main, pas extraites d'un corpus. Elles
 sont solides sur les grandes langues, et plus fragiles sur le **breton**, le
 **luxembourgeois**, l'**irlandais** et le **gallois** — une relecture par
 quelqu'un qui les pratique serait la bienvenue.
