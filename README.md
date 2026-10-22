@@ -87,6 +87,29 @@ linguistique, puis dans le même alphabet, puis au hasard — pour que deviner
 Le défi du jour remplace `Math.random` par un générateur à graine
 (`mulberry32`) alimenté par la date **et la langue d'interface**.
 
+## Les fiches de langue
+
+Chaque langue a sa page : `langues/hongrois.html` en français,
+`languages/hungarian.html` en anglais. On y trouve un résumé de la langue,
+sa famille, son alphabet, le nombre de locuteurs, les indices qui permettent
+de la reconnaître, et cinq phrases tirées du jeu avec leur traduction. Un
+sommaire classé par famille vit dans `langues/index.html`.
+
+Ces pages sont **générées** à partir des données :
+
+```bash
+node outils/generer-fiches.js
+```
+
+À relancer après toute modification de `languages.js` ou de `i18n.js`.
+La commande efface et réécrit les deux dossiers, il ne faut donc pas
+modifier ces fichiers à la main.
+
+Pourquoi de vraies pages plutôt qu'une seule page dynamique : `index.html`
+ne contient que 17 mots lisibles par un moteur de recherche, puisque tout
+son texte est écrit par le code au moment de l'affichage. Chaque fiche en
+contient environ 180, en clair dans le fichier.
+
 ## Fichiers
 
 | Fichier | Rôle |
@@ -96,6 +119,8 @@ Le défi du jour remplace `Math.random` par un générateur à graine
 | `i18n.js` | Le dictionnaire de l'interface et la taxonomie (familles, branches, alphabets). |
 | `languages.js` | Les 39 langues et leurs 975 phrases traduites. |
 | `script.js` | La logique du jeu. |
+| `outils/generer-fiches.js` | Le générateur des fiches de langue. |
+| `langues/`, `languages/` | Les fiches générées. **Ne pas éditer à la main.** |
 
 ## Ajouter une langue
 
@@ -153,7 +178,6 @@ quelqu'un qui les pratique serait la bienvenue.
 
 ## À faire plus tard
 
-- Une page « Les langues » : un abécédaire consultable, classé par famille.
 - Un lien « signaler une erreur » vers une issue GitHub pré-remplie.
 - Les langues asiatiques, dans un pool séparé ou une option « monde ».
 - Un vrai favicon : aujourd'hui c'est le logo, illisible à 16 pixels.

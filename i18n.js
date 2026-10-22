@@ -124,7 +124,23 @@ const UI_STRINGS = {
     'share.scoreline': '{correct}/{total} · {points} pts · {time}',
     'share.survieline': '{correct} langues trouvées · {points} pts · {time}',
 
-    'foot.count': '{count} langues au catalogue'
+    'foot.count': '{count} langues au catalogue',
+
+    'pages.dir': 'langues',
+    'pages.more': 'En savoir plus sur {name}',
+    'pages.index.title': 'Les langues',
+    'pages.index.lead': "Les {count} langues du jeu, classées par famille. Chaque fiche explique d'où vient la langue et à quoi on la reconnaît.",
+    'pages.backToGame': 'Jouer',
+    'pages.allLanguages': 'Toutes les langues',
+    'pages.howToSpot': 'Comment la reconnaître',
+    'pages.examples': 'Quelques phrases',
+    'pages.rarity': 'Dans le jeu',
+    'pages.level1': 'Langue courante',
+    'pages.level2': 'Langue intermédiaire',
+    'pages.level3': 'Langue rare',
+    'pages.otherLocale': 'English',
+    'pages.metaLang': '{name} ({endonym}) : famille, alphabet, nombre de locuteurs et indices pour la reconnaître à l’écrit.',
+    'pages.metaIndex': 'Les {count} langues d’Europe du jeu Guess the Language, classées par famille, avec leurs indices de reconnaissance.'
   },
 
   en: {
@@ -239,7 +255,23 @@ const UI_STRINGS = {
     'share.scoreline': '{correct}/{total} · {points} pts · {time}',
     'share.survieline': '{correct} languages found · {points} pts · {time}',
 
-    'foot.count': '{count} languages in the catalogue'
+    'foot.count': '{count} languages in the catalogue',
+
+    'pages.dir': 'languages',
+    'pages.more': 'Read more about {name}',
+    'pages.index.title': 'The languages',
+    'pages.index.lead': 'All {count} languages in the game, grouped by family. Each page explains where the language comes from and how to recognise it.',
+    'pages.backToGame': 'Play',
+    'pages.allLanguages': 'All languages',
+    'pages.howToSpot': 'How to spot it',
+    'pages.examples': 'A few sentences',
+    'pages.rarity': 'In the game',
+    'pages.level1': 'Common language',
+    'pages.level2': 'Mid-range language',
+    'pages.level3': 'Rare language',
+    'pages.otherLocale': 'Français',
+    'pages.metaLang': '{name} ({endonym}): family, script, number of speakers and clues for recognising it in writing.',
+    'pages.metaIndex': 'The {count} European languages of Guess the Language, grouped by family, with the clues that identify each one.'
   }
 };
 

@@ -42,6 +42,10 @@ const LANGUAGES = [
       fr: "Tous les noms communs prennent une majuscule. Le ß, les umlauts ä ö ü et les mots composés à rallonge sont ses marques de fabrique.",
       en: "Every common noun takes a capital letter. The ß, the umlauts ä ö ü and the endlessly compounded words are its signature."
     },
+    about: {
+      fr: "L'allemand est la langue maternelle la plus parlée de l'Union européenne. Sa particularité la plus visible est aussi la plus simple à repérer : tous les noms communs prennent une majuscule, une règle qu'aucune autre grande langue n'applique. Il conserve quatre cas grammaticaux, et sa capacité à souder plusieurs noms en un seul mot produit des termes à rallonge qui font sa réputation. Les dialectes restent très vivants et très éloignés les uns des autres : un Allemand du Nord ne comprend pas spontanément un Suisse alémanique.",
+      en: "German has more native speakers than any other language in the European Union. Its most visible quirk is also the easiest to spot: every common noun takes a capital letter, a rule no other major language follows. It keeps four grammatical cases, and its habit of welding nouns together produces the famously long compounds. Dialects remain strong and far apart: a northern German will not spontaneously understand Swiss German."
+    },
     texts: [
       ["Ich gehe jeden Morgen mit meinem Hund im Park spazieren.",
        { fr: "Je promène mon chien dans le parc tous les matins.",
@@ -133,6 +137,10 @@ const LANGUAGES = [
     hint: {
       fr: "Aucun signe diacritique, articles « the / a », et un vocabulaire pour moitié d’origine romane.",
       en: "No diacritics at all, the articles “the” and “a”, and a vocabulary that is half Romance in origin."
+    },
+    about: {
+      fr: "L'anglais est germanique par filiation, mais près de la moitié de son vocabulaire vient du latin et du français, hérité de la conquête normande de 1066. Il a perdu presque toutes ses déclinaisons, si bien que c'est l'ordre des mots qui porte la grammaire. C'est la seule grande langue européenne à n'utiliser aucun accent dans ses mots d'origine. Son orthographe reflète une prononciation vieille de plusieurs siècles, ce qui explique son irrégularité.",
+      en: "English is Germanic by descent, but close to half its vocabulary comes from Latin and French, inherited from the Norman conquest of 1066. It has lost almost all its inflections, so word order carries the grammar instead. It is the only major European language that uses no diacritics in its native words. Its spelling reflects a pronunciation several centuries old, which is why it looks so irregular."
     },
     texts: [
       ["I usually drink a cup of tea before going to bed.",
@@ -226,6 +234,10 @@ const LANGUAGES = [
       fr: "Les suites ij, oe, ui et sch sautent aux yeux. Ressemble à de l’allemand sans majuscules ni ß.",
       en: "The clusters ij, oe, ui and sch jump out. Looks like German without the capitals or the ß."
     },
+    about: {
+      fr: "Le néerlandais occupe une position intermédiaire entre l'allemand et l'anglais, et c'est exactement ce dont il a l'air à l'écrit. Il a gardé l'ordre des mots de l'allemand mais abandonné l'essentiel de ses déclinaisons, comme l'anglais. La suite ij y est traitée presque comme une lettre unique. L'afrikaans d'Afrique du Sud en descend directement, ce qui en fait sa plus proche parente hors d'Europe.",
+      en: "Dutch sits between German and English, and that is exactly how it looks on the page. It kept German word order but dropped most of the case endings, as English did. The cluster ij is treated almost as a single letter. Afrikaans, in South Africa, descends directly from it and is its closest relative outside Europe."
+    },
     texts: [
       ["Ik fiets elke dag naar mijn werk in de stad.",
        { fr: "Je vais travailler à vélo tous les jours, en ville.",
@@ -317,6 +329,10 @@ const LANGUAGES = [
     hint: {
       fr: "De l’allemand passé au filtre français : beaucoup de ë et é, le pronom « ech », et des emprunts français bruts.",
       en: "German run through a French filter: plenty of ë and é, the pronoun “ech”, and French loanwords left untouched."
+    },
+    about: {
+      fr: "Le luxembourgeois est un parler germanique de la région mosellane, devenu langue nationale du Luxembourg en 1984 aux côtés du français et de l'allemand. Il emprunte massivement au français, souvent sans rien y changer, ce qui donne des phrases germaniques parsemées de mots familiers à l'oreille française. Son orthographe standard est récente, et l'usage reste plus flottant que dans les langues anciennement normalisées. La grande majorité de ses locuteurs sont trilingues.",
+      en: "Luxembourgish is a Moselle Franconian variety that became a national language of Luxembourg in 1984, alongside French and German. It borrows heavily from French, often without altering the word, so a Germanic sentence can be studded with terms a French speaker recognises instantly. Its written standard is recent and usage is still less fixed than in long-standardised languages. Most of its speakers are trilingual."
     },
     texts: [
       ["Ech hunn haut e laangen Dag gehat.",
@@ -410,6 +426,10 @@ const LANGUAGES = [
       fr: "Trois lettres propres : å, ä, ö. L’article défini est collé à la fin du mot (huset = la maison).",
       en: "Three letters of its own: å, ä, ö. The definite article is glued to the end of the word (huset = the house)."
     },
+    about: {
+      fr: "Le suédois est la plus parlée des langues scandinaves et sert de langue officielle en Finlande comme en Suède. Son article défini se colle à la fin du mot : hus signifie « maison », huset « la maison ». Il possède un accent de hauteur qui distingue certains mots autrement identiques, trait rare en Europe. Suédois, norvégien et danois restent largement intercompréhensibles à l'écrit.",
+      en: "Swedish is the most spoken of the Scandinavian languages and is official in Finland as well as Sweden. Its definite article is a suffix: hus means house, huset the house. It has a pitch accent that distinguishes otherwise identical words, a rare feature in Europe. Swedish, Norwegian and Danish remain largely mutually intelligible in writing."
+    },
     texts: [
       ["Jag dricker alltid en kopp kaffe på morgonen.",
        { fr: "Je bois toujours une tasse de café le matin.",
@@ -501,6 +521,10 @@ const LANGUAGES = [
     hint: {
       fr: "Comme le danois à l’écrit, mais avec æ, ø, å et des formes en -kk-, -tt-. « ikke » = ne pas.",
       en: "Looks like Danish on paper, but with æ, ø, å and forms in -kk-, -tt-. “ikke” means not."
+    },
+    about: {
+      fr: "Le norvégien a une particularité qu'on ne trouve nulle part ailleurs en Europe : deux normes écrites officielles coexistent. Le bokmål, de loin le plus répandu, est hérité du danois ; le nynorsk a été reconstruit au XIXe siècle à partir des parlers ruraux. Cette situation vient des siècles de domination danoise, qui expliquent aussi pourquoi le norvégien écrit ressemble tant au danois alors que sa prononciation est plus proche du suédois.",
+      en: "Norwegian has a feature found nowhere else in Europe: two official written standards coexist. Bokmål, by far the more widespread, descends from Danish; Nynorsk was reconstructed in the nineteenth century from rural dialects. This goes back to centuries of Danish rule, which also explains why written Norwegian looks so like Danish while its pronunciation is closer to Swedish."
     },
     texts: [
       ["Hun har bodd her i mange år nå.",
@@ -594,6 +618,10 @@ const LANGUAGES = [
       fr: "Très proche du norvégien : æ, ø, å. Indices danois : « af », « og », et les d intervocaliques (gade, bedre).",
       en: "Very close to Norwegian: æ, ø, å. Danish giveaways: “af”, “og”, and the d between vowels (gade, bedre)."
     },
+    about: {
+      fr: "Le danois se lit beaucoup plus facilement qu'il ne s'entend. Sa prononciation s'est éloignée de son écriture plus vite que celle de ses voisins : les consonnes s'affaiblissent, les syllabes se réduisent, et le résultat déroute même les Suédois et les Norvégiens, qui lisent le danois sans peine mais peinent à le comprendre à l'oral. C'est aussi la langue d'où descend l'essentiel du norvégien écrit.",
+      en: "Danish is far easier to read than to hear. Its pronunciation has drifted away from its spelling faster than that of its neighbours: consonants soften, syllables contract, and the result puzzles even Swedes and Norwegians, who read Danish easily but struggle to follow it spoken. It is also the language from which most of written Norwegian descends."
+    },
     texts: [
       ["Vi skal mødes på torvet klokken tolv.",
        { fr: "On se retrouve sur la place à midi.",
@@ -685,6 +713,10 @@ const LANGUAGES = [
     hint: {
       fr: "Impossible à confondre : les lettres þ (thorn) et ð (eth), plus les terminaisons -ur, -ið, -nn.",
       en: "Impossible to mistake: the letters þ (thorn) and ð (eth), plus the endings -ur, -ið, -nn."
+    },
+    about: {
+      fr: "L'islandais a remarquablement peu changé depuis le Moyen Âge : un Islandais d'aujourd'hui lit les sagas du XIIIe siècle sans traduction. L'isolement de l'île y est pour beaucoup, mais aussi une politique volontaire : plutôt que d'emprunter les mots étrangers, l'islandais en fabrique à partir de ses propres racines. Il a conservé les lettres þ et ð, que l'anglais possédait autrefois et a perdues.",
+      en: "Icelandic has changed remarkably little since the Middle Ages: an Icelander today reads the thirteenth-century sagas without a translation. The island's isolation accounts for much of that, but so does deliberate policy: rather than borrow foreign words, Icelandic coins new ones from its own roots. It kept the letters þ and ð, which English once had and lost."
     },
     texts: [
       ["Ég ætla að fara í sund eftir vinnu í dag.",
@@ -778,6 +810,10 @@ const LANGUAGES = [
       fr: "Accents aigus et circonflexes, cédille ç, terminaisons muettes -ent, -aient, -eux.",
       en: "Acute and circumflex accents, the cedilla ç, and silent endings in -ent, -aient, -eux."
     },
+    about: {
+      fr: "Le français descend du latin parlé en Gaule, remodelé par le substrat gaulois puis par les Francs, dont il tire son nom. Il s'écarte des autres langues romanes par sa prononciation : de nombreuses lettres finales sont muettes, si bien que l'écrit conserve des distinctions que l'oral a effacées. L'Académie française, fondée en 1635, en fait l'une des langues les plus anciennement normalisées d'Europe.",
+      en: "French descends from the Latin spoken in Gaul, reshaped first by the Gaulish substrate and then by the Franks, from whom it takes its name. It diverges from the other Romance languages in its pronunciation: many final letters are silent, so the written form preserves distinctions that speech has erased. The Académie française, founded in 1635, makes it one of the longest-standardised languages in Europe."
+    },
     texts: [
       ["Je vais au marché tous les samedis matin.",
        { fr: "",
@@ -869,6 +905,10 @@ const LANGUAGES = [
     hint: {
       fr: "Le ñ, le ¿ et le ¡ inversés, les doubles ll et rr, et énormément de mots en -ción.",
       en: "The ñ, the upside-down ¿ and ¡, the doubles ll and rr, and a great many words ending in -ción."
+    },
+    about: {
+      fr: "L'espagnol est la deuxième langue maternelle du monde par le nombre de locuteurs, loin devant sa population européenne d'origine. Son orthographe est l'une des plus régulières d'Europe : on prononce presque exactement ce qui est écrit. Il est le seul à ouvrir ses questions et ses exclamations par un signe inversé, ¿ et ¡. Le ñ, né de l'abréviation médiévale d'un double n, est devenu son emblème.",
+      en: "Spanish has the second-largest number of native speakers in the world, far beyond its original European population. Its spelling is among the most regular in Europe: you pronounce very nearly what is written. It is the only language to open questions and exclamations with an inverted mark, ¿ and ¡. The ñ, born from a medieval shorthand for a double n, has become its emblem."
     },
     texts: [
       ["Todos los domingos comemos en casa de mi abuela.",
@@ -962,6 +1002,10 @@ const LANGUAGES = [
       fr: "Les voyelles nasales ão, õe, ã sont uniques en Europe. Beaucoup de ç et de mots en -ção.",
       en: "The nasal vowels ão, õe, ã are unique in Europe. Lots of ç and words ending in -ção."
     },
+    about: {
+      fr: "Le portugais se reconnaît à ses voyelles nasales, notées ão, õe et ã, qu'aucune autre langue romane n'écrit ainsi. Il est très proche du galicien, dont il s'est séparé au Moyen Âge, et reste largement intelligible pour un hispanophone à l'écrit, beaucoup moins à l'oral. Les variantes européenne et brésilienne diffèrent sensiblement, le portugais du Portugal réduisant fortement ses voyelles inaccentuées.",
+      en: "Portuguese is recognisable by its nasal vowels, written ão, õe and ã, which no other Romance language spells that way. It is very close to Galician, from which it separated in the Middle Ages, and remains largely readable for a Spanish speaker, far less so when spoken. The European and Brazilian varieties differ noticeably, with European Portuguese heavily reducing its unstressed vowels."
+    },
     texts: [
       ["Vamos tomar um café antes de voltar para casa.",
        { fr: "Allons prendre un café avant de rentrer.",
@@ -1053,6 +1097,10 @@ const LANGUAGES = [
     hint: {
       fr: "Le point volant du l·l, les apostrophes partout (l’home, d’aquí) et le mot « amb ». Entre l’espagnol et le français.",
       en: "The raised dot of l·l, apostrophes everywhere (l’home, d’aquí) and the word “amb”. Sits between Spanish and French."
+    },
+    about: {
+      fr: "Le catalan n'est pas un dialecte de l'espagnol mais une langue romane distincte, par certains traits plus proche de l'occitan et du français que du castillan. Il est parlé en Catalogne, à Valence, aux Baléares et en Andorre, où il est la seule langue officielle. Son signe le plus caractéristique est le point volant du l·l, qui sépare deux l prononcés distinctement.",
+      en: "Catalan is not a dialect of Spanish but a separate Romance language, in some respects closer to Occitan and French than to Castilian. It is spoken in Catalonia, Valencia, the Balearics and Andorra, where it is the sole official language. Its most distinctive mark is the raised dot of l·l, which separates two l sounds pronounced apart."
     },
     texts: [
       ["Demà anirem a la muntanya si fa bon temps.",
@@ -1146,6 +1194,10 @@ const LANGUAGES = [
       fr: "Du portugais écrit à l’espagnole : le son nasal a disparu (non au lieu de não) et on trouve des x là où l’espagnol met j.",
       en: "Portuguese written the Spanish way: the nasal sound is gone (non instead of não) and there are x where Spanish puts j."
     },
+    about: {
+      fr: "Le galicien et le portugais formaient une seule langue au Moyen Âge, celle des cantigas galaïco-portugaises. La séparation politique les a éloignés, mais la parenté reste évidente : le galicien ressemble à du portugais écrit selon les conventions espagnoles. Le son nasal a disparu — on écrit non là où le portugais écrit não — et l'orthographe emploie des x là où l'espagnol met des j.",
+      en: "Galician and Portuguese were a single language in the Middle Ages, that of the Galician-Portuguese lyric. Political separation drove them apart, but the kinship is still obvious: Galician looks like Portuguese written with Spanish conventions. The nasal sound is gone — non where Portuguese writes não — and the spelling uses x where Spanish uses j."
+    },
     texts: [
       ["Esta mañá fomos ao mercado mercar peixe e pan.",
        { fr: "Ce matin, nous sommes allés au marché acheter du poisson et du pain.",
@@ -1237,6 +1289,10 @@ const LANGUAGES = [
     hint: {
       fr: "Presque tous les mots finissent par une voyelle. Doubles consonnes fréquentes (bello, mamma) et gli, gn, sc.",
       en: "Almost every word ends in a vowel. Frequent double consonants (bello, mamma) and the clusters gli, gn, sc."
+    },
+    about: {
+      fr: "L'italien est la langue romane la plus proche du latin par sa forme. Presque tous ses mots se terminent par une voyelle, ce qui lui donne sa musique particulière et le rend reconnaissable au premier regard. Sa norme écrite repose sur le toscan de Dante, Pétrarque et Boccace, fixé bien avant l'unité politique du pays. Les parlers régionaux, souvent appelés dialectes, sont en réalité des langues sœurs issues directement du latin.",
+      en: "Italian is the Romance language closest to Latin in form. Almost all its words end in a vowel, which gives it its particular music and makes it recognisable at a glance. Its written standard rests on the Tuscan of Dante, Petrarch and Boccaccio, settled long before the country was politically unified. The regional varieties, usually called dialects, are in fact sister languages descended directly from Latin."
     },
     texts: [
       ["Domani mattina devo alzarmi presto per andare al lavoro.",
@@ -1330,6 +1386,10 @@ const LANGUAGES = [
       fr: "Une langue romane avec des lettres à virgule : ș, ț, plus ă et î. L’article se colle à la fin (trenul = le train).",
       en: "A Romance language with comma-below letters: ș, ț, plus ă and î. The article is glued to the end (trenul = the train)."
     },
+    about: {
+      fr: "Le roumain est la seule langue romane d'Europe orientale, isolée de ses sœurs par une ceinture de langues slaves. Cet isolement explique son vocabulaire, latin pour la base mais largement emprunté au slave, au hongrois et au turc. Il a conservé des cas grammaticaux que les autres langues romanes ont perdus, et son article défini se colle à la fin du mot, comme dans les langues balkaniques voisines.",
+      en: "Romanian is the only Romance language of eastern Europe, cut off from its sisters by a belt of Slavic languages. That isolation explains its vocabulary, Latin at the core but heavily borrowed from Slavic, Hungarian and Turkish. It kept grammatical cases the other Romance languages lost, and its definite article attaches to the end of the word, as in the neighbouring Balkan languages."
+    },
     texts: [
       ["Vremea este foarte frumoasă astăzi, hai să ieșim.",
        { fr: "Il fait très beau aujourd’hui, sortons.",
@@ -1421,6 +1481,10 @@ const LANGUAGES = [
     hint: {
       fr: "Cyrillique avec ы, э, ъ et ё. Les mots en -ый, -ого et la particule « не » sont typiquement russes.",
       en: "Cyrillic with ы, э, ъ and ё. Words ending in -ый, -ого and the particle “не” are typically Russian."
+    },
+    about: {
+      fr: "Le russe est la plus parlée des langues slaves et a servi de langue véhiculaire dans tout l'espace soviétique. Il n'a pas d'articles, mais six cas, et surtout un système d'aspect verbal — chaque verbe existe en deux versions selon que l'action est vue comme achevée ou non — qui reste l'un des obstacles majeurs pour qui l'apprend. Son alphabet descend du cyrillique mis au point au IXe siècle à partir du grec.",
+      en: "Russian is the most spoken Slavic language and served as the lingua franca across the Soviet sphere. It has no articles but six cases, and above all a system of verbal aspect — every verb exists in two versions depending on whether the action is seen as completed — which remains one of the main obstacles for learners. Its alphabet descends from the Cyrillic devised in the ninth century on a Greek model."
     },
     texts: [
       ["Я нигде не могу найти ключи от машины.",
@@ -1514,6 +1578,10 @@ const LANGUAGES = [
       fr: "Quatre lettres absentes du russe : і, ї, є, ґ. Et une apostrophe fréquente (п’ю).",
       en: "Four letters Russian does not have: і, ї, є, ґ. Plus a frequent apostrophe (п’ю)."
     },
+    about: {
+      fr: "L'ukrainien possède quatre lettres que le russe ignore : і, ї, є et ґ. Son vocabulaire est par endroits plus proche du polonais que du russe, héritage de siècles passés sous administration polono-lituanienne. Sous l'Empire russe, son impression fut interdite à plusieurs reprises au XIXe siècle, la langue étant officiellement tenue pour un dialecte. C'est aujourd'hui la deuxième langue slave par le nombre de locuteurs.",
+      en: "Ukrainian has four letters Russian does not: і, ї, є and ґ. Its vocabulary is in places closer to Polish than to Russian, a legacy of centuries under Polish-Lithuanian administration. Under the Russian Empire its printing was banned more than once in the nineteenth century, the language being officially held to be a dialect. It is today the second Slavic language by number of speakers."
+    },
     texts: [
       ["Я дуже люблю гуляти парком восени.",
        { fr: "J’aime beaucoup me promener dans le parc en automne.",
@@ -1605,6 +1673,10 @@ const LANGUAGES = [
     hint: {
       fr: "Seule langue cyrillique avec la lettre ў (ou court). Beaucoup de а là où le russe écrit о.",
       en: "The only Cyrillic language with the letter ў (short u). Plenty of а where Russian writes о."
+    },
+    about: {
+      fr: "Le biélorusse est la seule langue à écrire la lettre ў, un ou bref qui n'existe dans aucun autre alphabet cyrillique. Son orthographe est franchement phonétique : on écrit ce qu'on entend, y compris la réduction des o non accentués en a, là où le russe conserve la lettre d'origine. Son usage a fortement reculé devant le russe, qui domine la vie publique du pays.",
+      en: "Belarusian is the only language to write the letter ў, a short u found in no other Cyrillic alphabet. Its spelling is frankly phonetic: you write what you hear, including unstressed o reduced to a, where Russian keeps the original letter. Its everyday use has receded sharply in favour of Russian, which dominates public life in the country."
     },
     texts: [
       ["Кожную раніцу я п’ю кубак гарбаты перад працай.",
@@ -1698,6 +1770,10 @@ const LANGUAGES = [
       fr: "Le ł barré, les nasales ą et ę, et les groupes sz, cz, rz, szcz. Très reconnaissable.",
       en: "The barred ł, the nasals ą and ę, and the clusters sz, cz, rz, szcz. Very recognisable."
     },
+    about: {
+      fr: "Le polonais est la plus parlée des langues slaves occidentales et la seule grande langue slave à s'écrire en alphabet latin enrichi de ł, ą et ę. Il conserve sept cas et une réputation méritée pour ses groupes de consonnes, que les digrammes sz, cz, rz et szcz rendent plus impressionnants à l'œil qu'à l'oreille. Sa norme écrite est stable depuis le XVIe siècle.",
+      en: "Polish is the most spoken West Slavic language and the only major Slavic language written in a Latin alphabet extended with ł, ą and ę. It keeps seven cases and a well-earned reputation for consonant clusters, which the digraphs sz, cz, rz and szcz make more daunting to the eye than to the ear. Its written standard has been stable since the sixteenth century."
+    },
     texts: [
       ["Wczoraj wieczorem oglądaliśmy razem bardzo dobry film.",
        { fr: "Hier soir, nous avons regardé un très bon film ensemble.",
@@ -1789,6 +1865,10 @@ const LANGUAGES = [
     hint: {
       fr: "Le ř n’existe qu’en tchèque. Accents longs á é í ý et le ů rond. Des mots sans voyelle : krk, prst.",
       en: "The ř exists only in Czech. Long accents á é í ý and the ringed ů. Words with no vowel at all: krk, prst."
+    },
+    about: {
+      fr: "Le tchèque possède une lettre qu'aucune autre langue au monde n'emploie : le ř. Il admet aussi des consonnes syllabiques, ce qui permet des mots entiers sans la moindre voyelle, comme krk ou prst. L'usage des signes diacritiques plutôt que des digrammes, qui donne à l'écrit tchèque son aspect si net, est traditionnellement attribué à Jan Hus au début du XVe siècle.",
+      en: "Czech has a letter used by no other language in the world: ř. It also allows syllabic consonants, which makes whole words possible without a single vowel, such as krk or prst. The use of diacritics rather than digraphs, which gives written Czech its distinctively clean look, is traditionally credited to Jan Hus in the early fifteenth century."
     },
     texts: [
       ["Každé ráno si dávám šálek kávy před prací.",
@@ -1882,6 +1962,10 @@ const LANGUAGES = [
       fr: "Comme le tchèque mais sans ř : à la place, ľ, ĺ, ŕ et ô. Le mot « a » relie les phrases.",
       en: "Like Czech but without ř: instead you get ľ, ĺ, ŕ and ô. The word “a” links the clauses."
     },
+    about: {
+      fr: "Le slovaque et le tchèque sont assez proches pour que leurs locuteurs se comprennent sans effort, au point que les deux langues cohabitaient dans les médias de l'ancienne Tchécoslovaquie. Le slovaque s'en distingue par ľ, ĺ, ŕ et ô, et par l'absence du ř tchèque. Sa norme écrite est récente : elle a été fixée au milieu du XIXe siècle par Ľudovít Štúr, à partir des parlers du centre du pays.",
+      en: "Slovak and Czech are close enough that their speakers understand each other without effort, to the point that both languages shared the airwaves in former Czechoslovakia. Slovak is set apart by ľ, ĺ, ŕ and ô, and by the absence of the Czech ř. Its written standard is recent: it was settled in the mid-nineteenth century by Ľudovít Štúr, on the basis of the central dialects."
+    },
     texts: [
       ["Zajtra pôjdeme na výlet k rieke, ak bude pekne.",
        { fr: "Demain, nous ferons une sortie au bord de la rivière s’il fait beau.",
@@ -1973,6 +2057,10 @@ const LANGUAGES = [
     hint: {
       fr: "Seulement trois accents : č, š, ž. Garde le duel (une forme spéciale pour deux personnes) et le mot « je » pour « est ».",
       en: "Only three accents: č, š, ž. It keeps the dual (a special form for exactly two) and uses “je” for “is”."
+    },
+    about: {
+      fr: "Le slovène a conservé le duel, une forme grammaticale réservée à exactement deux personnes ou deux objets, que presque toutes les langues indo-européennes ont abandonnée. Pour un territoire minuscule, il est remarquablement fragmenté : on y dénombre plusieurs dizaines de parlers, certains difficilement intelligibles entre eux. Son alphabet se limite à trois signes particuliers, č, š et ž.",
+      en: "Slovene has kept the dual, a grammatical form reserved for exactly two people or things, which almost every other Indo-European language has abandoned. For such a small territory it is remarkably fragmented: dozens of dialects are counted, some barely intelligible to one another. Its alphabet adds only three special signs, č, š and ž."
     },
     texts: [
       ["Vsako jutro grem v službo s kolesom.",
@@ -2066,6 +2154,10 @@ const LANGUAGES = [
       fr: "č, ć, š, ž, đ en alphabet latin. Mots-clés : « je », « ne », « gdje ». Très proche du serbe et du bosnien.",
       en: "č, ć, š, ž, đ in the Latin alphabet. Key words: “je”, “ne”, “gdje”. Very close to Serbian and Bosnian."
     },
+    about: {
+      fr: "Le croate fait partie d'un continuum linguistique qu'il partage avec le serbe, le bosnien et le monténégrin : à l'oral, leurs locuteurs se comprennent sans difficulté. Ce qui les sépare relève autant de l'histoire et de la politique que de la linguistique. Le croate s'écrit exclusivement en alphabet latin, avec č, ć, š, ž et đ, et privilégie les mots forgés sur des racines slaves là où le serbe accepte plus volontiers l'emprunt.",
+      en: "Croatian belongs to a continuum it shares with Serbian, Bosnian and Montenegrin: spoken, their speakers understand one another without difficulty. What separates them is as much historical and political as linguistic. Croatian is written only in the Latin alphabet, with č, ć, š, ž and đ, and tends to prefer words built on Slavic roots where Serbian more readily accepts loanwords."
+    },
     texts: [
       ["Ljeti najviše volim jedriti.",
        { fr: "L’été, ce que je préfère, c’est faire de la voile.",
@@ -2157,6 +2249,10 @@ const LANGUAGES = [
     hint: {
       fr: "Cyrillique sud-slave avec ј, љ, њ, ћ, ђ. Pas de ы ni de ё comme en russe. (Il s’écrit aussi en alphabet latin.)",
       en: "South Slavic Cyrillic with ј, љ, њ, ћ, ђ. No ы or ё as in Russian. (It is also written in the Latin alphabet.)"
+    },
+    about: {
+      fr: "Le serbe a une particularité rare : il s'écrit officiellement dans deux alphabets, le cyrillique et le latin, et ses locuteurs passent de l'un à l'autre sans y penser. Son cyrillique a été réformé au XIXe siècle par Vuk Karadžić sur un principe strict — une lettre pour un son, un son pour une lettre — ce qui en fait l'une des orthographes les plus régulières d'Europe.",
+      en: "Serbian has a rare feature: it is officially written in two alphabets, Cyrillic and Latin, and its speakers switch between them without thinking. Its Cyrillic was reformed in the nineteenth century by Vuk Karadžić on a strict principle — one letter per sound, one sound per letter — which makes it one of the most regular spelling systems in Europe."
     },
     texts: [
       ["Сваког јутра трчим у парку.",
@@ -2250,6 +2346,10 @@ const LANGUAGES = [
       fr: "Cyrillique avec un ъ très fréquent au milieu des mots. Pas de déclinaisons, mais l’article collé à la fin (градът).",
       en: "Cyrillic with a very frequent ъ in the middle of words. No cases, but the article is glued to the end (градът)."
     },
+    about: {
+      fr: "Le bulgare est l'exception grammaticale du monde slave : il a perdu les déclinaisons que toutes ses parentes ont gardées, et s'est doté en échange d'un article défini accolé à la fin du mot. Ces deux traits le rapprochent de ses voisins balkaniques plutôt que de sa propre famille. C'est aussi à un parler bulgare qu'on doit le vieux-slave, première langue slave mise par écrit.",
+      en: "Bulgarian is the grammatical exception of the Slavic world: it lost the case endings all its relatives kept, and gained in exchange a definite article attached to the end of the word. Both traits align it with its Balkan neighbours rather than with its own family. It is also a Bulgarian dialect that gave rise to Old Church Slavonic, the first Slavic language ever written down."
+    },
     texts: [
       ["Утре ще ходим на море с цялото семейство.",
        { fr: "Demain, nous allons à la mer avec toute la famille.",
@@ -2341,6 +2441,10 @@ const LANGUAGES = [
     hint: {
       fr: "Deux lettres uniques : ѓ et ќ. Comme le bulgare, pas de déclinaisons, mais sans le ъ.",
       en: "Two unique letters: ѓ and ќ. Like Bulgarian, no cases, but without the ъ."
+    },
+    about: {
+      fr: "Le macédonien partage avec le bulgare l'abandon des déclinaisons et l'article collé en fin de mot, traits communs à l'aire balkanique. Sa norme écrite est l'une des plus récentes d'Europe : elle a été fixée en 1945. Deux lettres lui sont propres, ѓ et ќ, qui le distinguent immédiatement des autres cyrilliques.",
+      en: "Macedonian shares with Bulgarian the loss of case endings and the article attached to the end of the word, features common to the Balkan area. Its written standard is among the most recent in Europe: it was settled in 1945. Two letters are its own, ѓ and ќ, which tell it apart from the other Cyrillic alphabets at a glance."
     },
     texts: [
       ["Мојата мајка готви многу вкусна храна.",
@@ -2434,6 +2538,10 @@ const LANGUAGES = [
       fr: "Voyelles à crochet ą ę į ų, plus ū et ė. Les mots finissent très souvent par -as, -is, -us.",
       en: "Hooked vowels ą ę į ų, plus ū and ė. Words very often end in -as, -is, -us."
     },
+    about: {
+      fr: "Le lituanien est réputé pour son archaïsme : il a conservé des traits de l'indo-européen commun que presque toutes les autres langues de la famille ont perdus, ce qui en fait une pièce centrale de la linguistique comparée. Avec le letton, il forme à lui seul ce qui reste de la branche balte, toutes les autres langues baltes s'étant éteintes. Son accent est mobile et imprévisible, ce qui complique beaucoup son apprentissage.",
+      en: "Lithuanian is famous for its archaism: it has kept features of Proto-Indo-European that almost every other language in the family has lost, which makes it a cornerstone of comparative linguistics. Together with Latvian it is all that survives of the Baltic branch, every other Baltic language having died out. Its stress is mobile and unpredictable, which makes it considerably harder to learn."
+    },
     texts: [
       ["Kiekvieną rytą einu pėsčiomis į darbą.",
        { fr: "Chaque matin, je vais au travail à pied.",
@@ -2525,6 +2633,10 @@ const LANGUAGES = [
     hint: {
       fr: "Voyelles longues ā ē ī ū et consonnes à cédille ģ ķ ļ ņ. Les noms masculins finissent par -s.",
       en: "Long vowels ā ē ī ū and cedilla consonants ģ ķ ļ ņ. Masculine nouns end in -s."
+    },
+    about: {
+      fr: "Le letton est, avec le lituanien, l'une des deux seules langues baltes encore vivantes. Il s'en distingue par un accent fixe sur la première syllabe, là où le lituanien le déplace. Ses voyelles longues sont notées par un trait horizontal — ā, ē, ī, ū — et ses consonnes mouillées par une cédille : ģ, ķ, ļ, ņ. Les noms masculins se terminent presque systématiquement par un s.",
+      en: "Latvian is, with Lithuanian, one of only two Baltic languages still alive. It differs in having fixed stress on the first syllable, where Lithuanian moves it about. Its long vowels are marked with a bar — ā, ē, ī, ū — and its palatal consonants with a cedilla: ģ, ķ, ļ, ņ. Masculine nouns almost always end in s."
     },
     texts: [
       ["Es katru vakaru eju pastaigāties gar jūru.",
@@ -2618,6 +2730,10 @@ const LANGUAGES = [
       fr: "Doubles voyelles et doubles consonnes partout (kaupunki, tyttöö), ä et ö, aucune préposition : tout passe par des suffixes.",
       en: "Double vowels and double consonants everywhere (kaupunki), ä and ö, and no prepositions at all — everything is done with suffixes."
     },
+    about: {
+      fr: "Le finnois n'est pas indo-européen : il appartient à la famille ouralienne, venue de l'est. Il n'a ni genre grammatical, ni articles, ni futur, mais une quinzaine de cas qui remplacent nos prépositions en s'ajoutant à la fin des mots. L'harmonie vocalique impose que les voyelles d'un même mot appartiennent à la même série, ce qui explique les suites de ä et de ö. Les consonnes et voyelles doubles y sont partout.",
+      en: "Finnish is not Indo-European: it belongs to the Uralic family, which came from the east. It has no grammatical gender, no articles and no future tense, but some fifteen cases that replace our prepositions by attaching to the end of words. Vowel harmony requires the vowels of a word to belong to the same series, which explains the runs of ä and ö. Double consonants and double vowels are everywhere."
+    },
     texts: [
       ["Kesällä käymme usein saunassa.",
        { fr: "L’été, nous allons souvent au sauna.",
@@ -2709,6 +2825,10 @@ const LANGUAGES = [
     hint: {
       fr: "Cousin du finnois, mais avec la lettre õ et des mots plus courts (les voyelles finales ont disparu).",
       en: "A cousin of Finnish, but with the letter õ and shorter words — the final vowels have dropped away."
+    },
+    about: {
+      fr: "L'estonien est le cousin proche du finnois, sans que l'intercompréhension soit acquise pour autant. Il a perdu les voyelles finales que le finnois conserve, ce qui rend ses mots nettement plus courts. Sa lettre õ n'existe pas en finnois. Il distingue trois degrés de longueur pour ses voyelles et ses consonnes, une finesse rare dans les langues du monde.",
+      en: "Estonian is Finnish's close cousin, though that does not make them mutually intelligible. It lost the final vowels Finnish keeps, which makes its words distinctly shorter. Its letter õ does not exist in Finnish. It distinguishes three degrees of length for vowels and consonants, a refinement rare among the world's languages."
     },
     texts: [
       ["Ma sõidan igal hommikul rongiga tööle.",
@@ -2802,6 +2922,10 @@ const LANGUAGES = [
       fr: "Les doubles accents ő et ű n’existent qu’en hongrois. Articles « a / az », digrammes sz, cs, zs, gy.",
       en: "The double acute accents ő and ű exist only in Hungarian. Articles “a / az”, digraphs sz, cs, zs, gy."
     },
+    about: {
+      fr: "Le hongrois appartient à la même famille que le finnois et l'estonien, mais s'en est séparé il y a si longtemps que la parenté ne s'entend plus du tout. Entouré de toutes parts par des langues indo-européennes, il reste une île linguistique au centre de l'Europe. Il compte une quinzaine de cas, pratique l'harmonie vocalique, et ses accents doubles ő et ű n'existent dans aucune autre langue.",
+      en: "Hungarian belongs to the same family as Finnish and Estonian, but split from them so long ago that the kinship is no longer audible at all. Surrounded on every side by Indo-European languages, it remains a linguistic island in the middle of Europe. It has some fifteen cases, practises vowel harmony, and its double accents ő and ű exist in no other language."
+    },
     texts: [
       ["Minden reggel ugyanazzal a busszal megyek.",
        { fr: "Chaque matin, je prends le même bus.",
@@ -2893,6 +3017,10 @@ const LANGUAGES = [
     hint: {
       fr: "Accents aigus uniquement (á é í ó ú) et des groupes bh, mh, dh, gh partout. Le verbe est en tête de phrase.",
       en: "Acute accents only (á é í ó ú) and the clusters bh, mh, dh, gh everywhere. The verb comes first in the sentence."
+    },
+    about: {
+      fr: "L'irlandais est la première langue officielle de l'Irlande, mais seule une minorité le parle au quotidien, principalement dans les régions du Gaeltacht. Il place le verbe en tête de phrase, un ordre rare en Europe, et pratique les mutations initiales : le début d'un mot change selon le contexte grammatical, ce qui rend le dictionnaire difficile à consulter pour un débutant. Sa littérature écrite est la plus ancienne d'Europe occidentale après le latin et le grec.",
+      en: "Irish is the first official language of Ireland, but only a minority speak it daily, chiefly in the Gaeltacht regions. It puts the verb first in the sentence, an order rare in Europe, and uses initial mutations: the beginning of a word changes according to its grammatical context, which makes the dictionary hard to use for a beginner. Its written literature is the oldest in western Europe after Latin and Greek."
     },
     texts: [
       ["Ólaim tae gach maidin.",
@@ -2986,6 +3114,10 @@ const LANGUAGES = [
       fr: "Le double ll, le w et le y utilisés comme voyelles (cwm, bryn), et le circonflexe ŵ, ŷ.",
       en: "The double ll, and w and y used as vowels (cwm, bryn), plus the circumflex ŵ, ŷ."
     },
+    about: {
+      fr: "Le gallois est la langue celtique la plus vigoureuse : contrairement à ses parentes, elle n'a jamais cessé d'être transmise et son usage progresse depuis quelques décennies. Comme l'irlandais, elle place le verbe en tête et pratique les mutations initiales. Son orthographe déroute parce que w et y y sont des voyelles : le mot cwm, par exemple, se prononce avec un son de ou.",
+      en: "Welsh is the healthiest of the Celtic languages: unlike its relatives it was never fully cut off from one generation to the next, and its use has been growing for some decades. Like Irish it puts the verb first and uses initial mutations. Its spelling disorients because w and y are vowels: the word cwm, for instance, is pronounced with an oo sound."
+    },
     texts: [
       ["Dw i’n mynd i’r gwaith ar y bws bob bore.",
        { fr: "Je vais au travail en bus tous les matins.",
@@ -3077,6 +3209,10 @@ const LANGUAGES = [
     hint: {
       fr: "Signature unique : le trigramme c’h (alc’hwez, c’hoari) et le zh de « Breizh ».",
       en: "A unique signature: the trigraph c’h (alc’hwez, c’hoari) and the zh of “Breizh”."
+    },
+    about: {
+      fr: "Le breton n'est pas un héritier du gaulois, contrairement à une idée répandue : il a été apporté en Armorique par des migrants venus de Grande-Bretagne à la fin de l'Antiquité. Il est donc le cousin du gallois et du cornique, pas du parler des Gaulois. C'est la seule langue celtique encore vivante sur le continent, et le nombre de ses locuteurs a fortement reculé au cours du XXe siècle.",
+      en: "Breton is not a descendant of Gaulish, contrary to a widespread belief: it was brought to Armorica by migrants from Britain in late antiquity. It is therefore a cousin of Welsh and Cornish, not of the speech of the Gauls. It is the only Celtic language still alive on the continent, and its speaker numbers fell sharply over the twentieth century."
     },
     texts: [
       ["Demat deoc’h, penaos emañ kont ganeoc’h?",
@@ -3170,6 +3306,10 @@ const LANGUAGES = [
       fr: "Son propre alphabet, impossible à confondre. Un seul accent aigu sur la voyelle tonique.",
       en: "Its own alphabet, impossible to mistake. A single acute accent on the stressed vowel."
     },
+    about: {
+      fr: "Le grec forme à lui seul une branche de l'indo-européen : il n'a aucune parente proche. Son histoire écrite dépasse trois mille ans, la plus longue de toute la famille. Son alphabet fut le premier à noter les voyelles aussi bien que les consonnes, et c'est de lui que descendent l'alphabet latin et le cyrillique. Le grec moderne n'emploie plus qu'un seul accent, sur la voyelle tonique.",
+      en: "Greek forms a branch of Indo-European on its own: it has no close relatives. Its written history spans more than three thousand years, the longest in the whole family. Its alphabet was the first to write vowels as well as consonants, and both the Latin and Cyrillic alphabets descend from it. Modern Greek uses a single accent, on the stressed vowel."
+    },
     texts: [
       ["Κάθε πρωί διαβάζω τις ειδήσεις.",
        { fr: "Chaque matin, je lis les nouvelles.",
@@ -3261,6 +3401,10 @@ const LANGUAGES = [
     hint: {
       fr: "Seule branche de sa famille. Repères : ë très fréquent en fin de mot, ç, et les digrammes xh, zh, dh, gj.",
       en: "The only branch of its family. Markers: a very frequent ë at the end of words, ç, and the digraphs xh, zh, dh, gj."
+    },
+    about: {
+      fr: "L'albanais constitue, comme le grec, une branche isolée de l'indo-européen, sans parente proche. Son vocabulaire a tant emprunté au latin, au grec, au slave et au turc que sa classification a longtemps posé problème aux linguistes. Il se partage en deux grands ensembles dialectaux, le guègue au nord et le tosque au sud, la norme écrite étant fondée sur le second.",
+      en: "Albanian, like Greek, is an isolated branch of Indo-European with no close relatives. Its vocabulary has borrowed so heavily from Latin, Greek, Slavic and Turkish that its classification long puzzled linguists. It falls into two large dialect groups, Gheg in the north and Tosk in the south, the written standard being based on the latter."
     },
     texts: [
       ["Çdo mëngjes hap dritaren për ajër të pastër.",
@@ -3354,6 +3498,10 @@ const LANGUAGES = [
       fr: "Langue isolée, sans parenté connue. Beaucoup de k, tx, tz, et des mots finissant en -ak, -tik, -rekin.",
       en: "An isolate with no known relatives. Lots of k, tx, tz, and words ending in -ak, -tik, -rekin."
     },
+    about: {
+      fr: "Le basque est un isolat : aucune parenté n'a jamais pu être démontrée avec une autre langue au monde, malgré des siècles de tentatives. Il était déjà parlé dans les Pyrénées avant l'arrivée des Romains, ce qui en fait la seule langue pré-indo-européenne d'Europe occidentale à avoir survécu. Sa grammaire fonctionne sur un principe ergatif, qui traite différemment le sujet d'un verbe selon qu'il a ou non un complément.",
+      en: "Basque is an isolate: no relationship to any other language in the world has ever been demonstrated, despite centuries of attempts. It was already spoken in the Pyrenees before the Romans arrived, making it the only pre-Indo-European language of western Europe to have survived. Its grammar works on an ergative principle, which treats the subject of a verb differently depending on whether it takes an object."
+    },
     texts: [
       ["Goizero oinez joaten naiz mendira.",
        { fr: "Chaque matin, je monte à la montagne à pied.",
@@ -3446,6 +3594,10 @@ const LANGUAGES = [
       fr: "Seule langue sémitique écrite en alphabet latin : ħ, ġ, ż, ċ et l’article « il- / iċ- » collé devant les noms.",
       en: "The only Semitic language written in the Latin alphabet: ħ, ġ, ż, ċ and the article “il- / iċ-” stuck in front of nouns."
     },
+    about: {
+      fr: "Le maltais est la seule langue sémitique écrite en alphabet latin, et la seule langue sémitique officielle de l'Union européenne. Il descend de l'arabe implanté dans l'île, puis s'est chargé d'emprunts au sicilien et à l'italien, et plus récemment à l'anglais. Le résultat est une grammaire arabe habillée d'un vocabulaire pour moitié roman, cas unique en Europe.",
+      en: "Maltese is the only Semitic language written in the Latin alphabet, and the only Semitic official language of the European Union. It descends from the Arabic established on the island, then took on heavy borrowing from Sicilian and Italian, and more recently from English. The result is Arabic grammar dressed in a vocabulary half Romance in origin, a unique case in Europe."
+    },
     texts: [
       ["Kuljum nimxi sal-baħar.",
        { fr: "Chaque jour, je marche jusqu’à la mer.",
@@ -3537,6 +3689,10 @@ const LANGUAGES = [
     hint: {
       fr: "Le ı sans point et le ğ muet, plus ş et ç. Langue agglutinante : les suffixes s’empilent en fin de mot.",
       en: "The dotless ı and the silent ğ, plus ş and ç. An agglutinative language: suffixes stack up at the end of words."
+    },
+    about: {
+      fr: "Le turc n'est pas indo-européen mais appartient à la famille turcique, qui s'étend jusqu'en Asie centrale. Il fonctionne par agglutination : les suffixes s'empilent à la fin du mot, si bien qu'un seul mot turc peut traduire une phrase entière de français. En 1928, il a abandonné l'alphabet arabe pour l'alphabet latin, au cours d'une réforme qui a également écarté une grande partie du vocabulaire arabe et persan.",
+      en: "Turkish is not Indo-European but belongs to the Turkic family, which reaches into Central Asia. It works by agglutination: suffixes stack at the end of the word, so that a single Turkish word can translate a whole English sentence. In 1928 it abandoned the Arabic alphabet for the Latin one, in a reform that also set aside a large part of its Arabic and Persian vocabulary."
     },
     texts: [
       ["Her sabah çay içerim, kahve değil.",

@@ -65,6 +65,26 @@
   /** Champ de langue traduit : name, hint, area, speakers… */
   const L = (field) => (field && (field[locale] || field.fr || field.en)) || '';
 
+  /** « Néerlandais » -> « neerlandais ». Doit rester identique au générateur
+      de fiches (outils/generer-fiches.js), qui nomme les fichiers ainsi. */
+  function slug(nom) {
+    return nom.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  /** Adresse de la fiche d'une langue, dans la langue d'interface courante. */
+  const lienFiche = (lang) => t('pages.dir') + '/' + slug(L(lang.name)) + '.html';
+
+  /**
+   * En français, un nom de langue se met en minuscule et prend un article :
+   * « le bulgare », « l'allemand ». L'anglais n'en met pas.
+   */
+  function avecArticle(nom) {
+    if (locale !== 'fr') return nom;
+    const n = nom.toLowerCase();
+    return /^[aeiouéèê]/.test(n) ? 'l’' + n : 'le ' + n;
+  }
+
   /** Libellé d'une famille, branche ou alphabet à partir de sa clé. */
   const taxon = (kind, key) => (TAXONOMY[kind][key] || {})[locale] || key;
 
@@ -303,7 +323,9 @@
 
     $('dailyDate').textContent = prettyDate(day);
     $('homeEyebrow').textContent = t('home.eyebrow', { count: playable().length });
-    $('footCount').textContent = t('foot.count', { count: playable().length });
+    const pied = $('footCount');
+    pied.textContent = t('foot.count', { count: playable().length });
+    pied.href = t('pages.dir') + '/index.html';
 
     document.querySelectorAll('[data-best]').forEach((el) => {
       const mode = el.dataset.best;
@@ -554,6 +576,10 @@
     }).join('');
 
     $('verdictHint').textContent = L(lang.hint);
+
+    const plus = $('verdictMore');
+    plus.href = lienFiche(lang);
+    plus.textContent = t('pages.more', { name: avecArticle(L(lang.name)) });
 
     let label = t('next');
     if (isSurvival() && state.lives <= 0) label = t('next.gameOver');
