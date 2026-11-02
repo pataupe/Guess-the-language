@@ -4,7 +4,7 @@ Un petit jeu bilingue : une phrase s'affiche, tu devines dans quelle langue
 elle est écrite. 39 langues d'Europe, 975 phrases, chacune traduite en
 français et en anglais.
 
-**En ligne :** <https://pataupe.github.io/Guess-the-language/>
+**En ligne :** <https://guess-the-language.pages.dev>
 
 ## Jouer
 
