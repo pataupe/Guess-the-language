@@ -104,6 +104,7 @@ node outils/generer-fiches.js
 À relancer après toute modification de `languages.js` ou de `i18n.js`.
 La commande efface et réécrit les deux dossiers, il ne faut donc pas
 modifier ces fichiers à la main.
+La même commande réécrit `sitemap.xml`.
 
 Pourquoi de vraies pages plutôt qu'une seule page dynamique : `index.html`
 ne contient que 17 mots lisibles par un moteur de recherche, puisque tout
@@ -121,6 +122,9 @@ contient environ 180, en clair dans le fichier.
 | `script.js` | La logique du jeu. |
 | `outils/generer-fiches.js` | Le générateur des fiches de langue. |
 | `langues/`, `languages/` | Les fiches générées. **Ne pas éditer à la main.** |
+| `sitemap.xml` | Les 79 adresses du site, généré. **Ne pas éditer à la main.** |
+| `robots.txt` | Autorise tout et indique où est le sitemap. |
+| `404.html` | Page d'erreur. Sans elle, Cloudflare renvoyait la page d'accueil avec un code « tout va bien » pour n'importe quelle adresse, ce que Google compte comme une fausse page. |
 
 La branche `gh-pages` ne contient pas le site : seulement deux fichiers qui
 redirigent l'ancienne adresse `pataupe.github.io/Guess-the-language/` vers la

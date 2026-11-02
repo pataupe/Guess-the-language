@@ -27,6 +27,9 @@ const LANGUAGES = new Function(lire('languages.js') + '\nreturn LANGUAGES;')();
 /* Dossier de destination pour chaque langue d'interface. */
 const DOSSIER = { fr: 'langues', en: 'languages' };
 
+/* Adresse publique du site, pour le sitemap. */
+const SITE = 'https://guess-the-language.pages.dev';
+
 /* ------------------------------------------------------------- utilitaires */
 
 function t(locale, cle, vars) {
@@ -198,6 +201,47 @@ ${parBranche[b]
   });
 }
 
+/* -------------------------------------------------------------- le sitemap */
+
+/* Cloudflare sert les pages sans le « .html » : ce sont ces adresses-là qu'il
+   faut déclarer, sinon chaque entrée du sitemap part sur une redirection. */
+const urlFiche = (locale, lang) => SITE + '/' + DOSSIER[locale] + '/' + slug(lang.name[locale]);
+const urlSommaire = (locale) => SITE + '/' + DOSSIER[locale] + '/';
+
+const SAUT = `
+`;
+
+function sitemap() {
+  const entrees = [{ loc: SITE + '/', alternatives: [] }];
+
+  /* Les deux sommaires sont traductions l'un de l'autre. */
+  const altSommaires = LOCALES.map((l) => [l, urlSommaire(l)]);
+  LOCALES.forEach((l) => entrees.push({ loc: urlSommaire(l), alternatives: altSommaires }));
+
+  /* Chaque langue a une fiche dans les deux langues d'interface, sauf celle du
+     joueur : le français n'a pas de fiche côté français, l'anglais côté anglais. */
+  LANGUAGES.forEach((lang) => {
+    const alternatives = LOCALES.filter((l) => lang.id !== l).map((l) => [l, urlFiche(l, lang)]);
+    alternatives.forEach(([, loc]) => entrees.push({ loc, alternatives }));
+  });
+
+  const lignes = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+    '        xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+  ];
+  entrees.forEach((e) => {
+    lignes.push('  <url>');
+    lignes.push('    <loc>' + e.loc + '</loc>');
+    e.alternatives.forEach(([l, loc]) => lignes.push(
+      '    <xhtml:link rel="alternate" hreflang="' + l + '" href="' + loc + '"/>'));
+    lignes.push('  </url>');
+  });
+  lignes.push('</urlset>');
+
+  return lignes.join(SAUT) + SAUT;
+}
+
 /* ------------------------------------------------------------- génération */
 
 let total = 0;
@@ -216,3 +260,7 @@ LOCALES.forEach((locale) => {
 });
 
 console.log(total + ' pages générées dans ' + LOCALES.map((l) => DOSSIER[l] + '/').join(' et '));
+
+const plan = sitemap();
+fs.writeFileSync(path.join(RACINE, 'sitemap.xml'), plan, 'utf8');
+console.log((plan.match(/<loc>/g) || []).length + ' adresses dans sitemap.xml');

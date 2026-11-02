@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://guess-the-language.pages.dev/</loc>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/allemand</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/allemand"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/german"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/german</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/allemand"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/german"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/anglais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/anglais"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/neerlandais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/neerlandais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/dutch"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/dutch</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/neerlandais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/dutch"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/luxembourgeois</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/luxembourgeois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/luxembourgish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/luxembourgish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/luxembourgeois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/luxembourgish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/suedois</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/suedois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/swedish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/swedish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/suedois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/swedish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/norvegien</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/norvegien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/norwegian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/norwegian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/norvegien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/norwegian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/danois</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/danois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/danish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/danish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/danois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/danish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/islandais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/islandais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/icelandic"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/icelandic</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/islandais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/icelandic"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/french</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/french"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/espagnol</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/espagnol"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/spanish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/spanish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/espagnol"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/spanish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/portugais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/portugais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/portuguese"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/portuguese</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/portugais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/portuguese"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/catalan</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/catalan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/catalan"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/catalan</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/catalan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/catalan"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/galicien</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/galicien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/galician"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/galician</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/galicien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/galician"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/italien</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/italien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/italian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/italian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/italien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/italian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/roumain</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/roumain"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/romanian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/romanian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/roumain"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/romanian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/russe</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/russe"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/russian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/russian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/russe"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/russian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/ukrainien</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/ukrainien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/ukrainian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/ukrainian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/ukrainien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/ukrainian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/bielorusse</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/bielorusse"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/belarusian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/belarusian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/bielorusse"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/belarusian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/polonais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/polonais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/polish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/polish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/polonais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/polish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/tcheque</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/tcheque"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/czech"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/czech</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/tcheque"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/czech"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/slovaque</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/slovaque"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/slovak"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/slovak</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/slovaque"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/slovak"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/slovene</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/slovene"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/slovene"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/slovene</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/slovene"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/slovene"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/croate</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/croate"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/croatian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/croatian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/croate"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/croatian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/serbe</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/serbe"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/serbian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/serbian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/serbe"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/serbian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/bulgare</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/bulgare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/bulgarian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/bulgarian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/bulgare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/bulgarian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/macedonien</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/macedonien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/macedonian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/macedonian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/macedonien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/macedonian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/lituanien</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/lituanien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/lithuanian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/lithuanian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/lituanien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/lithuanian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/letton</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/letton"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/latvian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/latvian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/letton"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/latvian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/finnois</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/finnois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/finnish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/finnish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/finnois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/finnish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/estonien</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/estonien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/estonian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/estonian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/estonien"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/estonian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/hongrois</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/hongrois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/hungarian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/hungarian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/hongrois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/hungarian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/irlandais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/irlandais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/irish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/irish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/irlandais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/irish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/gallois</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/gallois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/welsh"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/welsh</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/gallois"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/welsh"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/breton</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/breton"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/breton"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/breton</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/breton"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/breton"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/grec</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/grec"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/greek"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/greek</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/grec"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/greek"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/albanais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/albanais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/albanian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/albanian</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/albanais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/albanian"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/basque</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/basque"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/basque"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/basque</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/basque"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/basque"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/maltais</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/maltais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/maltese"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/maltese</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/maltais"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/maltese"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/langues/turc</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/turc"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/turkish"/>
+  </url>
+  <url>
+    <loc>https://guess-the-language.pages.dev/languages/turkish</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://guess-the-language.pages.dev/langues/turc"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guess-the-language.pages.dev/languages/turkish"/>
+  </url>
+</urlset>
