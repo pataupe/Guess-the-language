@@ -1,4 +1,8 @@
+.git
+.wrangler
+.claude
+outils
 README.md
 wrangler.jsonc
 .assetsignore
-outils/*
+maquette gml.png
