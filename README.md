@@ -122,6 +122,10 @@ contient environ 180, en clair dans le fichier.
 | `outils/generer-fiches.js` | Le générateur des fiches de langue. |
 | `langues/`, `languages/` | Les fiches générées. **Ne pas éditer à la main.** |
 
+La branche `gh-pages` ne contient pas le site : seulement deux fichiers qui
+redirigent l'ancienne adresse `pataupe.github.io/Guess-the-language/` vers la
+nouvelle. Le site lui-même vit sur `main`, servi par Cloudflare Pages.
+
 ## Ajouter une langue
 
 Ajoute une entrée dans `languages.js`. Tout le reste s'adapte seul (compteurs,
