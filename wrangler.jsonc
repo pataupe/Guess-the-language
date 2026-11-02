@@ -1,0 +1,9 @@
+{
+  // Dit à Cloudflare que ce dépôt est un site de fichiers statiques,
+  // pas une application à exécuter : il sert le contenu tel quel.
+  "name": "guess-the-language",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./"
+  }
+}
