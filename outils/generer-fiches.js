@@ -48,6 +48,8 @@ function slug(nom) {
     .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
+const SAUT = `
+`;
 const fichier = (locale, lang) => slug(lang.name[locale]) + '.html';
 const taxon = (kind, cle, locale) => (TAXONOMY[kind][cle] || {})[locale] || cle;
 
@@ -56,8 +58,16 @@ const jouables = (locale) => LANGUAGES.filter((l) => l.id !== locale);
 
 /* ------------------------------------------------------------- gabarit HTML */
 
-function page({ locale, titre, description, corps, profondeur, autreLien }) {
+function page({ locale, titre, description, corps, profondeur, autreLien,
+                canonique, alternes }) {
   const base = '../'.repeat(profondeur);
+  /* L'adresse canonique et les liens hreflang vivent dans l'en-tete de chaque
+     page plutot que dans le sitemap : les deux methodes sont officielles, et
+     celle-ci garde le sitemap reduit a une simple liste d'adresses. */
+  const tete = ['<link rel="canonical" href="' + canonique + '">']
+    .concat((alternes || []).map(([l, href]) =>
+      '<link rel="alternate" hreflang="' + l + '" href="' + href + '">'))
+    .join(SAUT);
   return `<!DOCTYPE html>
 <html lang="${t(locale, 'html.lang')}">
 <head>
@@ -65,6 +75,7 @@ function page({ locale, titre, description, corps, profondeur, autreLien }) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(titre)}</title>
 <meta name="description" content="${esc(description)}">
+${tete}
 <link rel="icon" href="${base}images/logo2.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,6 +166,8 @@ ${x[1][locale] ? `            <p class="exemple-trad">${esc(x[1][locale])}</p>` 
     description: t(locale, 'pages.metaLang', { name: lang.name[locale], endonym: lang.endonym }),
     corps,
     profondeur: 1,
+    canonique: urlFiche(locale, lang),
+    alternes: LOCALES.filter((l) => lang.id !== l).map((l) => [l, urlFiche(l, lang)]),
     // Si la langue de la fiche est celle de l'autre interface, elle n'y a pas
     // de page : le jeu retire au joueur sa propre langue. On renvoie au sommaire.
     autreLien: '../' + DOSSIER[autre] + '/' +
@@ -197,6 +210,8 @@ ${parBranche[b]
     description: t(locale, 'pages.metaIndex', { count: liste.length }),
     corps,
     profondeur: 1,
+    canonique: urlSommaire(locale),
+    alternes: LOCALES.map((l) => [l, urlSommaire(l)]),
     autreLien: '../' + DOSSIER[autre] + '/index.html'
   });
 }
@@ -208,38 +223,18 @@ ${parBranche[b]
 const urlFiche = (locale, lang) => SITE + '/' + DOSSIER[locale] + '/' + slug(lang.name[locale]);
 const urlSommaire = (locale) => SITE + '/' + DOSSIER[locale] + '/';
 
-const SAUT = `
-`;
-
 function sitemap() {
-  const entrees = [{ loc: SITE + '/', alternatives: [] }];
+  const adresses = [SITE + '/'];
+  LOCALES.forEach((l) => adresses.push(urlSommaire(l)));
+  LANGUAGES.forEach((lang) => LOCALES
+    .filter((l) => lang.id !== l)
+    .forEach((l) => adresses.push(urlFiche(l, lang))));
 
-  /* Les deux sommaires sont traductions l'un de l'autre. */
-  const altSommaires = LOCALES.map((l) => [l, urlSommaire(l)]);
-  LOCALES.forEach((l) => entrees.push({ loc: urlSommaire(l), alternatives: altSommaires }));
-
-  /* Chaque langue a une fiche dans les deux langues d'interface, sauf celle du
-     joueur : le français n'a pas de fiche côté français, l'anglais côté anglais. */
-  LANGUAGES.forEach((lang) => {
-    const alternatives = LOCALES.filter((l) => lang.id !== l).map((l) => [l, urlFiche(l, lang)]);
-    alternatives.forEach(([, loc]) => entrees.push({ loc, alternatives }));
-  });
-
-  const lignes = [
+  return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
-    '        xmlns:xhtml="http://www.w3.org/1999/xhtml">'
-  ];
-  entrees.forEach((e) => {
-    lignes.push('  <url>');
-    lignes.push('    <loc>' + e.loc + '</loc>');
-    e.alternatives.forEach(([l, loc]) => lignes.push(
-      '    <xhtml:link rel="alternate" hreflang="' + l + '" href="' + loc + '"/>'));
-    lignes.push('  </url>');
-  });
-  lignes.push('</urlset>');
-
-  return lignes.join(SAUT) + SAUT;
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+  ].concat(adresses.map((a) => '  <url><loc>' + a + '</loc></url>'))
+    .concat(['</urlset>', '']).join(SAUT);
 }
 
 /* ------------------------------------------------------------- génération */

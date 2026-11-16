@@ -122,7 +122,7 @@ contient environ 180, en clair dans le fichier.
 | `script.js` | La logique du jeu. |
 | `outils/generer-fiches.js` | Le générateur des fiches de langue. |
 | `langues/`, `languages/` | Les fiches générées. **Ne pas éditer à la main.** |
-| `sitemap.xml` | Les 79 adresses du site, généré. **Ne pas éditer à la main.** |
+| `sitemap.xml` | Les 79 adresses du site, généré. Une simple liste : l'appariement entre versions française et anglaise vit dans l'en-tête des pages (`hreflang`), pas ici. **Ne pas éditer à la main.** |
 | `robots.txt` | Autorise tout et indique où est le sitemap. |
 | `404.html` | Page d'erreur. Sans elle, Cloudflare renvoyait la page d'accueil avec un code « tout va bien » pour n'importe quelle adresse, ce que Google compte comme une fausse page. |
 
