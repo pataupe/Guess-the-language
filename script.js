@@ -288,13 +288,13 @@
   }
 
   /**
-   * La survie tire au hasard parmi les 38, sans aucun dosage de niveau.
+   * La survie tire au hasard parmi les 41, sans aucun dosage de niveau.
    *
    * Une version precedente faisait monter la rarete au fil de la partie. Deux
-   * defauts : elle retrecissait le tirage aux dix langues rares, ce qui
+   * defauts : elle retrecissait le tirage aux langues rares, ce qui
    * renseignait le joueur, et les langues rares sont souvent les plus faciles
    * a identifier (le c'h breton, les h et z pointes du maltais). Les vraiment
-   * difficiles sont les paires proches — tcheque / slovaque, danois /
+   * difficiles sont les paires proches — occitan / nicois, danois /
    * norvegien — qui sont des langues courantes.
    */
   function nextSurvivalQuestion() {

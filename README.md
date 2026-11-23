@@ -1,7 +1,7 @@
 # Guess the Language
 
 Un petit jeu bilingue : une phrase s'affiche, tu devines dans quelle langue
-elle est écrite. 39 langues d'Europe, 975 phrases, chacune traduite en
+elle est écrite. 42 langues d'Europe, 1 050 phrases, chacune traduite en
 français et en anglais.
 
 **En ligne :** <https://guess-the-language.pages.dev>
@@ -29,8 +29,8 @@ gardé dans `localStorage`.
 
 **La langue du joueur est retirée du tirage.** Demander à un francophone de
 reconnaître du français ne demande aucun effort — c'est un point offert. La
-version française propose donc 38 langues (tout sauf le français), l'anglaise
-38 aussi (tout sauf l'anglais). La langue du joueur ne sort ni comme réponse,
+version française propose donc 41 langues (tout sauf le français), l'anglaise
+41 aussi (tout sauf l'anglais). La langue du joueur ne sort ni comme réponse,
 ni comme intrus, ni dans l'autocomplétion.
 
 Conséquence assumée : **le défi du jour n'est pas le même dans les deux
@@ -66,7 +66,7 @@ Le choix est indépendant du mode de jeu.
 ## Comment une partie est composée
 
 Chaque langue porte une note de rareté de 1 à 3 (champ `level` dans
-`languages.js`) : 14 courantes, 15 intermédiaires, 10 rares.
+`languages.js`) : 14 courantes, 16 intermédiaires, 12 rares.
 
 Le défi du jour et la partie libre tirent 10 langues avec une seule
 contrainte : **au moins deux de chaque niveau** (`LEVEL_MIN`). Les quatre
@@ -118,11 +118,12 @@ contient environ 180, en clair dans le fichier.
 | `index.html` | Les trois écrans. Le texte visible vit dans des attributs `data-i18n`. |
 | `style.css` | Le design (thème clair et sombre automatiques). |
 | `i18n.js` | Le dictionnaire de l'interface et la taxonomie (familles, branches, alphabets). |
-| `languages.js` | Les 39 langues et leurs 975 phrases traduites. |
+| `languages.js` | Les 42 langues et leurs 1 050 phrases traduites. |
+| `langues-retirees.js` | Les langues mises en réserve (slovaque, slovène, biélorusse), au même format. **Non chargé par les pages et non publié** (listé dans `.assetsignore`). Pour en restaurer une : recopier son bloc dans `LANGUAGES`, puis relancer `node outils/generer-fiches.js`. |
 | `script.js` | La logique du jeu. |
 | `outils/generer-fiches.js` | Le générateur des fiches de langue. |
 | `langues/`, `languages/` | Les fiches générées. **Ne pas éditer à la main.** |
-| `sitemap.xml` | Les 79 adresses du site, généré. Une simple liste : l'appariement entre versions française et anglaise vit dans l'en-tête des pages (`hreflang`), pas ici. **Ne pas éditer à la main.** |
+| `sitemap.xml` | Les 85 adresses du site, généré. Une simple liste : l'appariement entre versions française et anglaise vit dans l'en-tête des pages (`hreflang`), pas ici. **Ne pas éditer à la main.** |
 | `robots.txt` | Autorise tout et indique où est le sitemap. |
 | `404.html` | Page d'erreur. Sans elle, Cloudflare renvoyait la page d'accueil avec un code « tout va bien » pour n'importe quelle adresse, ce que Google compte comme une fausse page. |
 
@@ -162,9 +163,10 @@ Trois contraintes de contenu :
 
 - garder assez de langues dans chaque `level` pour le minimum de deux ;
 - ne **jamais** donner à deux langues proches (suédois / norvégien / danois,
-  tchèque / slovaque, serbe / croate, russe / ukrainien / biélorusse…) la
-  traduction d'une même phrase, dans aucune des deux langues : mises côte à
-  côte, elles donneraient la réponse ;
+  occitan / niçois / catalan, italien / sicilien / frioulan, allemand /
+  alsacien / luxembourgeois, français / picard, serbe / croate, russe /
+  ukrainien…) la traduction d'une même phrase, dans aucune des deux langues :
+  mises côte à côte, elles donneraient la réponse ;
 - ne **jamais** laisser une phrase nommer sa propre langue, son pays ou une
   de ses villes. « Türkçe öğrenmek istiyorum » ou « Hva koster en billett til
   Oslo? » donnent la réponse sans que le joueur ait à lire la phrase. Citer un
@@ -175,14 +177,22 @@ Trois contraintes de contenu :
 
 Ajoute son code à `LOCALES`, une entrée dans `UI_STRINGS` (96 clés) et sa
 traduction dans chaque entrée de `TAXONOMY`. Côté `languages.js`, il faut
-alors compléter `name`, `speakers`, `area`, `hint` et les 975 traductions.
+alors compléter `name`, `speakers`, `area`, `hint` et les 1 050 traductions.
 
 ## Fiabilité des phrases
 
-Les 975 phrases ont été écrites à la main, pas extraites d'un corpus. Elles
+Les 1 050 phrases ont été écrites à la main, pas extraites d'un corpus. Elles
 sont solides sur les grandes langues, et plus fragiles sur le **breton**, le
 **luxembourgeois**, l'**irlandais** et le **gallois** — une relecture par
 quelqu'un qui les pratique serait la bienvenue.
+
+Les six langues régionales ajoutées en dernier — le **sicilien**, le
+**frioulan**, l'**occitan**, le **niçois**, le **picard** et l'**alsacien** —
+sont les plus fragiles de toutes. Aucune n'a de norme écrite unique : chacune
+se décline en parlers locaux, et leur orthographe varie d'un auteur à l'autre
+(le niçois est écrit ici à la provençale, l'occitan en graphie classique, le
+picard à la ch'ti, l'alsacien avec ì, à, ü, ö). Une relecture par des
+locuteurs est particulièrement bienvenue, et toute correction aussi.
 
 ## À faire plus tard
 
